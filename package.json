@@ -1,4 +1,11 @@
 {
   "name": "liferay-app",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-jshint": "^1.7.1",
+    "gulp-load-plugins": "^0.5.3",
+    "jshint-stylish": "^0.4.0",
+    "require-dir": "^0.1.0"
+  }
 }
