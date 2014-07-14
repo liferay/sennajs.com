@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
 gulp.task('format-css', function() {
-  return gulp.src('app/styles/**/*.css')
+  return gulp.src(['app/styles/**/*.css', 'app/styles/**/*.scss'])
     .pipe(plugins.autoprefixer([
       'android >= 4.4',
       'bb >= 10',
