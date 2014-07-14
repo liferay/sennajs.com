@@ -7,17 +7,6 @@ var util = require('./util');
 gulp.task('format-css', function() {
   return gulp.src(['app/styles/**/*.css', 'app/styles/**/*.scss'])
     .pipe(plugins.plumber(util.logError))
-    .pipe(plugins.autoprefixer([
-      'android >= 4.4',
-      'bb >= 10',
-      'chrome >= 34',
-      'ff >= 30',
-      'ie >= 8',
-      'ie_mob >= 10',
-      'ios >= 7',
-      'opera >= 23',
-      'safari >= 7'
-    ]))
     .pipe(plugins.csscomb())
     .pipe(plugins.cssbeautify({
       indent: '  '
