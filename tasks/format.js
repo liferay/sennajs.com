@@ -21,18 +21,12 @@ gulp.task('format-css', function() {
       indent: '  '
     }))
     .pipe(gulp.dest('app/styles'))
-    .pipe(plugins.size({
-      title: 'format-css'
-    }));
 });
 
 gulp.task('format-javascript', function() {
   return gulp.src(['app/scripts/**/*.js'])
   .pipe(plugins.esformatter())
   .pipe(gulp.dest('app/scripts'))
-  .pipe(plugins.size({
-    title: 'format-javascript'
-  }));
 });
 
 gulp.task('format', ['format-css', 'format-javascript']);
