@@ -3,7 +3,9 @@
   "name": "Liferay Web App Starter Kit",
   "launch_path": "/index.html",
   "description": "",
-  "icons": {},
+  "icons": {
+    "128": "/images/touch/icon-128x128.png"
+  },
   "developer": {
     "name": "",
     "url": ""
