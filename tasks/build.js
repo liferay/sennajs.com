@@ -45,6 +45,15 @@ gulp.task('build-css', ['build-images'], function() {
     .pipe(gulp.dest('dist/styles'));
 });
 
+gulp.task('build-javascript', function() {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.uglify({
+      preserveComments: 'some'
+    }))
+    .pipe(gulp.dest('dist/scripts'));
+});
+
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['build-images', 'build-icons', 'build-css'], cb);
+  runSequence(['build-images', 'build-icons', 'build-css', 'build-javascript'], cb);
 });
