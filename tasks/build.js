@@ -18,6 +18,7 @@ gulp.task('build-icons', function() {
       fontName: 'icons',
       normalize: true
     }))
+    .pipe(plugins.if('*.css', plugins.csso()))
     .pipe(gulp.dest('dist/images/icons'));
 });
 
@@ -40,6 +41,7 @@ gulp.task('build-css', ['build-images'], function() {
       logging: false,
       sass: 'app/styles'
     })))
+    .pipe(plugins.csso())
     .pipe(gulp.dest('dist/styles'));
 });
 
