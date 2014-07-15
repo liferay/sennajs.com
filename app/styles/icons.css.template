@@ -18,7 +18,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 <% _.each(glyphs, function(glyph) { %>
 .lfr-icon-<%= glyph.fileName %>:before {
   content: "\<%= glyph.codePoint %>";
