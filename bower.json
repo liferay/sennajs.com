@@ -1,7 +1,7 @@
 {
   "name": "liferay-app",
-  "version": "0.0.0",
-  "license": "GNU",
+  "version": "0.0.1",
+  "license": "LGPL",
   "authors": [
     "Eduardo Lundgren <eduardo.lundgren@liferay.com>"
   ],
