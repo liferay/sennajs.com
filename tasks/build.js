@@ -5,7 +5,7 @@ var plugins = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 
 gulp.task('build-icons', function() {
-  return gulp.src(['app/images/icons/*.svg'])
+  return gulp.src('app/images/icons/*.svg')
     .pipe(plugins.iconfontCss({
       fontName: 'icons',
       fontPath: '../images/icons/',
@@ -20,7 +20,7 @@ gulp.task('build-icons', function() {
 });
 
 gulp.task('build-images', function() {
-  return gulp.src('app/images/**/*')
+  return gulp.src('app/images/**')
     .pipe(plugins.imagemin({
       progressive: true,
       interlaced: true
