@@ -41,6 +41,17 @@ gulp.task('build-css', ['build-images'], function() {
       logging: false,
       sass: 'app/styles'
     })))
+    .pipe(plugins.autoprefixer([
+      'android >= 4.4',
+      'bb >= 10',
+      'chrome >= 34',
+      'ff >= 30',
+      'ie >= 8',
+      'ie_mob >= 10',
+      'ios >= 7',
+      'opera >= 23',
+      'safari >= 7'
+    ]))
     .pipe(plugins.csso())
     .pipe(gulp.dest('dist/styles'));
 });
