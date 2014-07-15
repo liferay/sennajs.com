@@ -3,8 +3,10 @@ var gutil = require('gulp-util');
 module.exports.logError = function(err) {
   if (err.fileName) {
     gutil.log(gutil.colors.red('Error'), err.fileName, lookupErrorLine(err));
-  } else {
+  } else if (err.message) {
     gutil.log(gutil.colors.red('Error'), err.message);
+  } else {
+    gutil.log(gutil.colors.red('Error'), err);
   }
   return this;
 };
