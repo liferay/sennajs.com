@@ -1,0 +1,14 @@
+{
+  "name": "liferay-app",
+  "version": "0.0.0",
+  "license": "GNU",
+  "authors": [
+    "Eduardo Lundgren <eduardo.lundgren@liferay.com>"
+  ],
+  "main": "app/index.html",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules"
+  ]
+}
