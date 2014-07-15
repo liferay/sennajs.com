@@ -8,14 +8,15 @@
 }
 
 .lfr-icon:before {
+  position: relative;
+  top: 1px;
+  display: inline-block;
   font-family: "<%= fontName %>";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  text-decoration: none;
-  text-transform: none;
 }
 
 <% _.each(glyphs, function(glyph) { %>
