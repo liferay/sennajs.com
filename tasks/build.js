@@ -54,6 +54,21 @@ gulp.task('build-javascript', function() {
     .pipe(gulp.dest('dist/scripts'));
 });
 
+gulp.task('build-html', ['build-css', 'build-javascript'], function() {
+  return gulp.src('app/**/*.{html,soy}')
+    .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.useref.assets({
+      searchPath: 'dist'
+    }))
+    .pipe(plugins.if('*.js', plugins.uglify({
+      preserveComments: 'some'
+    })))
+    .pipe(plugins.if('*.css', plugins.csso()))
+    .pipe(plugins.useref.restore())
+    .pipe(plugins.useref())
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['build-images', 'build-icons', 'build-css', 'build-javascript'], cb);
+  runSequence(['build-images', 'build-icons', 'build-css', 'build-javascript', 'build-html'], cb);
 });

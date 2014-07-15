@@ -18,6 +18,7 @@
     "gulp-plumber": "^0.6.3",
     "gulp-rimraf": "^0.1.0",
     "gulp-uglify": "^0.3.1",
+    "gulp-useref": "^0.5.0",
     "gulp-util": "^2.2.20",
     "jshint-stylish": "^0.4.0",
     "require-dir": "^0.1.0",
