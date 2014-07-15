@@ -9,7 +9,7 @@ gulp.task('build-icons', function() {
     .pipe(plugins.iconfontCss({
       fontName: 'icons',
       fontPath: '../images/icons/',
-      path: 'app/styles/icons.css.template',
+      path: 'app/styles/.icons',
       targetPath: '../../styles/icons.css'
     }))
     .pipe(plugins.iconfont({
