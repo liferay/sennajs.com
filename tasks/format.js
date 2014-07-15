@@ -15,10 +15,11 @@ gulp.task('format-css', function() {
 });
 
 gulp.task('format-javascript', function() {
-  return gulp.src(['app/scripts/**/*.js'])
+  return gulp.src(['tasks/*.js', 'app/scripts/**/*.js'])
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.esformatter())
-    .pipe(gulp.dest('app/scripts'));
+    .pipe(plugins.if('**/tasks/*.js', gulp.dest('tasks')))
+    .pipe(plugins.if('**/app/scripts/**/*.js', gulp.dest('app/scripts')));
 });
 
 gulp.task('format', ['format-css', 'format-javascript']);
