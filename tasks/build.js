@@ -66,6 +66,7 @@ gulp.task('build-html', ['build-css', 'build-javascript'], function() {
     .pipe(plugins.if('*.css', plugins.csso()))
     .pipe(plugins.useref.restore())
     .pipe(plugins.useref())
+    .pipe(plugins.if('*.html', plugins.minifyHtml()))
     .pipe(gulp.dest('dist'));
 });
 
