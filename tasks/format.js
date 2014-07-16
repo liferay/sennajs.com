@@ -5,7 +5,7 @@ var plugins = require('gulp-load-plugins')();
 var util = require('./util');
 
 gulp.task('format-css', function() {
-  return gulp.src(['app/styles/**/*.css', 'app/styles/**/*.scss'])
+  return gulp.src('app/styles/**/*.{css,scss}')
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.csscomb())
     .pipe(plugins.cssbeautify({
