@@ -6,31 +6,6 @@ var plugins = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var util = require('./util');
 
-gulp.task('build-icons', function() {
-  return gulp.src('app/images/icons/*.svg')
-    .pipe(plugins.iconfontCss({
-      fontName: 'icons',
-      fontPath: '../images/icons/',
-      path: 'app/styles/.icons',
-      targetPath: '../../styles/icons.css'
-    }))
-    .pipe(plugins.iconfont({
-      fontName: 'icons',
-      normalize: true
-    }))
-    .pipe(plugins.if('*.css', plugins.csso()))
-    .pipe(gulp.dest('dist/images/icons'));
-});
-
-gulp.task('build-images', function() {
-  return gulp.src('app/images/**')
-    .pipe(plugins.imagemin({
-      interlaced: true,
-      progressive: true
-    }))
-    .pipe(gulp.dest('dist/images'));
-});
-
 gulp.task('build-css', ['build-images'], function() {
   return gulp.src('app/styles/**/*.{css,scss}')
     .pipe(plugins.plumber(util.logError))
@@ -56,15 +31,6 @@ gulp.task('build-css', ['build-images'], function() {
     .pipe(gulp.dest('dist/styles'));
 });
 
-gulp.task('build-javascript', function() {
-  return gulp.src('app/scripts/**/*.js')
-    .pipe(plugins.plumber(util.logError))
-    .pipe(plugins.uglify({
-      preserveComments: 'some'
-    }))
-    .pipe(gulp.dest('dist/scripts'));
-});
-
 gulp.task('build-html', ['build-css', 'build-javascript'], function() {
   return gulp.src('app/**/*.{html,soy}')
     .pipe(plugins.plumber(util.logError))
@@ -79,6 +45,40 @@ gulp.task('build-html', ['build-css', 'build-javascript'], function() {
     .pipe(plugins.useref())
     .pipe(plugins.if('*.html', plugins.minifyHtml()))
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build-icons', function() {
+  return gulp.src('app/images/icons/*.svg')
+    .pipe(plugins.iconfontCss({
+      fontName: 'icons',
+      fontPath: '../images/icons/',
+      path: 'app/styles/.icons',
+      targetPath: '../../styles/icons.css'
+    }))
+    .pipe(plugins.iconfont({
+      fontName: 'icons',
+      normalize: true
+    }))
+    .pipe(plugins.if('*.css', plugins.csso()))
+    .pipe(gulp.dest('dist/images/icons'));
+});
+
+gulp.task('build-images', function() {
+  return gulp.src('app/images/**')
+    .pipe(plugins.imagemin({
+      interlaced: true,
+      progressive: true
+    }))
+    .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('build-javascript', function() {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.uglify({
+      preserveComments: 'some'
+    }))
+    .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('build', ['clean'], function(cb) {
