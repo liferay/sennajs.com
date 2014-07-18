@@ -32,7 +32,7 @@ gulp.task('build-css', ['build-images'], function() {
 });
 
 gulp.task('build-html', ['build-css', 'build-javascript'], function() {
-  return gulp.src('app/**/*.{html,soy}')
+  return gulp.src('app/**/*.html')
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.useref.assets({
       searchPath: 'dist'
@@ -81,6 +81,12 @@ gulp.task('build-javascript', function() {
     .pipe(gulp.dest('dist/scripts'));
 });
 
+gulp.task('build-templates', function() {
+  return gulp.src('app/**/*.soy')
+    .pipe(plugins.soynode())
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['build-images', 'build-icons', 'build-css', 'build-javascript', 'build-html'], cb);
+  runSequence(['build-images', 'build-icons', 'build-css', 'build-javascript', 'build-html', 'build-templates'], cb);
 });
