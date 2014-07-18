@@ -83,7 +83,10 @@ gulp.task('build-javascript', function() {
 
 gulp.task('build-templates', function() {
   return gulp.src('app/**/*.soy')
-    .pipe(plugins.soynode())
+    .pipe(plugins.soynode({
+      loadCompiledTemplates: true,
+      renderSoyWeb: true
+    }))
     .pipe(gulp.dest('dist'));
 });
 
