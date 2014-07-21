@@ -16,18 +16,7 @@ gulp.task('build-css', ['build-images'], function() {
       logging: false,
       sass: 'app/styles'
     })))
-    .pipe(plugins.autoprefixer([
-      'android >= 4.4',
-      'bb >= 10',
-      'chrome >= 34',
-      'ff >= 30',
-      'ie >= 8',
-      'ie_mob >= 10',
-      'ios >= 7',
-      'opera >= 23',
-      'safari >= 7'
-    ]))
-    .pipe(plugins.csso())
+    .pipe(util.buildCss())
     .pipe(gulp.dest('dist/styles'));
 });
 
@@ -37,10 +26,8 @@ gulp.task('build-html', ['build-css', 'build-javascript'], function() {
     .pipe(plugins.useref.assets({
       searchPath: 'dist'
     }))
-    .pipe(plugins.if('*.js', plugins.uglify({
-      preserveComments: 'some'
-    })))
-    .pipe(plugins.if('*.css', plugins.csso()))
+    .pipe(plugins.if('*.css', util.buildCss()))
+    .pipe(plugins.if('*.js', util.buildJavaScript()))
     .pipe(plugins.useref.restore())
     .pipe(plugins.useref())
     .pipe(plugins.if('*.html', plugins.minifyHtml()))
@@ -60,7 +47,7 @@ gulp.task('build-icons', function() {
       fontName: 'icons',
       normalize: true
     }))
-    .pipe(plugins.if('*.css', plugins.csso()))
+    .pipe(plugins.if('*.css', util.buildCss()))
     .pipe(gulp.dest('dist/images/icons'));
 });
 
@@ -77,9 +64,7 @@ gulp.task('build-images', function() {
 gulp.task('build-javascript', function() {
   return gulp.src('app/scripts/**/*.js')
     .pipe(plugins.plumber(util.logError))
-    .pipe(plugins.uglify({
-      preserveComments: 'some'
-    }))
+    .pipe(util.buildJavaScript())
     .pipe(gulp.dest('dist/scripts'));
 });
 
@@ -90,6 +75,9 @@ gulp.task('build-templates', function() {
       loadCompiledTemplates: true,
       renderSoyWeb: true
     }))
+    .pipe(plugins.if('*.css', util.buildCss()))
+    .pipe(plugins.if('*.js', util.buildJavaScript()))
+    .pipe(plugins.if('*.html', plugins.minifyHtml()))
     .pipe(gulp.dest('dist'));
 });
 

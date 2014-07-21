@@ -1,4 +1,25 @@
 var gutil = require('gulp-util');
+var lazypipe = require('lazypipe');
+var plugins = require('gulp-load-plugins')();
+
+module.exports.buildCss = lazypipe()
+  .pipe(plugins.autoprefixer, [
+    'android >= 4.4',
+    'bb >= 10',
+    'chrome >= 34',
+    'ff >= 30',
+    'ie >= 8',
+    'ie_mob >= 10',
+    'ios >= 7',
+    'opera >= 23',
+    'safari >= 7'
+    ])
+  .pipe(plugins.csso);
+
+module.exports.buildJavaScript = lazypipe()
+  .pipe(plugins.uglify, {
+    preserveComments: 'some'
+  });
 
 module.exports.logError = function(err) {
   if (err.fileName) {
