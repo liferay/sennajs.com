@@ -49,6 +49,7 @@ gulp.task('build-html', ['build-css', 'build-javascript'], function() {
 
 gulp.task('build-icons', function() {
   return gulp.src('app/images/icons/*.svg')
+    .pipe(plugins.plumber(util.logError))
     .pipe(plugins.iconfontCss({
       fontName: 'icons',
       fontPath: '../images/icons/',
@@ -65,6 +66,7 @@ gulp.task('build-icons', function() {
 
 gulp.task('build-images', function() {
   return gulp.src('app/images/**')
+    .pipe(plugins.plumber(util.logError))
     .pipe(plugins.imagemin({
       interlaced: true,
       progressive: true
@@ -83,6 +85,7 @@ gulp.task('build-javascript', function() {
 
 gulp.task('build-templates', function() {
   return gulp.src('app/**/*.soy')
+    .pipe(plugins.plumber(util.logError))
     .pipe(plugins.soynode({
       loadCompiledTemplates: true,
       renderSoyWeb: true
