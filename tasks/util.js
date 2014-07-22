@@ -2,8 +2,16 @@ var gutil = require('gulp-util');
 var lazypipe = require('lazypipe');
 var plugins = require('gulp-load-plugins')();
 
-module.exports.buildCss = lazypipe()
-  .pipe(plugins.autoprefixer, [
+module.exports = {
+  buildCss: buildCssPipeline(),
+  buildHtml: buildHtmlPipeline(),
+  buildImages: buildImagesPipeline(),
+  buildJavaScript: buildJavaScriptPipeline(),
+  logError: logError
+};
+
+function buildCssPipeline() {
+  var browsers = [
     'android >= 4.4',
     'bb >= 10',
     'chrome >= 34',
@@ -13,15 +21,51 @@ module.exports.buildCss = lazypipe()
     'ios >= 7',
     'opera >= 23',
     'safari >= 7'
-    ])
-  .pipe(plugins.csso);
+  ];
+  return lazypipe()
+    .pipe(function() {
+      return plugins.if('*.css',
+        plugins.autoprefixer(browsers)
+          .pipe(plugins.csso()));
+    });
+}
 
-module.exports.buildJavaScript = lazypipe()
-  .pipe(plugins.uglify, {
-    preserveComments: 'some'
-  });
+function buildImagesPipeline() {
+  return lazypipe()
+    .pipe(function() {
+      return plugins.if('*.{gif,jpeg,png,svg}',
+        plugins.imagemin({
+          interlaced: true,
+          progressive: true
+        }));
+    });
+}
 
-module.exports.logError = function(err) {
+function buildHtmlPipeline() {
+  return lazypipe()
+    .pipe(plugins.useref.assets, {
+      searchPath: 'dist'
+    })
+    .pipe(buildCssPipeline())
+    .pipe(buildJavaScriptPipeline())
+    .pipe(plugins.useref.restore)
+    .pipe(plugins.useref)
+    .pipe(function() {
+      return plugins.if('*.html', plugins.minifyHtml());
+    });
+}
+
+function buildJavaScriptPipeline() {
+  return lazypipe()
+    .pipe(function() {
+      return plugins.if('*.js',
+        plugins.uglify({
+          preserveComments: 'some'
+        }));
+    });
+}
+
+function logError(err) {
   if (err.fileName) {
     gutil.log(gutil.colors.red('Error'), err.fileName, lookupErrorLine(err));
   } else if (err.message) {
@@ -30,9 +74,9 @@ module.exports.logError = function(err) {
     gutil.log(gutil.colors.red('Error'), err);
   }
   return this;
-};
+}
 
-var lookupErrorLine = function(err) {
+function lookupErrorLine(err) {
   var line = '0';
   var position = '0';
 
@@ -49,4 +93,4 @@ var lookupErrorLine = function(err) {
   }
 
   return line + ':' + position;
-};
+}
