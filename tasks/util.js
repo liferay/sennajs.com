@@ -33,7 +33,7 @@ function buildCssPipeline() {
 function buildImagesPipeline() {
   return lazypipe()
     .pipe(function() {
-      return plugins.if('*.{gif,jpeg,png,svg}',
+      return plugins.if('*.{gif,jpeg,jpg,png,svg}',
         plugins.imagemin({
           interlaced: true,
           progressive: true
