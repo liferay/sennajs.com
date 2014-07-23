@@ -46,10 +46,10 @@ function buildHtmlPipeline() {
     .pipe(plugins.useref.assets, {
       searchPath: 'dist'
     })
-    .pipe(buildCssPipeline())
-    .pipe(buildJavaScriptPipeline())
     .pipe(plugins.useref.restore)
     .pipe(plugins.useref)
+    .pipe(buildCssPipeline())
+    .pipe(buildJavaScriptPipeline())
     .pipe(function() {
       return plugins.if('*.html', plugins.minifyHtml());
     });
