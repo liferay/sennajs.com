@@ -53,7 +53,7 @@ gulp.task('build-icons', function() {
 });
 
 gulp.task('build-images', function() {
-  return gulp.src('src/images/**/*.{gif,jpeg,png,svg}')
+  return gulp.src('src/images/**/*.{gif,jpg,jpeg,png,svg}')
     .pipe(plugins.plumber(util.logError))
     .pipe(util.buildImages())
     .pipe(gulp.dest('dist/images'));
