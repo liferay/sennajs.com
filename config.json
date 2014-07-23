@@ -7,5 +7,5 @@
       "minify": false
     }
   },
-  "defaultEnvironment": "development"
+  "defaultEnvironment": "production"
 }
