@@ -1,0 +1,11 @@
+{
+  "environments": {
+    "production": {
+      "minify": true
+    },
+    "development": {
+      "minify": false
+    }
+  },
+  "defaultEnvironment": "development"
+}

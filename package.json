@@ -16,6 +16,7 @@
     "gulp-load-plugins": "^0.5.3",
     "gulp-minify-html": "^0.1.4",
     "gulp-plumber": "^0.6.3",
+    "gulp-prettify": "^0.2.0",
     "gulp-rimraf": "^0.1.0",
     "gulp-soynode": "^0.3.0",
     "gulp-uglify": "^0.3.1",

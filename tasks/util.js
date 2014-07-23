@@ -1,12 +1,15 @@
 var gutil = require('gulp-util');
 var lazypipe = require('lazypipe');
 var plugins = require('gulp-load-plugins')();
+var config = require('../config.json');
+
+var environment = config.environments[config.defaultEnvironment];
 
 module.exports = {
-  buildCss: buildCssPipeline(),
-  buildHtml: buildHtmlPipeline(),
-  buildImages: buildImagesPipeline(),
-  buildJavaScript: buildJavaScriptPipeline(),
+  buildCss: environment.minify ? buildCssPipeline() : gutil.noop,
+  buildHtml: environment.minify ? buildHtmlPipeline() : plugins.prettify,
+  buildImages: environment.minify ? buildImagesPipeline() : gutil.noop,
+  buildJavaScript: environment.minify ? buildJavaScriptPipeline() : gutil.noop,
   logError: logError
 };
 
