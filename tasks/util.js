@@ -1,3 +1,5 @@
+'use strict';
+
 var gutil = require('gulp-util');
 var lazypipe = require('lazypipe');
 var plugins = require('gulp-load-plugins')();
