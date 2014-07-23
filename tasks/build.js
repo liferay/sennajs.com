@@ -6,34 +6,41 @@ var plugins = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var util = require('./util');
 
-gulp.task('build-css', ['build-images'], function() {
-  return gulp.src('app/styles/**/*.{css,scss}')
+gulp.task('build-compass', function() {
+  return gulp.src('src/styles/**/*.scss')
     .pipe(plugins.plumber(util.logError))
-    .pipe(plugins.if('*.scss', plugins.compass({
-      config_file: 'app/styles/.compass',
+    .pipe(plugins.compass({
+      config_file: 'src/styles/.compass',
       css: 'dist/styles',
       image: 'dist/images',
-      logging: false,
-      sass: 'app/styles'
-    })))
+      logging: true,
+      sass: 'src/styles'
+    }))
     .pipe(util.buildCss())
     .pipe(gulp.dest('dist/styles'));
 });
 
-gulp.task('build-html', ['build-css', 'build-javascript'], function() {
-  return gulp.src('app/**/*.html')
+gulp.task('build-css', function() {
+  return gulp.src('src/styles/**/*.css')
+    .pipe(plugins.plumber(util.logError))
+    .pipe(util.buildCss())
+    .pipe(gulp.dest('dist/styles'));
+});
+
+gulp.task('build-html', function() {
+  return gulp.src('src/**/*.html')
     .pipe(plugins.plumber(util.logError))
     .pipe(util.buildHtml())
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('build-icons', function() {
-  return gulp.src('app/images/icons/**/*.svg')
+  return gulp.src('src/images/icons/*.svg')
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.iconfontCss({
       fontName: 'icons',
       fontPath: '../images/icons/',
-      path: 'app/styles/.icons',
+      path: 'src/styles/.icons',
       targetPath: '../../styles/icons.css'
     }))
     .pipe(plugins.iconfont({
@@ -46,21 +53,21 @@ gulp.task('build-icons', function() {
 });
 
 gulp.task('build-images', function() {
-  return gulp.src('app/images/*.{gif,jpeg,png,svg}')
+  return gulp.src('src/images/**/*.{gif,jpeg,png,svg}')
     .pipe(plugins.plumber(util.logError))
     .pipe(util.buildImages())
     .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('build-javascript', function() {
-  return gulp.src('app/scripts/**/*.js')
+  return gulp.src('src/scripts/**/*.js')
     .pipe(plugins.plumber(util.logError))
     .pipe(util.buildJavaScript())
     .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('build-templates', function() {
-  return gulp.src('app/**/*.soy')
+  return gulp.src('src/**/*.soy')
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.soynode({
       loadCompiledTemplates: true,
@@ -71,5 +78,5 @@ gulp.task('build-templates', function() {
 });
 
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['build-images', 'build-icons', 'build-css', 'build-javascript', 'build-html', 'build-templates'], cb);
+  runSequence(['build-images', 'build-icons', 'build-javascript'], 'build-css', 'build-compass', 'build-html', 'build-templates', cb);
 });
