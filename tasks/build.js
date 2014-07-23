@@ -48,7 +48,6 @@ gulp.task('build-icons', function() {
       normalize: true
     }))
     .pipe(util.buildCss())
-    .pipe(util.buildImages())
     .pipe(gulp.dest('dist/images/icons'));
 });
 
