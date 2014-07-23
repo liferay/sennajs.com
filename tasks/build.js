@@ -80,3 +80,13 @@ gulp.task('build-templates', function() {
 gulp.task('build', ['clean'], function(cb) {
   runSequence(['build-images', 'build-icons', 'build-javascript'], 'build-css', 'build-compass', 'build-html', 'build-templates', cb);
 });
+
+gulp.task('watch', function(cb) {
+  gulp.watch('src/**/*.html', ['build-html']);
+  gulp.watch('src/**/*.soy', ['build-templates']);
+  gulp.watch('src/images/**/*.{gif,jpeg,jpg,png,svg}', ['build-images']);
+  gulp.watch('src/images/icons/*.svg', ['build-icons']);
+  gulp.watch('src/scripts/**/*.js', ['build-javascript']);
+  gulp.watch('src/styles/**/*.css', ['build-css']);
+  gulp.watch('src/styles/**/*.scss', ['build-compass']);
+});
