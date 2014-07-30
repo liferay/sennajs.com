@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
-var util = require('./util');
+var util = require('./lib/util');
 
 gulp.task('format-css', function() {
   return gulp.src('app/styles/**/*.{css,scss}')
