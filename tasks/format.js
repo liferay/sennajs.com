@@ -2,24 +2,42 @@
 
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var merge = require('merge-stream');
 var util = require('./lib/util');
+var config = require('./lib/flavor').generateFlavoredConfig();
 
-gulp.task('format-css', function() {
-  return gulp.src('app/styles/**/*.{css,scss}')
+gulp.task('format-scripts', function() {
+  var scripts = gulp.src(config.globScript)
+    .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.esformatter())
+    .pipe(gulp.dest('src'));
+
+  var tasks = gulp.src(['tasks/**/*.js'])
+    .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.esformatter())
+    .pipe(gulp.dest('tasks'));
+
+  return merge(scripts, tasks);
+});
+
+gulp.task('format-styles', function() {
+  var styles = gulp.src(config.globStyle)
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.csscomb())
     .pipe(plugins.cssbeautify({
       indent: '  '
     }))
-    .pipe(gulp.dest('app/styles'));
-});
+    .pipe(gulp.dest('src'));
 
-gulp.task('format-javascript', function() {
-  return gulp.src(['tasks/*.js', 'app/scripts/**/*.js'])
+  var scss = gulp.src(config.globScss)
     .pipe(plugins.plumber(util.logError))
-    .pipe(plugins.esformatter())
-    .pipe(plugins.if('**/tasks/*.js', gulp.dest('tasks')))
-    .pipe(plugins.if('**/app/scripts/**/*.js', gulp.dest('app/scripts')));
+    .pipe(plugins.csscomb())
+    .pipe(plugins.cssbeautify({
+      indent: '  '
+    }))
+    .pipe(gulp.dest('src/styles'));
+
+  return merge(styles, scss);
 });
 
-gulp.task('format', ['format-css', 'format-javascript']);
+gulp.task('format', ['format-scripts', 'format-styles']);
