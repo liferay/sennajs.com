@@ -13,7 +13,7 @@
   "multistr": false,
   "newcap": true,
   "noarg": true,
-  "node": false,
+  "node": true,
   "onevar": false,
   "quotmark": "single",
   "regexp": true,
