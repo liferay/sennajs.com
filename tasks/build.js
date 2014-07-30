@@ -30,6 +30,7 @@ gulp.task('build-styles', function() {
 gulp.task('build-html', function() {
   return gulp.src(config.globHtml)
     .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.if(config.optimizeHtmlResource, util.buildHtmlResources()))
     .pipe(plugins.if(config.optimizeHtml, util.buildHtml()))
     .pipe(gulp.dest('dist'));
 });
@@ -76,6 +77,7 @@ gulp.task('build-templates', function() {
       renderSoyWeb: true
     }))
     .pipe(plugins.if(config.optimizeHtmlResource, util.buildHtmlResources()))
+    .pipe(plugins.if(config.optimizeHtml, util.buildHtml()))
     .pipe(gulp.dest('dist'));
 });
 

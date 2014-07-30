@@ -22,27 +22,20 @@ function buildCssPipeline() {
 
 function buildHtmlPipeline() {
   return lazypipe()
-    .pipe(buildHtmlResourcePipeline())
     .pipe(function() {
       return plugins.if('*.html', plugins.minifyHtml());
     });
 }
 
 function buildHtmlResourcePipeline() {
-  var assets = plugins.useref.assets({
-    searchPath: 'dist'
-  });
-
   return lazypipe()
-    .pipe(function() {
-      return assets;
-    })
-    .pipe(function() {
-      return assets.restore();
+    .pipe(plugins.usemin, {
+      assetsDir: 'dist',
+      css: ['concat'],
+      js: ['concat']
     })
     .pipe(buildCssPipeline())
-    .pipe(buildJavaScriptPipeline())
-    .pipe(plugins.useref);
+    .pipe(buildJavaScriptPipeline());
 }
 
 function buildJavaScriptPipeline() {
