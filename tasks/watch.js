@@ -1,13 +1,14 @@
 'use strict';
 
 var gulp = require('gulp');
+var config = require('./lib/flavor').generateFlavoredConfig();
 
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.html', ['build-html']);
-  gulp.watch('src/**/*.soy', ['build-templates']);
-  gulp.watch('src/images/**/*.{gif,jpeg,jpg,png,svg}', ['build-images']);
-  gulp.watch('src/images/icons/*.svg', ['build-icons']);
-  gulp.watch('src/scripts/**/*.js', ['build-javascript']);
-  gulp.watch('src/styles/**/*.css', ['build-css']);
-  gulp.watch('src/styles/**/*.scss', ['build-compass']);
+  gulp.watch(config.globHtml, ['build-html']);
+  gulp.watch(config.globIcon, ['build-icons']);
+  gulp.watch(config.globImage, ['build-images']);
+  gulp.watch(config.globScript, ['build-scripts']);
+  gulp.watch(config.globScss, ['build-compass']);
+  gulp.watch(config.globStyle, ['build-styles']);
+  gulp.watch(config.globTemplate, ['build-templates']);
 });
