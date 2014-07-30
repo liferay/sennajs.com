@@ -1,6 +1,7 @@
 'use strict';
 
 var args = require('yargs').argv;
+var gutil = require('gulp-util');
 var path = require('path');
 
 /**
@@ -42,6 +43,7 @@ ProductFlavors.prototype.configFilepath = 'config.js';
  * @return {Object} Returns the configuration object.
  */
 ProductFlavors.prototype.generateConfig = function(opt_flavor) {
+  var i;
   var config;
 
   try {
@@ -50,20 +52,28 @@ ProductFlavors.prototype.generateConfig = function(opt_flavor) {
     throw new Error('Build config cannot be loaded.');
   }
 
-  if (!config.defaultConfig) {
-    throw new Error('Build config "defaultConfig" key not found.');
-  }
+  // Merges config-ext.js into configuration object before applying flavors.
+  try {
+    var ext = require(gutil.replaceExtension(this.getConfigFilepath(), '-ext.js'));
+    for (i in ext.defaultConfig) {
+      config.defaultConfig[i] = ext.defaultConfig[i];
+    }
+    for (i in ext.defaultConfig) {
+      config.productFlavors[i] = ext.productFlavors[i];
+    }
+  } catch (err) {}
 
+  // Merges default configuration into build variant.
   var configVariant = {};
-  // Merges default config into build variant.
-  for (var i in config.defaultConfig) {
+  for (i in config.defaultConfig) {
     configVariant[i] = config.defaultConfig[i];
   }
+
   // Merges optional flavor into build variant.
   if (config.productFlavors && config.productFlavors.hasOwnProperty(opt_flavor)) {
     var flavorConfig = config.productFlavors[opt_flavor];
-    for (var j in flavorConfig) {
-      configVariant[j] = flavorConfig[j];
+    for (i in flavorConfig) {
+      configVariant[i] = flavorConfig[i];
     }
   }
 

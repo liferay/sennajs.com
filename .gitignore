@@ -1,4 +1,5 @@
-node_modules
 .sass-cache
-dist
 .tmp
+config-ext.js
+dist
+node_modules
