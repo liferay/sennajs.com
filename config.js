@@ -89,6 +89,7 @@ module.exports = {
    *
    * Example:
    * gulp build --flavor development
+   * gulp watch --flavor development
    */
   productFlavors: {
     development: {
