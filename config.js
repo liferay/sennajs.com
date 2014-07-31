@@ -59,27 +59,27 @@ module.exports = {
     /**
      * Reduces payload size of HTML document.
      */
-    optimizeHtml: true,
+    optimizeHtml: false,
 
     /**
      * Parses build blocks in HTML files to replace references.
      */
-    optimizeHtmlResource: true,
+    optimizeHtmlResource: false,
 
     /**
      * Minifies images.
      */
-    optimizeImage: true,
+    optimizeImage: false,
 
     /**
      * Minifies JavaScript files.
      */
-    optimizeScript: true,
+    optimizeScript: false,
 
     /**
      * Minifies CSS files.
      */
-    optimizeStyle: true
+    optimizeStyle: false
   },
 
   /***
@@ -88,16 +88,16 @@ module.exports = {
    * generated application.
    *
    * Example:
-   * gulp build --flavor development
-   * gulp watch --flavor development
+   * gulp build --flavor production
+   * gulp watch --flavor production
    */
   productFlavors: {
-    development: {
-      optimizeHtml: false,
-      optimizeHtmlResource: false,
-      optimizeImage: false,
-      optimizeScript: false,
-      optimizeStyle: false
+    production: {
+      optimizeHtml: true,
+      optimizeHtmlResource: true,
+      optimizeImage: true,
+      optimizeScript: true,
+      optimizeStyle: true
     }
   }
 };
