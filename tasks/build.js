@@ -74,11 +74,12 @@ gulp.task('build-templates', function() {
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.soynode({
       loadCompiledTemplates: true,
-      renderSoyWeb: true,
+      renderSoyWeb: config.outputRenderedTemplate,
       renderSoyWebContext: {
         config: config
       }
     }))
+    .pipe(plugins.if(!config.outputDynamicTemplate, plugins.ignore.include('*.html')))
     .pipe(plugins.if(config.optimizeHtmlResource, util.buildHtmlResources()))
     .pipe(plugins.if(config.optimizeHtml, util.buildHtml()))
     .pipe(gulp.dest('dist'));

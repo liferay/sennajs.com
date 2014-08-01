@@ -79,7 +79,17 @@ module.exports = {
     /**
      * Minifies CSS files.
      */
-    optimizeStyle: false
+    optimizeStyle: false,
+
+    /**
+     * Outputs dynamic template files.
+     */
+    outputDynamicTemplate: true,
+
+    /**
+     * Outputs rendered template files.
+     */
+    outputRenderedTemplate: true
   },
 
   /***

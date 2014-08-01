@@ -12,6 +12,7 @@
     "gulp-iconfont": "^0.1.1",
     "gulp-iconfont-css": "^0.0.9",
     "gulp-if": "^1.2.2",
+    "gulp-ignore": "^1.2.0",
     "gulp-imagemin": "^0.6.1",
     "gulp-jshint": "^1.7.1",
     "gulp-load-plugins": "^0.5.3",
