@@ -10,6 +10,7 @@ module.exports = {
   buildHtml: buildHtmlPipeline(),
   buildHtmlResources: buildHtmlResourcePipeline(),
   buildJavaScript: buildJavaScriptPipeline(),
+  buildMarkdown: buildMarkdownPipeline(),
   logError: logError
 };
 
@@ -44,6 +45,13 @@ function buildJavaScriptPipeline() {
       return plugins.if('*.js', plugins.uglify({
         preserveComments: 'some'
       }));
+    });
+}
+
+function buildMarkdownPipeline() {
+  return lazypipe()
+    .pipe(function() {
+      return plugins.if('*.md', plugins.markdown());
     });
 }
 

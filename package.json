@@ -16,6 +16,7 @@
     "gulp-imagemin": "^0.6.1",
     "gulp-jshint": "^1.7.1",
     "gulp-load-plugins": "^0.5.3",
+    "gulp-markdown": "~0.2.0",
     "gulp-minify-html": "^0.1.4",
     "gulp-plumber": "^0.6.3",
     "gulp-prettify": "^0.2.0",

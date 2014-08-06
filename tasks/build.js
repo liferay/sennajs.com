@@ -66,6 +66,15 @@ gulp.task('build-images', function() {
     .pipe(gulp.dest('dist/public'));
 });
 
+gulp.task('build-md', function() {
+  return gulp.src(config.globMarkdown)
+    .pipe(plugins.plumber(util.logError))
+    .pipe(plugins.if(config.outputMarkdownAsHtml, util.buildMarkdown()))
+    .pipe(plugins.if(config.optimizeHtmlResource, util.buildHtmlResources()))
+    .pipe(plugins.if(config.optimizeHtml, util.buildHtml()))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('build-scripts', function() {
   return gulp.src(config.globScript)
     .pipe(plugins.plumber(util.logError))
@@ -89,5 +98,5 @@ gulp.task('build-templates', function() {
 });
 
 gulp.task('build', ['clean'], function(cb) {
-  runSequence('build-copy', 'build-images', 'build-icons', 'build-scripts', 'build-styles', 'build-compass', 'build-html', 'build-templates', cb);
+  runSequence('build-copy', 'build-images', 'build-icons', 'build-scripts', 'build-styles', 'build-compass', 'build-html', 'build-md', 'build-templates', cb);
 });

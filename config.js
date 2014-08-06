@@ -37,6 +37,11 @@ module.exports = {
     globImage: 'src/public/**/*.{gif,jpeg,jpg,png,svg}',
 
     /**
+     * Build pattern matching for markdown files.
+     */
+    globMarkdown: 'src/**/*.md',
+
+    /**
      * Build pattern matching for JavaScript files.
      */
     globScript: 'src/public/**/*.js',
@@ -80,6 +85,11 @@ module.exports = {
      * Minifies CSS files.
      */
     optimizeStyle: false,
+
+    /**
+     * Outputs markdown files as HTML.
+     */
+    outputMarkdownAsHtml: true,
 
     /**
      * Outputs rendered template files.
