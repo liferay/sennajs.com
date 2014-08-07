@@ -6,7 +6,7 @@ var config = require('./lib/flavor').generateFlavoredConfig();
 
 gulp.task('watch', ['build'], function(cb) {
   plugins.connect.server({
-    root: 'dist'
+    root: 'dist/public'
   });
 
   gulp.watch(config.globHtml, ['build-html']);

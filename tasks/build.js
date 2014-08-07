@@ -17,14 +17,14 @@ gulp.task('build-compass', function() {
       sass: 'src/styles'
     }))
     .pipe(plugins.if(config.optimizeStyle, util.buildCss()))
-    .pipe(gulp.dest('dist/styles'));
+    .pipe(gulp.dest('dist/public/styles'));
 });
 
 gulp.task('build-styles', function() {
   return gulp.src(config.globStyle)
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.if(config.optimizeStyle, util.buildCss()))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/public'));
 });
 
 gulp.task('build-html', function() {
@@ -41,7 +41,7 @@ gulp.task('build-icons', function() {
     .pipe(plugins.iconfontCss({
       fontName: 'icons',
       fontPath: '../images/icons/',
-      path: 'src/styles/.icons',
+      path: 'src/public/styles/.icons',
       targetPath: '../../styles/icons.css'
     }))
     .pipe(plugins.iconfont({
@@ -49,7 +49,7 @@ gulp.task('build-icons', function() {
       normalize: true
     }))
     .pipe(plugins.if(config.optimizeStyle, util.buildCss()))
-    .pipe(gulp.dest('dist/images/icons'));
+    .pipe(gulp.dest('dist/public/images/icons'));
 });
 
 gulp.task('build-images', function() {
@@ -59,14 +59,14 @@ gulp.task('build-images', function() {
       interlaced: true,
       progressive: true
     })))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/public'));
 });
 
 gulp.task('build-scripts', function() {
   return gulp.src(config.globScript)
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.if(config.optimizeScript, util.buildJavaScript()))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/public'));
 });
 
 gulp.task('build-templates', function() {

@@ -29,27 +29,27 @@ module.exports = {
     /**
      * Build pattern matching for icon files.
      */
-    globIcon: 'src/images/icons/**/*.svg',
+    globIcon: 'src/public/images/icons/**/*.svg',
 
     /**
      * Build pattern matching for image files.
      */
-    globImage: 'src/**/*.{gif,jpeg,jpg,png,svg}',
+    globImage: 'src/public/**/*.{gif,jpeg,jpg,png,svg}',
 
     /**
      * Build pattern matching for JavaScript files.
      */
-    globScript: 'src/**/*.js',
+    globScript: 'src/public/**/*.js',
 
     /**
      * Build pattern matching for SASS files.
      */
-    globScss: 'src/styles/**/*.scss',
+    globScss: 'src/public/styles/**/*.scss',
 
     /**
      * Build pattern matching for CSS files.
      */
-    globStyle: 'src/**/*.css',
+    globStyle: 'src/public/**/*.css',
 
     /**
      * Build pattern matching for Soy template files.
