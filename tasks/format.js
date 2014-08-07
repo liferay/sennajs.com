@@ -10,7 +10,7 @@ gulp.task('format-scripts', function() {
   var scripts = gulp.src(config.globScript)
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.esformatter())
-    .pipe(gulp.dest('src'));
+    .pipe(gulp.dest('src/public'));
 
   var tasks = gulp.src(['tasks/**/*.js'])
     .pipe(plugins.plumber(util.logError))
@@ -27,7 +27,7 @@ gulp.task('format-styles', function() {
     .pipe(plugins.cssbeautify({
       indent: '  '
     }))
-    .pipe(gulp.dest('src'));
+    .pipe(gulp.dest('src/public'));
 
   var scss = gulp.src(config.globScss)
     .pipe(plugins.plumber(util.logError))
@@ -35,7 +35,7 @@ gulp.task('format-styles', function() {
     .pipe(plugins.cssbeautify({
       indent: '  '
     }))
-    .pipe(gulp.dest('src/styles'));
+    .pipe(gulp.dest('src/public/styles'));
 
   return merge(styles, scss);
 });
