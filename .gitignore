@@ -1,5 +1,5 @@
 .sass-cache
 .tmp
-config-ext.js
+src/config.js
 dist
 node_modules

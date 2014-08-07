@@ -1,7 +1,6 @@
 'use strict';
 
 var args = require('yargs').argv;
-var gutil = require('gulp-util');
 var path = require('path');
 
 /**
@@ -29,6 +28,14 @@ ProductFlavors.generateFlavoredConfig = function() {
 };
 
 /**
+ * Holds the app <code>config.js</code> file path.
+ * @type {String}
+ * @default src/config.js
+ * @protected
+ */
+ProductFlavors.prototype.appConfigFilepath = 'src/config.js';
+
+/**
  * Holds the <code>config.js</code> file path.
  * @type {String}
  * @default config.js
@@ -52,14 +59,14 @@ ProductFlavors.prototype.generateConfig = function(opt_flavor) {
     throw new Error('Build config cannot be loaded.');
   }
 
-  // Merges config-ext.js into configuration object before applying flavors.
+  // Merges src/config.js into configuration object before applying flavors.
   try {
-    var ext = require(gutil.replaceExtension(this.getConfigFilepath(), '-ext.js'));
-    for (i in ext.defaultConfig) {
-      config.defaultConfig[i] = ext.defaultConfig[i];
+    var app = require(this.getAppConfigFilepath());
+    for (i in app.defaultConfig) {
+      config.defaultConfig[i] = app.defaultConfig[i];
     }
-    for (i in ext.defaultConfig) {
-      config.productFlavors[i] = ext.productFlavors[i];
+    for (i in app.defaultConfig) {
+      config.productFlavors[i] = app.productFlavors[i];
     }
   } catch (err) {}
 
@@ -81,11 +88,27 @@ ProductFlavors.prototype.generateConfig = function(opt_flavor) {
 };
 
 /**
+ * Gets the app configuration file path attribute value.
+ * @return {String}
+ */
+ProductFlavors.prototype.getAppConfigFilepath = function() {
+  return path.resolve(process.cwd(), this.appConfigFilepath);
+};
+
+/**
  * Gets the configuration file path attribute value.
  * @return {String}
  */
 ProductFlavors.prototype.getConfigFilepath = function() {
   return path.resolve(process.cwd(), this.configFilepath);
+};
+
+/**
+ * Sets the app configuration file path attribute value.
+ * @param {String} appConfigFilepath
+ */
+ProductFlavors.prototype.setAppConfigFilepath = function(appConfigFilepath) {
+  this.appConfigFilepath = appConfigFilepath;
 };
 
 /**
