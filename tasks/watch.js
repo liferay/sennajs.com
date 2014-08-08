@@ -1,14 +1,9 @@
 'use strict';
 
 var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
 var config = require('./lib/ProductFlavors').generateFlavoredConfig();
 
-gulp.task('watch', ['build'], function(cb) {
-  plugins.connect.server({
-    root: 'dist/public'
-  });
-
+gulp.task('watch', ['serve'], function(cb) {
   gulp.watch(config.globHtml, ['build-html']);
   gulp.watch(config.globIcon, ['build-icons']);
   gulp.watch(config.globImage, ['build-images']);
