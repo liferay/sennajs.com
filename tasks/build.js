@@ -66,7 +66,7 @@ gulp.task('build-images', function() {
     .pipe(gulp.dest('dist/public'));
 });
 
-gulp.task('build-md', function() {
+gulp.task('build-markdown', function() {
   return gulp.src(config.globMarkdown)
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.if(config.outputMarkdownAsHtml, util.buildMarkdown()))
@@ -98,5 +98,5 @@ gulp.task('build-templates', function() {
 });
 
 gulp.task('build', ['clean'], function(cb) {
-  runSequence('build-copy', 'build-images', 'build-icons', 'build-scripts', 'build-styles', 'build-compass', 'build-html', 'build-md', 'build-templates', cb);
+  runSequence('build-copy', 'build-images', 'build-icons', 'build-scripts', 'build-styles', 'build-compass', 'build-html', 'build-markdown', 'build-templates', cb);
 });
