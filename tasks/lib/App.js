@@ -2,6 +2,7 @@
 
 var express = require('express');
 var http = require('http');
+var path = require('path');
 var BaseAction = require('./BaseAction');
 var ClassLoader = require('./ClassLoader');
 
@@ -103,9 +104,11 @@ App.prototype.getTemplateEngine = function() {
 
 /**
  * Serves a folder as static.
+ * @param {String} filepath File or directory path to be served.
+ * @param {String} mountPath Mount path to serve the filepath.
  */
-App.prototype.serveStaticFolder = function(path) {
-  this.engine.use(express.static(path));
+App.prototype.serveStatic = function(mountPath, filepath) {
+  this.engine.use(mountPath, express.static(filepath));
 };
 
 /**
@@ -148,6 +151,12 @@ App.prototype.setRouteConfigurator = function(routeConfigurator) {
     var actionClass = route.getActionClass();
     var actionMethod = route.getActionMethod();
     if (!actionClass) {
+      // If there is no action class, tries to resolve the alias as a static
+      // file path.
+      var alias = route.getAlias();
+      if (alias) {
+        this.serveStatic(route.getPath(), path.join(process.cwd(), 'dist', alias));
+      }
       continue;
     }
 

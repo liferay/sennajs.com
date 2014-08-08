@@ -16,7 +16,7 @@ gulp.task('serve', ['build'], function() {
   app.setRouteConfigurator(new madvoc.RouteConfigurator('dist/routes.txt'));
 
   gutil.log('Serving static', gutil.colors.cyan('public/'));
-  app.serveStaticFolder(path.join(process.cwd(), 'dist/public'));
+  app.serveStatic('/', path.join(process.cwd(), 'dist/public'));
 
   gutil.log('Compiling templates in', gutil.colors.cyan('dist/'));
   app.getTemplateEngine().precompileTemplates('dist', {}, function() {

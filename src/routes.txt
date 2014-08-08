@@ -1,3 +1,5 @@
 /home  actions.HomeAction#get
 
 /about  actions.AboutAction#get
+
+/manifest.webapp /manifest.webapp
