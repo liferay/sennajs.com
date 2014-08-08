@@ -1,0 +1,3 @@
+/home  actions.HomeAction#get
+
+/about  actions.AboutAction#get
