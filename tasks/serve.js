@@ -2,9 +2,9 @@
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var App = require('./lib/App');
 var madvoc = require('madvoc-route');
 var path = require('path');
+var App = require('./lib/App');
 var SoyTemplateEngine = require('./lib/SoyTemplateEngine');
 
 gulp.task('serve', ['build'], function() {
