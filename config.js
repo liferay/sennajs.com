@@ -82,14 +82,9 @@ module.exports = {
     optimizeStyle: false,
 
     /**
-     * Outputs dynamic template files.
-     */
-    outputDynamicTemplate: true,
-
-    /**
      * Outputs rendered template files.
      */
-    outputRenderedTemplate: true
+    outputTemplateAsHtml: true
   },
 
   /***

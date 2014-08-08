@@ -20,6 +20,10 @@ gulp.task('build-compass', function() {
     .pipe(gulp.dest('dist/public/styles'));
 });
 
+gulp.task('build-copy', function() {
+  return gulp.src('src/**').pipe(gulp.dest('dist'));
+});
+
 gulp.task('build-styles', function() {
   return gulp.src(config.globStyle)
     .pipe(plugins.plumber(util.logError))
@@ -74,17 +78,16 @@ gulp.task('build-templates', function() {
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.soynode({
       loadCompiledTemplates: true,
-      renderSoyWeb: config.outputRenderedTemplate,
+      renderSoyWeb: config.outputTemplateAsHtml,
       renderSoyWebContext: {
         config: config
       }
     }))
-    .pipe(plugins.if(!config.outputDynamicTemplate, plugins.ignore.include('*.html')))
     .pipe(plugins.if(config.optimizeHtmlResource, util.buildHtmlResources()))
     .pipe(plugins.if(config.optimizeHtml, util.buildHtml()))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('build', ['clean'], function(cb) {
-  runSequence('build-images', 'build-icons', 'build-scripts', 'build-styles', 'build-compass', 'build-html', 'build-templates', cb);
+  runSequence('build-copy', 'build-images', 'build-icons', 'build-scripts', 'build-styles', 'build-compass', 'build-html', 'build-templates', cb);
 });
