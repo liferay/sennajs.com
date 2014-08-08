@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var merge = require('merge-stream');
 var util = require('./lib/util');
-var config = require('./lib/flavor').generateFlavoredConfig();
+var config = require('./lib/ProductFlavors').generateFlavoredConfig();
 
 gulp.task('format-scripts', function() {
   var scripts = gulp.src(config.globScript)

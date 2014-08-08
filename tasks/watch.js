@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
-var config = require('./lib/flavor').generateFlavoredConfig();
+var config = require('./lib/ProductFlavors').generateFlavoredConfig();
 
 gulp.task('watch', ['build'], function(cb) {
   plugins.connect.server({

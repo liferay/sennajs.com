@@ -3,7 +3,7 @@
 var gutil = require('gulp-util');
 var lazypipe = require('lazypipe');
 var plugins = require('gulp-load-plugins')();
-var config = require('./flavor').generateFlavoredConfig();
+var config = require('./ProductFlavors').generateFlavoredConfig();
 
 module.exports = {
   buildCss: buildCssPipeline(),

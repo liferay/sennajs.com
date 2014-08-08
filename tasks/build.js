@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var util = require('./lib/util');
-var config = require('./lib/flavor').generateFlavoredConfig();
+var config = require('./lib/ProductFlavors').generateFlavoredConfig();
 
 gulp.task('build-compass', function() {
   return gulp.src(config.globScss)
