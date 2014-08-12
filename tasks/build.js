@@ -88,6 +88,8 @@ gulp.task('build-templates', function() {
     .pipe(plugins.plumber(util.logError))
     .pipe(plugins.soynode({
       loadCompiledTemplates: true,
+      locales: config.defaultLocale ? [config.defaultLocale] : null,
+      messageFilePathFormat: config.translationsFilepath,
       renderSoyWeb: config.outputTemplateAsHtml,
       renderSoyWebContext: {
         config: config

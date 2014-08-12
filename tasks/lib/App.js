@@ -35,6 +35,12 @@ App.prototype.engine = express();
 App.prototype.httpServer = null;
 
 /**
+ * Holds the current application locale, to which it should be translated.
+ * @type {String}
+ */
+App.prototype.locale = null;
+
+/**
  * Holds the Madvoc route configuration handler.
  * @type {madvoc.RouteConfigurator}
  */
@@ -76,6 +82,14 @@ App.prototype.getEngine = function() {
  */
 App.prototype.getHttpServer = function() {
   return this.httpServer;
+};
+
+/**
+ * Gets the current application locale.
+ * @return {String}
+ */
+App.prototype.getLocale = function() {
+  return this.locale;
 };
 
 /**
@@ -136,7 +150,15 @@ App.prototype.setHttpServer = function(httpServer) {
 };
 
 /**
- * Sets the madvoc route configuration and regiter all parsed routes into the
+ * Sets the current application locale.
+ * @param {String} locale
+ */
+App.prototype.setLocale = function(locale) {
+  this.locale = locale;
+};
+
+/**
+ * Sets the madvoc route configuration and registers all parsed routes into the
  * application engine, in this case in express.
  * @param {madvoc.RouteConfiguration} routeConfigurator
  */
@@ -175,6 +197,7 @@ App.prototype.setRouteConfigurator = function(routeConfigurator) {
       throw new Error('Invalid route ' + routeConfigurator.getRoutesFilepath() + ' ' + route.toString());
     }
 
+    action.app = this;
     action.setTemplateEngine(this.getTemplateEngine());
 
     if (route.getHttpMethod()) {
@@ -223,6 +246,23 @@ App.prototype.stop = function() {
     throw new Error('Server is not running.');
   }
   this.httpServer.stop();
+};
+
+/**
+ * Updates the current locale and calls the given callback once the app is ready
+ * for it.
+ * @param {String} locale
+ * @param {Function} callback
+ */
+App.prototype.updateLocale = function(locale, callback) {
+  if (this.locale === locale) {
+    if (callback) {
+      callback();
+    }
+  }
+
+  this.setLocale(locale);
+  this.getTemplateEngine().compileTemplates('dist', this.getLocale(), {}, callback);
 };
 
 module.exports = App;

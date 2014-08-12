@@ -22,6 +22,11 @@ module.exports = {
     ],
 
     /**
+     * The default locale of the app, or null if it shouldn't be translated at all.
+     */
+    defaultLocale: null,
+
+    /**
      * Build pattern matching for HTML files.
      */
     globHtml: 'src/**/*.html',
@@ -99,7 +104,12 @@ module.exports = {
     /**
      * Outputs template files as js scripts.
      */
-    outputTemplateAsJavascript: false
+    outputTemplateAsJavascript: false,
+
+    /**
+     * The path of the files that contain the translations to be used by the app.
+     */
+    translationsFilepath: null
   },
 
   /***

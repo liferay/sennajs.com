@@ -8,6 +8,12 @@ function BaseAction() {
 }
 
 /**
+ * Holds the instance to this action's App.
+ * @type {App}
+ */
+BaseAction.prototype.app = null;
+
+/**
  * Holds template engine reference.
  * @type {TemplateEngine}
  */
@@ -31,7 +37,17 @@ BaseAction.prototype.render = function(templateName, templateData) {
   if (!this.templateEngine) {
     throw new Error('Template engine not set.');
   }
-  return this.templateEngine.render(templateName, templateData);
+  return this.templateEngine.render(templateName, templateData, this.app.getLocale());
+};
+
+/**
+ * Updates the current locale and calls the given callback once the app is ready
+ * for it.
+ * @param {String} locale
+ * @param {Function} callback
+ */
+BaseAction.prototype.updateLocale = function(locale, callback) {
+  this.app.updateLocale(locale, callback);
 };
 
 /**

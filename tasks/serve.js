@@ -6,6 +6,7 @@ var madvoc = require('madvoc-route');
 var path = require('path');
 var App = require('./lib/App');
 var SoyTemplateEngine = require('./lib/SoyTemplateEngine');
+var config = require('./lib/ProductFlavors').generateFlavoredConfig();
 
 gulp.task('serve', ['build'], function() {
   var app = new App();
@@ -18,8 +19,11 @@ gulp.task('serve', ['build'], function() {
   gutil.log('Serving static', gutil.colors.cyan('public/'));
   app.serveStatic('/', path.join(process.cwd(), 'dist/public'));
 
+  gutil.log('Setting locale', gutil.colors.cyan(config.defaultLocale));
+  app.setLocale(config.defaultLocale);
+
   gutil.log('Compiling templates in', gutil.colors.cyan('dist/'));
-  app.getTemplateEngine().precompileTemplates('dist', {}, function() {
+  app.getTemplateEngine().compileTemplates('dist', app.getLocale(), {}, function() {
     app.start();
     gutil.log('Serving', gutil.colors.cyan('http://localhost:' + app.getServerPort()));
   });

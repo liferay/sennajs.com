@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="pt-BR">
+    <body>
+      <trans-unit id="3484456101575370106" datatype="html">
+        <source>Thanks.</source>
+        <target>Obrigado.</target>
+        <note priority="1" from="description">Gives thanks</note>
+        <note priority="1" from="meaning">male</note>
+      </trans-unit>
+      <trans-unit id="6520744808323231271" datatype="html">
+        <source>Thanks.</source>
+        <target>Obrigada.</target>
+        <note priority="1" from="description">Gives thanks</note>
+        <note priority="1" from="meaning">female</note>
+      </trans-unit>
+      <trans-unit id="7187173051868625431" datatype="html">
+        <source>This is a great web site.</source>
+        <target>Este é um ótimo web site.</target>
+        <note priority="1" from="description">Describes the web site</note>
+      </trans-unit>
+      <trans-unit id="8773120009139703256" datatype="html">
+        <source>Hello <x id="USER_NAME"/>!</source>
+        <target>Olá <x id="USER_NAME"/>!</target>
+        <note priority="1" from="description">Greets the logged in user</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

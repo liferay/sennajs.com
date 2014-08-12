@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var soynode = require('soynode');
 var util = require('util');
+var config = require('./ProductFlavors').generateFlavoredConfig();
 var TemplateEngine = require('./TemplateEngine');
 
 /**
@@ -33,13 +34,22 @@ SoyTemplateEngine.prototype.getDefaultLayout = function() {
 /**
  * @inheritDoc
  */
-SoyTemplateEngine.prototype.precompileTemplates = function(searchPath, options, callback) {
+SoyTemplateEngine.prototype.compileTemplates = function(searchPath, locale, options, callback) {
+  options = options || {};
+
+  if (!options.locales) {
+    options.locales = locale ? [locale] : null;
+  }
+  if (!options.messageFilePathFormat && config.translationsFilepath) {
+    options.messageFilePathFormat = path.join(process.cwd(), config.translationsFilepath);
+  }
+
   soynode.setOptions(options);
 
   searchPath = path.resolve(process.cwd(), searchPath);
 
   if (!fs.existsSync(searchPath)) {
-    throw new Error('Templates search path doesn\'t exists.');
+    throw new Error('Templates search path doesn\'t exist.');
   }
   soynode.compileTemplates(searchPath, callback || function(err) {
     if (err) {
@@ -51,8 +61,10 @@ SoyTemplateEngine.prototype.precompileTemplates = function(searchPath, options, 
 /**
  * @inheritDoc
  */
-SoyTemplateEngine.prototype.render = function(templateName, templateData, layout, opt_injectedData) {
-  var templateFn = soynode.get(templateName);
+SoyTemplateEngine.prototype.render = function(templateName, templateData, locale, layout, opt_injectedData) {
+  templateData = templateData || {};
+
+  var templateFn = soynode.get(templateName, locale);
   if (!templateFn) {
     throw new Error('Unable to find template: ' + templateName);
   }
@@ -60,7 +72,7 @@ SoyTemplateEngine.prototype.render = function(templateName, templateData, layout
   var layoutFn;
   var renderLayout = templateData.layout || layout;
   if (renderLayout) {
-    layoutFn = soynode.get(renderLayout);
+    layoutFn = soynode.get(renderLayout, locale);
     if (!layoutFn) {
       throw new Error('Unable to find layout template: ' + renderLayout);
     }
