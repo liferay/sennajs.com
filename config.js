@@ -67,6 +67,12 @@ module.exports = {
     globTemplate: 'src/**/*.soy',
 
     /**
+     * The path of the file that will contain all the messages extracted from
+     * the app by the `lang` gulp task.
+     */
+    extractedMessagesFilePath: 'src/translations/extractedMessages.tlf',
+
+    /**
      * Reduces payload size of HTML document.
      */
     optimizeHtml: false,
