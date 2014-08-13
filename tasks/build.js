@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var ignore = require('gulp-ignore');
 var plugins = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var util = require('./lib/util');
@@ -92,6 +93,7 @@ gulp.task('build-templates', function() {
         config: config
       }
     }))
+    .pipe(plugins.if(!config.outputTemplateAsJavascript, ignore.exclude('*.soy.js')))
     .pipe(plugins.if(config.optimizeHtmlResource, util.buildHtmlResources()))
     .pipe(plugins.if(config.optimizeHtml, util.buildHtml()))
     .pipe(gulp.dest('dist'));

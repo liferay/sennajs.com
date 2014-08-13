@@ -94,7 +94,12 @@ module.exports = {
     /**
      * Outputs rendered template files.
      */
-    outputTemplateAsHtml: true
+    outputTemplateAsHtml: true,
+
+    /**
+     * Outputs template files as js scripts.
+     */
+    outputTemplateAsJavascript: false
   },
 
   /***
