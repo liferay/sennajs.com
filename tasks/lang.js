@@ -7,6 +7,6 @@ var config = require('./lib/ProductFlavors').generateFlavoredConfig();
 gulp.task('lang', function() {
   return gulp.src(config.globTemplate)
     .pipe(plugins.soynode.lang({
-      outputFile: config.extractedMessagesFilePath
+      outputFile: config.extractedMessagesFilepath
     }));
 });
