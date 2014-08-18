@@ -249,18 +249,15 @@ App.prototype.stop = function() {
 };
 
 /**
- * Updates the current locale and calls the given callback once the app is ready
- * for it.
+ * Updates the current locale and calls the given callback once the app is
+ * ready for it.
  * @param {String} locale
  * @param {Function} callback
  */
 App.prototype.updateLocale = function(locale, callback) {
   if (this.locale === locale) {
-    if (callback) {
-      callback();
-    }
+    process.nextTick(callback);
   }
-
   this.setLocale(locale);
   this.getTemplateEngine().compileTemplates('dist', this.getLocale(), {}, callback);
 };
