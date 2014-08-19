@@ -1,5 +1,5 @@
 {
-  "name": "liferay-app",
+  "name": "sennajs.com",
   "version": "0.0.1",
   "license": "LGPL",
   "authors": [
@@ -10,5 +10,9 @@
     "**/.*",
     "bower_components",
     "node_modules"
-  ]
+  ],
+  "dependencies": {
+    "pure": "~0.5.0",
+    "senna": "eduardolundgren/senna#master"
+  }
 }
