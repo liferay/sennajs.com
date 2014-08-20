@@ -40,6 +40,58 @@
           This documentation will introduce you to most of the key concepts in working with Senna. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the <a href="https://github.com/eduardolundgren/senna/tree/master/examples" target="_blank">source code of the examples</a>.
         </p>
         <div class="title-header">
+          <h2>Single page application</h2>
+        </div>
+        <p>
+          Even <a href="http://radar.oreilly.com/2009/07/velocity-making-your-site-fast.html" target="_blank">modest improvements in latency</a> can have measurable impact on usage. The most obvious metric is load time. This is influenced by many factors: DNS lookup, network speed, and how many resources need to be loaded before the page is visible (stylesheets, javascript, images, fonts), etc.
+        </p>
+        <p>
+          Sites will often optimize and minify stylesheets, combine images into a single sprite, defer loading of javascript, and serve static files from a CDN. All in order to speed up load time. This is great. However, even with cached resources the browser still has to re-parse and execute the CSS and JS on every page load, it still has to lay out the HTML and redraw the UI. This slows down the actual navigation but can also add perceived slowness and often introduces a white flash.
+        </p>
+        <p>
+          When Tim Berners Lee invented web he was looking for a system to publish scientific documents remotely, hyperlinks and static pages only. Creating a webapp can get very slow with all the static web born rules. In order to improve actual and perceived latency many sites <a href="http://www.google.com/trends/explore#q=model%20view%20controller%2C%20single%20page%20application&cmpt=q" target="_blank">are moving to SPA model</a>. That is, once the initial page is loaded all subsequent navigations are handled without full page reload. Additional content is loaded using <code>XMLHttpRequest</code> via <a href="#" target="blank">History API</a> which is able to update the URL without refresh the page, therefore your dynamic site can be shared and bookmarked. Having a URL for each state of your page allows the content to be fully crawled by search engines.
+        </p>
+        <div class="title-header">
+          <h2>Features</h2>
+        </div>
+        <p>
+          Senna is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8KB of JavaScript without any dependency.
+        </p>
+        <p>
+          In order to create a single page application with good perceived latency and good user experience, the SPA engine must handle the browser native behavior in many aspects, for instance:
+
+          <p>
+            <strong>SEO & Bookmarkability:</strong> Sharing or bookmarking a link should always display the same content. Sending a link to a friend should get them where we were. More than that, search engines are able to index that same content.
+          </p>
+          <p>
+            <strong>Hybrid rendering:</strong> Ajax + server-side rendering allows disable pushState at any time, allowing progressive enhancement. The way you render the server side doesn't matter, it can be simple HTML fragments or even template views.
+          </p>
+          <p>
+            <strong>State retention:</strong> Scrolling, reloading or navigating through the history of the page should get back to where it was.
+          </p>
+          <p>
+            <strong>UI feedback:</strong> When some content is requested, it indicates to the user that something is happening.
+          </p>
+          <p>
+            <strong>Pending navigations:</strong> Block UI rendering until data is loaded, then displays the content at once. It's important to give some UX feedback during loading.
+          </p>
+          <p>
+            <strong>Timeout detection:</strong> Timeout if the request takes too long to load or when navigate to a different link while another request is pending.
+          </p>
+          <p>
+            <strong>History navigation:</strong> By using History API you can manipulate the browser history, so you can use browser's back & forward buttons.
+          </p>
+          <p>
+            <strong>Cacheable screens:</strong> Once you load a certain surface this content is cached in memory and is retrieved later on without any additional request. This can speed up a lot your application.
+          </p>
+          <p>
+            <strong>Page resources management:</strong> Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using <code>XMLHttpRequest</code> can be appended to the DOM, for security reasons some browsers won't evaluate <code>&lt;script&gt;</code> tags from the new fragment. Therefore, the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
+          </p>
+          <p>
+            Not only that the list of features needed for a good SPA is huge, at the moment <a href="#" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core, like Senna.
+          </p>
+        </p>
+        <div class="title-header">
           <h2>Before you start: getting the project</h2>
         </div>
         <p>
@@ -53,7 +105,7 @@
         <div class="title-header">
           <h2>Step 1: Creating an example file</h2>
         </div>
-        <p>In this step, you'll create an example file under the <code>examples/</code> folder into where you unziped the project under your local drive. Go to this directory and create a file called <code>mypage.html</code> file in your favorite editor. The starting file looks like this:</p>
+        <p>In this step, you'll create a example folder for your site called <code>examples/mysite/</code>, located where you unzipped the project under your local drive. Go to this directory and create a file called <code>index.html</code> using your favorite editor. The starting file looks like this:</p>
 
         {literal}
         <pre><code class="html">&lt;!doctype html&gt;
@@ -61,7 +113,10 @@
 &lt;head&gt;
   &lt;meta charset="utf-8"&gt;
   &lt;title&gt;Senna - my first blazing fast website&lt;/title&gt;
-  &lt;script src="../build/senna-min.js"&gt;&lt;/script&gt;
+  &lt;!-- Senna optional styles --&gt;
+  &lt;link rel="stylesheet" href="../build/senna.css"&gt;
+  &lt;!-- Senna --&gt;
+  &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;script&gt;
@@ -71,57 +126,269 @@
 &lt;/html&gt;
 </code></pre>
         {/literal}
+        <div class="title-header">
+          <h2>Step 2: Setup your single page application</h2>
+        </div>
+        <p>
+          Now that you have <code>index.html</code> example file created, it's time to setup Senna to speed up your page. Everything starts when you create a <code>var app = new senna.App();</code>, this class will route any <code>&lt;a&gt;</code> element available on your page that matches with the configured CSS link selector, by default matches <code>"a"</code>, feel free to limit the scope of the links you want to track, e.g. <code>app.setLinkSelector("a:not([data-senna-off])");</code>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
+        </p>
+        {literal}
+        <pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Senna - my first blazing fast website&lt;/title&gt;
+  &lt;!-- Senna optional styles --&gt;
+  &lt;link rel="stylesheet" href="../build/senna.css"&gt;
+  &lt;!-- Senna --&gt;
+  &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href="/posts/post1.html"&gt;Page 1&lt;/a&gt;
+  &lt;a href="/posts/post2.html"&gt;Page 2&lt;/a&gt;
+  &lt;!-- Content surface --&gt;
+  &lt;div id="content"&gt;
+    &lt;div id="content-default"&gt;
+      Default content of my website.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- End of content surface --&gt;
+  &lt;script&gt;
+    var app = new senna.App();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        {/literal}
+        <p>
+          Note that two anchors were added to the page, also one surface element to hold the content of the website. And now your website was setup with Senna &ndash; So, will everything look faster now? Almost, you need to tell <code>senna.App</code> the surfaces of your page that will update dynamically. A surface is just a DOM element with an id, used to identify it later on during navigation. The last step is to register paths to route, in case the path of the clicked link matches with some registered route it will handle the navigation.
+        </p>
+        {literal}
+        <pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Senna - my first blazing fast website&lt;/title&gt;
+  &lt;!-- Senna optional styles --&gt;
+  &lt;link rel="stylesheet" href="../build/senna.css"&gt;
+  &lt;!-- Senna --&gt;
+  &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href="/posts/post1.html"&gt;Page 1&lt;/a&gt;
+  &lt;a href="/posts/post2.html"&gt;Page 2&lt;/a&gt;
+  &lt;!-- Content surface --&gt;
+  &lt;div id="content"&gt;
+    &lt;div id="content-default"&gt;
+      Default content of my website.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- End of content surface --&gt;
+  &lt;script&gt;
+    var app = new senna.App();
+    app.setBasePath('/examples/mysite/posts/');
+    app.addSurfaces('content');
+    app.addRoutes([
+      new senna.Route('post1.html', senna.HtmlScreen),
+      new senna.Route('post2.html', senna.HtmlScreen)
+    ]);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        {/literal}
+        <p>
+          That's all, your website should be blazing fast now. Is relevant to remember <code>senna.Route</code> supports regular expression, therefore you don't need to map many route if they can be generic, the two routes from the previous example can be reduced to:
+        </p>
+      {literal}
+      <pre><code class="html">app.addRoutes(new senna.Route(/\w+\.html/, senna.HtmlScreen));</code></pre>
+      {/literal}
+      <p>
+      Note that <code>page1.html</code> and <code>page2.html</code> was not created yet, therefore the navigation will fail since it cannot find the file. Duplicate the <code>index.html</code> twice and rename the new files file to <code>page1.html</code> and <code>page2.html</code>, respectively.
+      </p>
+      <div class="title-header">
+        <h2>Routes</h2>
+      </div>
 
-        <div class="title-header">
-          <h2>TODO</h2>
-        </div>
-        <p>
-        TODO
-        </p>
-        <div class="title-header">
-          <h2>TODO</h2>
-        </div>
-        <p>
-        TODO
-        </p>
-        <div class="title-header">
-          <h2>TODO</h2>
-        </div>
-        <p>
-        TODO
-        </p>
-        <div class="title-header">
-          <h2>TODO</h2>
-        </div>
-        <p>
-        TODO
-        </p>
-        <pre>
-          trackerTask.stop(); // Stops the tracking
-          trackerTask.run(); // Runs it again anytime
-        </pre>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
-        </p>
+      <p>
+      As seen on the previous example, you can register <code>senna.Route</code> on <code>senna.App</code>. A route is a tuple of path and a handler function:
+      </p>
 
+      {literal}
+      <pre><code class="html">var route = new senna.Route('/path/file.html', function() {
+  // Fires when a link with path /path/file.html is clicked.
+});</code></pre>
+      {/literal}
+      <p>
+        The path also supports string, regular expression or function, e.g.
+      </p>
+      {literal}
+      <pre><code class="html">var route = new senna.Route(/.*/, function() {
+  // Fires when any link is clicked.
+});</code></pre>
+      {/literal}
+      {literal}
+      <pre><code class="html">var resolvePath = function() {
+  return '/path/file.html';
+}
+var route = new senna.Route(resolvePath, function() {
+  // Fires when a link with path /path/file.html is clicked.
+});</code></pre>
+      {/literal}
+      <p>
+        From the handler callback you can update parts of your page, though from a simple callback like this is hard to grow your application, for that reason Senna provides <code>senna.Screen</code>. A screen is nothing more than a special type of route handler that provides asynchronous lifecycle. The following section will detail what a screen is and how it can help you manage your surfaces.
+      </p>
+      <div class="title-header">
+        <h2>Screens</h2>
+      </div>
+      <p>
+        Sena provides a special type of route handler called <code>senna.Screen</code>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <code>senna.Screen</code> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
+      </p>
+      {literal}
+      <pre><code class="html">// Constructor
+senna.Screen = function() {};
+
+// Lifecycle
+senna.Screen.prototype.activate = function() {};
+senna.Screen.prototype.beforeDeactivate = function() {};
+senna.Screen.prototype.deactivate = function() {};
+senna.Screen.prototype.destroy = function() {};
+senna.Screen.prototype.flip = function(surfaces) {};
+senna.Screen.prototype.load = function() {};
+
+// Provides contents for each registered surface
+senna.Screen.prototype.getSurfaceContent = function(surfaceId) {};
+
+// Provides the title of the page when this screen is rendered
+senna.Screen.prototype.getTitle = function() {};</code></pre>
+      {/literal}
+      <p>
+        To understand the screen lifecycle is good to inspect your browser console when navigating to a link from the user click or using the <code>app.navigate(path[, replaceState]);</code>.
+      </p>
+      {literal}
+      <pre><code class="html">app.navigate('/examples/mysite/posts/post1.html');</code></pre>
+      {/literal}
+
+      <p>Lifecycle logs:</p>
+
+      {literal}
+      <pre><code class="html">Navigate to [/examples/mysite/posts/post1.html]
+Create screen for [/examples/mysite/posts/post1.html]
+Screen [screen_1408572719183] load
+XHR finished loading: GET "http://localhost:8000/examples/mysite/posts/post1.html".
+Screen [screen_1408572719183] add content to surface [header]
+Screen [screen_1408572719183] add content to surface [content]
+Screen [screen_1408572719183] flip
+Screen [screen_1408572719183] activate
+Navigation done</code></pre>
+      {/literal}
+
+      <div class="title-header">
+        <h2>HTMLScreen</h2>
+      </div>
+      <p>
+        The examples shown above you may have noticed the routes are pointing to <code>senna.HtmlScreen</code>. This screen implementation is really powerful since it can transform the navigation of your static HTML files to be handled as a single page application. Checkout the <a href="https://github.com/eduardolundgren/senna/tree/master/examples/email" target="_blank">email demo source code</a> with <code>senna.HtmlScreen</code> in practice.
+      </p>
+
+      <div class="title-header">
+        <h2>Custom Screens</h2>
+      </div>
+      <p>
+        It's easy to create your own screen whenever you need one.
+      </p>
+      <p>
+        Let's say for example that, for some reason, you need a screen that injects the content <code>Header changed</code> and <code>Body changed</code> on the respective surface elements from your page when navigate to the path <code>/foo</code>.
+      </p>
+        {literal}
+        <pre><code class="html">function FooScreen() {
+  FooScreen.base(this, 'constructor');
+}
+senna.inherits(FooScreen, senna.Screen);
+
+FooScreen.prototype.cached = true;
+
+FooScreen.prototype.getSurfaceContent = function(surfaceId) {
+  switch(surfaceId) {
+    case 'header':
+      return 'Header changed';
+    case 'body':
+      return 'Body changed';
+  }
+};
+</code></pre>
+        {/literal}
+        {literal}
+        <pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Senna - hello&lt;/title&gt;
+  &lt;!-- Senna optional styles --&gt;
+  &lt;link rel="stylesheet" href="../build/senna.css"&gt;
+  &lt;!-- Senna --&gt;
+  &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Content surface --&gt;
+  &lt;div id="header"&gt;
+    &lt;div id="header-default"&gt;Header&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id="body"&gt;
+    &lt;div id="body-default"&gt;Body&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- End of content surface --&gt;
+  &lt;script&gt;
+    var app = new senna.App();
+    app.addSurfaces(['header', 'body']);
+    app.addRoutes(new senna.Route('/foo', HelloScreen));
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        {/literal}
         <div class="title-header">
-          <h2>Lorem ipsum</h2>
+          <h2>Data attributes</h2>
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+          The initialization of the app, surfaces and routes can be done via data attributes to simplify plugging it into your website. For example, it's really simple to transform your static website to a single page application just adding <code>&lt;body data-senna&gt;</code> and <code>&lt;div id="content" data-senna-surface&gt;</code> to each surface element of your page, check the following example:
         </p>
-        <pre>
-          trackerTask.stop(); // Stops the tracking
-          trackerTask.run(); // Runs it again anytime
-        </pre>
+        {literal}
+        <pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Senna - data attribtes&lt;/title&gt;
+  &lt;!-- Senna optional styles --&gt;
+  &lt;link rel="stylesheet" href="../build/senna.css"&gt;
+  &lt;!-- Senna --&gt;
+  &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body data-senna&gt;
+  &lt;a href="/posts/post1.html"&gt;Page 1&lt;/a&gt;
+  &lt;a href="/posts/post2.html"&gt;Page 2&lt;/a&gt;
+  &lt;!-- Content surface --&gt;
+  &lt;div id="content" data-senna-surface&gt;
+    &lt;div id="content-default"&gt;
+      Default content of my website.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- End of content surface --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        {/literal}
+
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+          When initialized from data attributes <code>senna.App</code> will route all links to <code>senna.HtmlScreen</code>. If you want to control what to route you can simply add to your page a <code>&lt;link rel="senna-route"&gt;</code> element defining the route, e.g.
         </p>
+        {literal}
+        <pre><code class="html">&lt;link rel="senna-route" href="page1.html" type="FooScreen"&gt;
+&lt;link rel="senna-route" href="regex:\w+\.html" type="FooScreen"&gt;
+</code></pre>
+        {/literal}
+
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+          It's recommended to checkout the <a href="https://github.com/eduardolundgren/senna/tree/master/examples/" target="_blank">examples source code</a> in order to visualize all the possibilities Senna can provide.
         </p>
       </div>
     </div>
