@@ -19,6 +19,11 @@
             'url': 'https://github.com/eduardolundgren'
           ],
           [
+            'name': 'Iliyan Peychev',
+            'image': 'https://2.gravatar.com/avatar/c2a0cb9ed0d19196b7fe061055c18838?size=100',
+            'url': 'https://github.com/ipeychev'
+          ],
+          [
             'name': 'Pedro Marques',
             'image': 'https://2.gravatar.com/avatar/1cf95bc9cee05a0bba25f7529bcdb888?size=100',
             'url': 'https://github.com/pedromarks'
@@ -39,15 +44,15 @@
  */
 {template .list}
   <div class="pure-g">
-    <div class="pure-u-1 pure-u-md-1-5"></div>
+    <div class="pure-u-1 pure-u-md-1-6"></div>
     {foreach $author in $authors}
-      <div class="pure-u-1 pure-u-md-1-5 team-member">
+      <div class="pure-u-1 pure-u-md-1-6 team-member">
         <a href="{$author.url}">
           <img class="team-member-photo" src="{$author.image}" alt="{$author.name}">
           <span class="team-member-title">{$author.name}</span>
         </a>
       </div>
     {/foreach}
-    <div class="pure-u-1 pure-u-md-1-5"></div>
+    <div class="pure-u-1 pure-u-md-1-6"></div>
   </div>
 {/template}
