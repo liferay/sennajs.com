@@ -49,9 +49,9 @@
           </li>
         </ul>
 
-        <ul class="menu-section">
-          <li class="pure-menu-selected"><a href="{$baseDir}/">Introduction</a></li>
-          <li><a href="{$baseDir}/docs/">Documentation</a></li>
+        <ul class="menu-section navigation">
+          <li class="{if $pageName == 'Introduction'}pure-menu-selected{/if}"><a href="{$baseDir}/">Introduction</a></li>
+          <li class="{if $pageName == 'Documentation'}pure-menu-selected{/if}"><a href="{$baseDir}/docs/">Documentation</a></li>
         </ul>
       </div>
     </div>
