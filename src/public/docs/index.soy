@@ -24,14 +24,10 @@
           <a class="pure-menu-heading">Table of contents</a>
 
           <ul>
-            <li><a href="#">Surface</a></li>
-            <li><a href="#">Screens</a></li>
-            <li><a href="#">Route</a></li>
-            <li><a href="#">Finance</a></li>
-            <li class="pure-menu-heading">Extras</li>
-            <li><a href="#">Data Attributes</a></li>
-            <li><a href="#">Built-in Promises</a></li>
-            <li><a href="#">Web Components</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#routes">Routes</a></li>
+            <li><a href="#screens">Screens</a></li>
+            <li><a href="#dataattributes">Data attributes</a></li>
           </ul>
         </div>
       </div>
@@ -52,7 +48,7 @@
           When Tim Berners Lee invented web he was looking for a system to publish scientific documents remotely, hyperlinks and static pages only. Creating a webapp can get very slow with all the static web born rules. In order to improve actual and perceived latency many sites <a href="http://www.google.com/trends/explore#q=model%20view%20controller%2C%20single%20page%20application&cmpt=q" target="_blank">are moving to SPA model</a>. That is, once the initial page is loaded all subsequent navigations are handled without full page reload. Additional content is loaded using <code>XMLHttpRequest</code> via <a href="#" target="blank">History API</a> which is able to update the URL without refresh the page, therefore your dynamic site can be shared and bookmarked. Having a URL for each state of your page allows the content to be fully crawled by search engines.
         </p>
         <div class="title-header">
-          <h2>Features</h2>
+          <h2 id="features">Features</h2>
         </div>
         <p>
           Senna is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8KB of JavaScript without any dependency.
@@ -207,7 +203,7 @@
       Note that <code>page1.html</code> and <code>page2.html</code> was not created yet, therefore the navigation will fail since it cannot find the file. Duplicate the <code>index.html</code> twice and rename the new files file to <code>page1.html</code> and <code>page2.html</code>, respectively.
       </p>
       <div class="title-header">
-        <h2>Routes</h2>
+        <h2 id="routes">Routes</h2>
       </div>
 
       <p>
@@ -239,7 +235,7 @@ var route = new senna.Route(resolvePath, function() {
         From the handler callback you can update parts of your page, though from a simple callback like this is hard to grow your application, for that reason Senna provides <code>senna.Screen</code>. A screen is nothing more than a special type of route handler that provides asynchronous lifecycle. The following section will detail what a screen is and how it can help you manage your surfaces.
       </p>
       <div class="title-header">
-        <h2>Screens</h2>
+        <h2 id="screens">Screens</h2>
       </div>
       <p>
         Sena provides a special type of route handler called <code>senna.Screen</code>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <code>senna.Screen</code> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
@@ -347,7 +343,7 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
 </code></pre>
         {/literal}
         <div class="title-header">
-          <h2>Data attributes</h2>
+          <h2 id="dataattributes">Data attributes</h2>
         </div>
         <p>
           The initialization of the app, surfaces and routes can be done via data attributes to simplify plugging it into your website. For example, it's really simple to transform your static website to a single page application just adding <code>&lt;body data-senna&gt;</code> and <code>&lt;div id="content" data-senna-surface&gt;</code> to each surface element of your page, check the following example:
