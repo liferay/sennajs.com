@@ -1,7 +1,12 @@
 .doc-header {
   width: 100%;
-  height: 150px;
   background: #1f8dd6;
+}
+
+.doc-header h1 {
+  padding: 2.5em 1em 1.5em;
+  color: #fff;
+  font-weight: 300;
 }
 
 .title-header {
@@ -36,10 +41,29 @@ pre {
   border-left-width: 1px;
 }
 
-.doc-table {
-  padding: 2.5em 0 0;
+.doc-content {
+  padding: 0 2em;
 }
 
-.doc-content {
-  padding-left: 2em;
+.doc-table {
+  padding: 0 2em 0;
+}
+
+/*
+ * -- TABLET (AND UP) MEDIA QUERIES --
+ * On tablets and other medium-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+@media (min-width: 48em) {
+  .doc-content {
+    padding: 0 0 0 2em;
+  }
+
+  .doc-header h1 {
+    padding: 2.5em 0 1.5em;
+  }
+
+  .doc-table {
+    padding: 1em 0 0;
+  }
 }
