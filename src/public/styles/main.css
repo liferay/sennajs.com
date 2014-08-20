@@ -279,4 +279,40 @@ a.pure-button-primary {
     .splash-head {
         font-size: 300%;
     }
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Voyager Grotesque Bold';
+  src: url('../fonts/voyager_grotesquebold-webfont.eot');
+  src: url('../fonts/voyager_grotesquebold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/voyager_grotesquebold-webfont.woff') format('woff'),
+    url('../fonts/voyager_grotesquebold-webfont.ttf') format('truetype'),
+    url('../fonts/voyager_grotesquebold-webfont.svg#voyager_grotesque_boldbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Voyager Grotesque Light';
+  src: url('../fonts/voyager_grotesquelight-webfont.eot');
+  src: url('../fonts/voyager_grotesquelight-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/voyager_grotesquelight-webfont.woff') format('woff'),
+    url('../fonts/voyager_grotesquelight-webfont.ttf') format('truetype'),
+    url('../fonts/voyager_grotesquelight-webfont.svg#voyager_grotesque_lightRg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Voyager Grotesque Regular';
+  src: url('../fonts/voyager_grotesqueregular-webfont.eot');
+  src: url('../fonts/voyager_grotesqueregular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/voyager_grotesqueregular-webfont.woff') format('woff'),
+    url('../fonts/voyager_grotesqueregular-webfont.ttf') format('truetype'),
+    url('../fonts/voyager_grotesqueregular-webfont.svg#voyager_grotesqueregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 }
