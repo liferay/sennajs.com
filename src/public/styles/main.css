@@ -142,28 +142,40 @@ a.pure-button-primary {
   margin-left: 5px;
 }
 
-.home-menu .pure-menu-selected a {
-  /*color: white;*/
+.home-menu a {
+  color: #1f8dd6;
+  padding: 0;
+  transition: border .5s;
 }
 
-.home-menu a {
-  color: #6FBEF3;
+.home-menu .navigation a {
+  margin: 5px 10px;
+  padding: 0;
+}
+
+.home-menu .pure-menu-selected a {
+  border-bottom: 1px solid #4c4984;
 }
 
 .home-menu li a:hover,
 .home-menu li a:focus {
   background: none;
-  border: none;
-  color: #AECFE5;
+  border-bottom: 1px solid #1f8dd6;
 }
 
 .home-menu .classy-link,
 .home-menu .classy-link:hover {
   background-color: #fdcf4c;
   border-radius: 3px;
+  border-width: 0;
   color: #5e5a4a;
   margin-left: 15px;
   transform: skew(-25deg, 0deg);
+}
+
+.home-menu .classy-link:hover {
+  background-color: rgba(253, 207, 76, 0.75);
+  transition: background-color .5s;
 }
 
 .home-menu .classy-link span {
