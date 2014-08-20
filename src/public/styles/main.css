@@ -12,6 +12,8 @@ body {
   line-height: 1.7em;
   color: #7f8c8d;
   font-size: 13px;
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1,
@@ -22,6 +24,10 @@ h5,
 h6,
 label {
   color: #34495e;
+}
+
+.pure-g [class *="pure-u"] {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .pure-img-responsive {
@@ -182,11 +188,19 @@ a.pure-button-primary {
 
 /* This is the subheading that appears on the blue section */
 .splash-subhead {
-  color: white;
+  color: #fbe969;
   font-family: 'Open Sans', sans-serif;
   font-size: 120%;
+  font-weight: 400;
   letter-spacing: 0.05em;
-  opacity: 0.8;
+}
+
+.splash-explanation {
+  color: #8ec6ea;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 120%;
+  font-weight: 400;
+  text-transform: none;
 }
 
 /*
@@ -221,7 +235,9 @@ a.pure-button-primary {
 
 /* This is the class used for the content sub-headers (<h3>) */
 .content-subhead {
-  color: #1f8dd6;
+  color: #1c1a88;
+  font-weight: 300;
+  font-size: 130%;
 }
   .content-subhead i {
     margin-right: 7px;
@@ -261,7 +277,7 @@ a.pure-button-primary {
   }
 
   .home-menu ul {
-    /*float: right;*/
+    float: right;
   }
 
   /* We increase the height of the splash-container */
