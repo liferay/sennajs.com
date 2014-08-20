@@ -239,9 +239,10 @@ a.pure-button-primary {
   font-weight: 300;
   font-size: 130%;
 }
-  .content-subhead i {
-    margin-right: 7px;
-  }
+
+.content-subhead i {
+  margin-right: 7px;
+}
 
 /* This is the class used for the dark-background areas. */
 .ribbon {
@@ -281,9 +282,10 @@ a.pure-button-primary {
   }
 
   /* We increase the height of the splash-container */
-/*    .splash-container {
-    height: 500px;
-  }*/
+  /* .splash-container {
+      height: 500px;
+     }
+  */
 
   /* We decrease the width of the .splash, since we have more width
   to work with */
