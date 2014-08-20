@@ -157,16 +157,18 @@ a.pure-button-primary {
   color: #AECFE5;
 }
 
-.home-menu .classy-link {
-  -webkit-transform: skew(155deg, 0deg);
+.home-menu .classy-link,
+.home-menu .classy-link:hover {
   background-color: #fdcf4c;
+  border-radius: 3px;
   color: #5e5a4a;
   margin-left: 15px;
+  transform: skew(-25deg, 0deg);
 }
 
 .home-menu .classy-link span {
-  -webkit-transform: skew(-155deg, 0deg);
   display: block;
+  transform: skew(25deg, 0deg);
 }
 
 /*
