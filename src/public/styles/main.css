@@ -172,6 +172,7 @@ a.pure-button-primary {
   font-weight: bold;
   line-height: 1em;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .splash-head span {
