@@ -106,6 +106,18 @@ a.pure-button-primary {
   box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 
+.home-menu .center .menu-section {
+  display: block;
+  float: none;
+  left: 0;
+  padding: 5px 0;
+  position: relative;
+  top: 0;
+  vertical-align: middle;
+  visibility: visible;
+  zoom: 1;
+}
+
 .pure-menu.pure-menu-open.pure-menu-fixed {
   /* Fixed menus normally have a border at the bottom. */
   border-bottom: none;
@@ -115,8 +127,11 @@ a.pure-button-primary {
 
 .home-menu .pure-menu-heading {
   color: #383378;
+  display: block;
   font-size: 130%;
   font-family: 'Voyager Grotesque Regular', sans-serif;
+  margin-top: 0;
+  vertical-align: middle;
 }
 
 .home-menu .pure-menu-heading img {
@@ -134,6 +149,7 @@ a.pure-button-primary {
 .home-menu a {
   color: #6FBEF3;
 }
+
 .home-menu li a:hover,
 .home-menu li a:focus {
   background: none;
@@ -141,6 +157,19 @@ a.pure-button-primary {
   color: #AECFE5;
 }
 
+.home-menu .classy-link,
+.home-menu .classy-link:hover {
+  background-color: #fdcf4c;
+  border-radius: 3px;
+  color: #5e5a4a;
+  margin-left: 15px;
+  transform: skew(-25deg, 0deg);
+}
+
+.home-menu .classy-link span {
+  display: block;
+  transform: skew(25deg, 0deg);
+}
 
 /*
  * -- SPLASH STYLES --
@@ -239,9 +268,32 @@ a.pure-button-primary {
   font-weight: 300;
   font-size: 130%;
 }
-  .content-subhead i {
-    margin-right: 7px;
-  }
+
+.content-subhead i {
+  margin-right: 7px;
+}
+
+.content {
+  padding: 0.5em;
+}
+
+.bower-ad {
+  background-color: #fbfbfb;
+  border-radius: 2px;
+  border: 1px solid #e4e4e4;
+  font-size: 120%;
+  margin: -2em 2.5em 0;
+  padding: 0.8em;
+}
+
+.feature-item .l-box {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.feature-image-col {
+  display: none;
+}
 
 /* This is the class used for the dark-background areas. */
 .ribbon {
@@ -265,9 +317,14 @@ a.pure-button-primary {
   body {
     font-size: 16px;
   }
+
   /* We want to give the content area some more padding */
   .content {
     padding: 1em;
+  }
+
+  .bower-ad {
+    margin-top: -2.5em;
   }
 
   /* We can align the menu header to the left, but float the
@@ -276,14 +333,21 @@ a.pure-button-primary {
     text-align: left;
   }
 
-  .home-menu ul {
+  .home-menu .center .menu-section {
+    display: inline-block;
     float: right;
   }
 
+  .home-menu .pure-menu-heading {
+    display: inline-block;
+    float: left;
+  }
+
   /* We increase the height of the splash-container */
-/*    .splash-container {
-    height: 500px;
-  }*/
+  /* .splash-container {
+      height: 500px;
+     }
+  */
 
   /* We decrease the width of the .splash, since we have more width
   to work with */
@@ -296,12 +360,18 @@ a.pure-button-primary {
     font-size: 250%;
   }
 
+  .feature-image-col {
+    display: inline-block;
+  }
 
   /* We remove the border-separator assigned to .l-box-lrg */
   .l-box-lrg {
     border: none;
   }
 
+  .feature-item .l-box {
+    padding: 1em;
+  }
 }
 
 /*

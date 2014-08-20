@@ -30,15 +30,30 @@
 <body>
   <div class="header">
     <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-      <a class="pure-menu-heading" href="{$baseDir}/">
-        <img src="{$baseDir}/images/logo.svg" alt="Senna Logo" height="30">
-        <span>Senna</span>
-      </a>
+      <div class="center">
+        <a class="pure-menu-heading" href="{$baseDir}/">
+          <img src="{$baseDir}/images/logo.svg" alt="Senna Logo" height="30">
+          <span>Senna</span>
+        </a>
 
-      <ul>
-        <li class="pure-menu-selected"><a href="{$baseDir}/">Introduction</a></li>
-        <li><a href="{$baseDir}/docs/">Documentation</a></li>
-      </ul>
+        <ul class="menu-section">
+          <li>
+            <a class="classy-link" href="{$baseDir}/docs/">
+              <span>Github</span>
+            </a>
+          </li>
+          <li>
+            <a class="classy-link" href="{$baseDir}/docs/">
+              <span>Download</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="menu-section">
+          <li class="pure-menu-selected"><a href="{$baseDir}/">Introduction</a></li>
+          <li><a href="{$baseDir}/docs/">Documentation</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 
