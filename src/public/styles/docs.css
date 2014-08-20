@@ -1,0 +1,45 @@
+.doc-header {
+  width: 100%;
+  height: 150px;
+  background: #1f8dd6;
+}
+
+.title-header {
+  margin: 0;
+  padding: 2.5em 2em 0;
+  text-align: center;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.title-header h2 {
+  font-weight: 300;
+  margin-top: 0;
+  padding: 0;
+  color: #ccc;
+}
+
+pre,
+code {
+  font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: #555;
+  background: rgb(250, 250, 250);
+}
+
+pre {
+  overflow-x: auto;
+  padding: 1em;
+  border: 1px solid #eee;
+  border-right-width: 1px;
+  border-left-width: 1px;
+}
+
+.doc-table {
+  padding: 2.5em 0 0;
+}
+
+.doc-content {
+  padding-left: 2em;
+}

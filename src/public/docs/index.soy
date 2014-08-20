@@ -1,0 +1,74 @@
+{namespace docs}
+
+/**
+ * This template will be rendered by SoyWeb when the user loads static.soy.
+ * It deliberately includes dummy data so the designer can get a feel for how
+ * the task list will appear with real data rather with minimal copy and paste.
+ */
+{template .soyweb}
+{call main.page}
+  {param baseDir: '..' /}
+  {param pageName: 'Documentation' /}
+  {param content}
+    <link rel="stylesheet" href="../styles/docs.css">
+
+    <div class="doc-header">
+      <h1>Documentation</h1>
+    </div>
+
+    <div class="pure-g center">
+      <div class="pure-u-1-5 doc-table">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading">Table of contents</a>
+
+          <ul>
+            <li><a href="#">Surface</a></li>
+            <li><a href="#">Screens</a></li>
+            <li><a href="#">Route</a></li>
+            <li><a href="#">Finance</a></li>
+            <li class="pure-menu-heading">Extras</li>
+            <li><a href="#">Data Attributes</a></li>
+            <li><a href="#">Built-in Promises</a></li>
+            <li><a href="#">Web Components</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pure-u-4-5 doc-content">
+        <div class="title-header">
+          <h2>Lorem ipsum</h2>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+        </p>
+        <pre>
+          trackerTask.stop(); // Stops the tracking
+          trackerTask.run(); // Runs it again anytime
+        </pre>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+        </p>
+
+        <div class="title-header">
+          <h2>Lorem ipsum</h2>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+        </p>
+        <pre>
+          trackerTask.stop(); // Stops the tracking
+          trackerTask.run(); // Runs it again anytime
+        </pre>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nemo assumenda quas, fuga blanditiis odio aspernatur. Provident praesentium tempora vitae vel voluptas explicabo rem temporibus nesciunt molestiae recusandae laborum dolor eveniet blanditiis aperiam fugiat tempore atque, consequatur, quod labore iure sed aut. Fugiat autem architecto praesentium, deleniti explicabo accusantium nisi ab adipisci. Porro voluptatum facilis tempora ab reiciendis, perferendis modi!
+        </p>
+      </div>
+    </div>
+  {/param}
+{/call}
+{/template}
