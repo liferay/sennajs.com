@@ -106,6 +106,18 @@ a.pure-button-primary {
   box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 
+.home-menu .center .menu-section {
+  display: block;
+  float: none;
+  left: 0;
+  padding: 5px 0;
+  position: relative;
+  top: 0;
+  vertical-align: middle;
+  visibility: visible;
+  zoom: 1;
+}
+
 .pure-menu.pure-menu-open.pure-menu-fixed {
   /* Fixed menus normally have a border at the bottom. */
   border-bottom: none;
@@ -115,8 +127,11 @@ a.pure-button-primary {
 
 .home-menu .pure-menu-heading {
   color: #383378;
+  display: block;
   font-size: 130%;
   font-family: 'Voyager Grotesque Regular', sans-serif;
+  margin-top: 0;
+  vertical-align: middle;
 }
 
 .home-menu .pure-menu-heading img {
@@ -134,6 +149,7 @@ a.pure-button-primary {
 .home-menu a {
   color: #6FBEF3;
 }
+
 .home-menu li a:hover,
 .home-menu li a:focus {
   background: none;
@@ -141,6 +157,17 @@ a.pure-button-primary {
   color: #AECFE5;
 }
 
+.home-menu .classy-link {
+  -webkit-transform: skew(155deg, 0deg);
+  background-color: #fdcf4c;
+  color: #5e5a4a;
+  margin-left: 15px;
+}
+
+.home-menu .classy-link span {
+  -webkit-transform: skew(-155deg, 0deg);
+  display: block;
+}
 
 /*
  * -- SPLASH STYLES --
@@ -295,8 +322,14 @@ a.pure-button-primary {
     text-align: left;
   }
 
-  .home-menu ul {
+  .home-menu .center .menu-section {
+    display: inline-block;
     float: right;
+  }
+
+  .home-menu .pure-menu-heading {
+    display: inline-block;
+    float: left;
   }
 
   /* We increase the height of the splash-container */
