@@ -1,0 +1,173 @@
+{namespace index}
+
+/**
+ * This template will be rendered by SoyWeb when the user loads static.soy.
+ * It deliberately includes dummy data so the designer can get a feel for how
+ * the task list will appear with real data rather with minimal copy and paste.
+ */
+{template .soyweb}
+{call main.page}
+  {param baseDir: '.' /}
+  {param pageName: 'Introduction' /}
+  {param content}
+    <div class="header">
+      <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="#">
+          <img src="images/logo.svg" alt="Senna Logo" height="30">
+          <span>Senna</span>
+        </a>
+
+        <ul>
+          <li class="pure-menu-selected"><a href="#">Introduction</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a class="pure-button" href="#">Fork on GitHub</a></li>
+          <li><a class="pure-button" href="#">Download as .zip</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="splash-container">
+      <div class="splash">
+        <h1 class="splash-head">
+          <img src="images/logo.svg" alt="Senna Logo" height="120">
+          <span>SENNA</span>
+        </h1>
+        <p class="splash-subhead">
+          A blazing-fast Single Page Application engine
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus beatae quisquam dolores, hic excepturi officia soluta dolorem, nihil dolor ratione repellat laboriosam minima natus? Eum.
+        </p>
+        <p class="gh-btns">
+          <iframe src="http://ghbtns.com/github-btn.html?user=eduardolundgren&amp;repo=senna&amp;type=watch&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="30"></iframe>
+          <iframe src="http://ghbtns.com/github-btn.html?user=eduardolundgren&amp;repo=senna&amp;type=fork&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="30"></iframe>
+        </p>
+      </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content center">
+        <h2 class="content-head is-center">Features</h2>
+        <p class="is-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda reiciendis impedit totam id laudantium sunt expedita consequuntur hic qui est sequi saepe, ab magni ipsum, porro sint obcaecati, laborum nesciunt.</p>
+
+        <div class="pure-g feature-item">
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+          <div class="pure-u-1 pure-u-md-3-8">
+            <img src="images/feature-placeholder.png" alt="">
+          </div>
+          <div class="pure-u-1 pure-u-md-3-8 l-box">
+            <h3 class="content-subhead">
+              Bookmarkability & SEO
+            </h3>
+            <p>
+              When using a single page app, sending a link to a friend should get them where we were. More than that, a search engine spider should be able to index that same content.
+            </p>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+        </div>
+
+        <div class="pure-g feature-item">
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+          <div class="pure-u-1 pure-u-md-3-8 l-box">
+            <h3 class="content-subhead">
+              History Navigation
+            </h3>
+            <p>
+              Forget hashbangs (#!), by using HTML5's History API we can manipulate the user's browser session history in JavaScript using pushState, replaceState and the popstate event. That way you can use browser's back/forward buttons again.
+            </p>
+          </div>
+          <div class="pure-u-1 pure-u-md-3-8">
+            <img src="images/feature-placeholder.png" alt="">
+          </div>
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+        </div>
+
+        <div class="pure-g feature-item">
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+          <div class="pure-u-1 pure-u-md-3-8">
+            <img src="images/feature-placeholder.png" alt="">
+          </div>
+          <div class="pure-u-1 pure-u-md-3-8 l-box">
+            <h3 class="content-subhead">
+              UI Feedback & Transitions
+            </h3>
+            <p>
+              When some content is requested, it indicates to the user that something is happening. You can also define different kinds of CSS animations to use during state transitions.
+            </p>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+        </div>
+
+        <div class="pure-g feature-item">
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+          <div class="pure-u-1 pure-u-md-3-8 l-box">
+            <h3 class="content-subhead">
+              Cacheable Screens
+            </h3>
+            <p>
+              Once you load a certain surface this content can be cached in memory and be retrieved later on without any additional request.
+            </p>
+          </div>
+          <div class="pure-u-1 pure-u-md-3-8">
+            <img src="images/feature-placeholder.png" alt="">
+          </div>
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+        </div>
+      </div>
+
+      <div class="content center">
+        <h2 class="content-head is-center">Examples</h2>
+        <p class="is-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ipsam quia, velit error adipisci? Perspiciatis in distinctio nobis impedit dignissimos illum a provident aspernatur id sed quaerat consectetur, obcaecati eaque.</p>
+
+        <div class="pure-g">
+          <div class="pure-u-1 pure-u-md-1-3">
+            <a href="#">
+              <img src="images/demo-lotus.jpg" width="300" height="300" alt="">
+            </a>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <a href="#">
+              <img src="images/demo-mclaren.jpg" width="300" height="300" alt="">
+            </a>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <a href="#">
+              <img src="images/demo-williams.jpg" width="300" height="300" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-section content">
+        <div class="center">
+          <h2 class="content-head is-center">Team</h2>
+          <p class="team-section-desc is-center">Made with <span class="love">♥</span> by these guys and a bunch of <a href="https://github.com/eduardolundgren/senna/graphs/contributors">awesome contributors</a></p>
+
+          <div class="pure-g">
+            <div class="pure-u-1 pure-u-md-1-5"></div>
+            <div class="pure-u-1 pure-u-md-1-5 team-member">
+              <a href="https://github.com/eduardolundgren">
+                <img class="team-member-photo" src="https://2.gravatar.com/avatar/42327de520e674a6d1686845b30778d0?size=100" alt="Eduardo Lundgren">
+                <span class="team-member-title">Eduardo Lundgren</span>
+              </a>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-5 team-member">
+              <a href="https://github.com/pedromarks">
+                <img class="team-member-photo" src="https://2.gravatar.com/avatar/1cf95bc9cee05a0bba25f7529bcdb888?size=100" alt="Pedro Marques">
+                <span class="team-member-title">Pedro Marques</span>
+              </a>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-5 team-member">
+              <a href="https://github.com/zenorocha">
+                <img class="team-member-photo" src="https://2.gravatar.com/avatar/e190023b66e2b8aa73a842b106920c93?size=100" alt="Zeno Rocha">
+                <span class="team-member-title">Zeno Rocha</span>
+              </a>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/param}
+{/call}
+{/template}
