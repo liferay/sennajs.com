@@ -284,6 +284,10 @@ a.pure-button-primary {
   padding: 0.8em;
 }
 
+.feature-image-col {
+  display: none;
+}
+
 /* This is the class used for the dark-background areas. */
 .ribbon {
   background: #2d3e50;
@@ -347,6 +351,10 @@ a.pure-button-primary {
 
   .splash-head {
     font-size: 250%;
+  }
+
+  .feature-image-col {
+    display: inline-block;
   }
 
 
