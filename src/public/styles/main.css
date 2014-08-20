@@ -336,7 +336,7 @@ a.pure-button-primary {
   }
 
   .bower-ad {
-    margin-top: -2.5em;
+    margin: -2.5em 5.5em 0;
   }
 
   /* We can align the menu header to the left, but float the
