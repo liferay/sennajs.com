@@ -4,3 +4,4 @@ src/config.js
 dist
 bower_components
 node_modules
+src/public/vendor
