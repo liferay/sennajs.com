@@ -1,0 +1,59 @@
+{namespace static}
+
+/**
+ * @param title
+ * @param items
+ */
+{template .list}
+<h1>{$title}</h1>
+<div>
+  {foreach $item in $items}
+    <div class="{css task-item}">
+      <div style="margin-left: {$item.indent * 24}px">
+        {$item.name}
+      </div>
+    </div>
+  {ifempty}
+    <div class="{css tasks-complete}">
+      Nothing to do!
+    </div>
+  {/foreach}
+</div>
+{/template}
+
+/**
+ * @param content
+ */
+{template .demoPage}
+<!doctype>
+<html>
+<head>
+  <title>Static Soy template - This template is rendered automatically</title>
+</head>
+<body>
+  {$content|noAutoescape}
+</body>
+</html>
+{/template}
+
+/**
+ * This template will be rendered by SoyWeb when the user loads static.soy.
+ * It deliberately includes dummy data so the designer can get a feel for how
+ * the task list will appear with real data rather with minimal copy and paste.
+ */
+{template .soyweb}
+{call .demoPage}
+  {param content}
+    {call .list}
+      {param title: 'Food Shopping' /}
+      {param items: [
+        ['indent': 0, 'name': 'cheese' ],
+        ['indent': 0, 'name': 'crackers' ],
+        ['indent': 0, 'name': 'condiments' ],
+        ['indent': 1, 'name': 'ketchup' ],
+        ['indent': 1, 'name': 'mayo' ],
+      ] /}
+    {/call}
+  {/param}
+{/call}
+{/template}

@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "icons";
+  src: url('../images/icons/icons.eot');
+  src: url('../images/icons/icons.eot?#iefix') format('eot'),
+    url('../images/icons/icons.woff') format('woff'),
+    url('../images/icons/icons.ttf') format('truetype'),
+    url('../images/icons/icons.svg#icons') format('svg');
+}
+
+.lfr-icon:before {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.lfr-icon-liferay:before {
+  content: "\E001";
+}
