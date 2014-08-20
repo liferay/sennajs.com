@@ -244,6 +244,19 @@ a.pure-button-primary {
   margin-right: 7px;
 }
 
+.content {
+  padding: 0.5em;
+}
+
+.bower-ad {
+  background-color: #fbfbfb;
+  border-radius: 2px;
+  border: 1px solid #e4e4e4;
+  font-size: 120%;
+  margin: -2em 2.5em 0;
+  padding: 0.8em;
+}
+
 /* This is the class used for the dark-background areas. */
 .ribbon {
   background: #2d3e50;
@@ -266,9 +279,14 @@ a.pure-button-primary {
   body {
     font-size: 16px;
   }
+
   /* We want to give the content area some more padding */
   .content {
     padding: 1em;
+  }
+
+  .bower-ad {
+    margin-top: -2.5em;
   }
 
   /* We can align the menu header to the left, but float the
