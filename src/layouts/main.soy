@@ -28,6 +28,20 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
 </head>
 <body>
+  <div class="header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+      <a class="pure-menu-heading" href="{$baseDir}/">
+        <img src="{$baseDir}/images/logo.svg" alt="Senna Logo" height="30">
+        <span>Senna</span>
+      </a>
+
+      <ul>
+        <li class="pure-menu-selected"><a href="{$baseDir}/">Introduction</a></li>
+        <li><a href="{$baseDir}/docs/">Documentation</a></li>
+      </ul>
+    </div>
+  </div>
+
   {$content|noAutoescape}
 
   <!-- build:js scripts/all.min.js -->
