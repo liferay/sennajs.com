@@ -375,7 +375,7 @@ a.pure-button-primary {
   }
 
   .splash-head img {
-    max-width: auto;
+    max-width: none;
   }
 
   .splash-head span {
