@@ -37,6 +37,8 @@
         </a>
 
         <ul class="menu-section">
+          <li class="{if $pageName == 'Introduction'}pure-menu-selected{/if}"><a href="{$baseDir}/">Home</a></li>
+          <li class="{if $pageName == 'Documentation'}pure-menu-selected{/if}"><a href="{$baseDir}/docs/">Docs</a></li>
           <li>
             <a class="classy-link" href="{$baseDir}/docs/">
               <span>Github</span>
@@ -47,11 +49,6 @@
               <span>Download</span>
             </a>
           </li>
-        </ul>
-
-        <ul class="menu-section navigation">
-          <li class="{if $pageName == 'Introduction'}pure-menu-selected{/if}"><a href="{$baseDir}/">Introduction</a></li>
-          <li class="{if $pageName == 'Documentation'}pure-menu-selected{/if}"><a href="{$baseDir}/docs/">Documentation</a></li>
         </ul>
       </div>
     </div>
