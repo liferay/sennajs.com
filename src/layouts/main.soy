@@ -37,15 +37,19 @@
         </a>
 
         <ul class="menu-section">
-          <li class="{if $pageName == 'Introduction'}pure-menu-selected{/if}"><a href="{$baseDir}/">Home</a></li>
-          <li class="{if $pageName == 'Documentation'}pure-menu-selected{/if}"><a href="{$baseDir}/docs/">Docs</a></li>
+          <li class="{if $pageName == 'Introduction'}pure-menu-selected{/if}">
+            <a href="{$baseDir}/">Home</a>
+          </li>
+          <li class="{if $pageName == 'Documentation'}pure-menu-selected{/if}">
+            <a href="{$baseDir}/docs/">Docs</a>
+          </li>
           <li>
-            <a class="classy-link" href="{$baseDir}/docs/">
+            <a class="classy-link" href="{$baseDir}/docs/" target="_blank">
               <span>Github</span>
             </a>
           </li>
           <li>
-            <a class="classy-link" href="{$baseDir}/docs/">
+            <a class="classy-link" href="{$baseDir}/docs/" target="_blank">
               <span>Download</span>
             </a>
           </li>
@@ -57,7 +61,7 @@
   {$content|noAutoescape}
 
   <!-- build:js scripts/all.min.js -->
-  <script src="scripts/main.js"></script>
+  <script src="{$baseDir}/scripts/main.js"></script>
   <!-- endbuild -->
 
   {literal}
