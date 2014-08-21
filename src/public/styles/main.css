@@ -151,6 +151,7 @@ a.pure-button-primary {
 
 .home-menu .pure-menu-selected a {
   border-bottom: 1px solid #4c4984;
+  color: #4c4984;
 }
 
 .home-menu li a:hover,
