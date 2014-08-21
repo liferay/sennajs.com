@@ -4,11 +4,11 @@
 <a href="http://purecss.io/">http://purecss.io/</a></p>
 <p><a href="https://travis-ci.org/yui/pure"><img src="https://travis-ci.org/yui/pure.png?branch=master" alt="Build Status"></a></p>
 <p><strong>Use From the CDN:</strong></p>
-<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;http://yui.yahooapis.com/pure/0.5.0/pure-min.css&quot;&gt;
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://yui.yahooapis.com/pure/0.5.0/pure-min.css"</span>&gt;</span>
 </code></pre>
 <p>Note: You can <a href="http://purecss.io/customize/">customize which Pure modules you need</a>.</p>
 <p><strong>Install with Bower:</strong></p>
-<pre><code class="lang-shell">$ bower install --save pure
+<pre><code class="lang-shell"><span class="hljs-comment">$</span> <span class="hljs-comment">bower</span> <span class="hljs-comment">install</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">save</span> <span class="hljs-comment">pure</span>
 </code></pre>
 <h2 id="features">Features</h2>
 <p>Pure is meant to be a starting point for every website or web app. We take care
@@ -19,7 +19,7 @@ of all the CSS work that every site needs, without making it look cookie-cutter:
 <li><p>A solid base built on <a href="http://necolas.github.io/normalize.css/">Normalize.css</a> to fix cross-browser compatibility
 issues.</p>
 </li>
-<li><p>Consistently styled buttons that work with <code>&lt;a&gt;</code> and <code>&lt;button&gt;</code> elements.</p>
+<li><p>Consistently styled buttons that work with <code><span class="hljs-tag">&lt;<span class="hljs-title">a</span>&gt;</span></code> and <code><span class="hljs-tag">&lt;<span class="hljs-title">button</span>&gt;</span></code> elements.</p>
 </li>
 <li><p>Styles for vertical and horizontal menus, including support for dropdown
 menus.</p>
@@ -42,46 +42,46 @@ menus.</p>
 extensive documentation and examples necessary to get you started using Pure.</p>
 <p>You can include the Pure CSS file in your project by fetching it from Yahoo&#39;s
 CDN:</p>
-<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;http://yui.yahooapis.com/pure/0.5.0/pure-min.css&quot;&gt;
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://yui.yahooapis.com/pure/0.5.0/pure-min.css"</span>&gt;</span>
 </code></pre>
 <p>You can also install Pure using <a href="http://bower.io/">Bower</a>, using the following command:</p>
-<pre><code class="lang-shell">$ bower install --save pure
+<pre><code class="lang-shell"><span class="hljs-comment">$</span> <span class="hljs-comment">bower</span> <span class="hljs-comment">install</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">save</span> <span class="hljs-comment">pure</span>
 </code></pre>
 <h2 id="build-from-source">Build From Source</h2>
 <p>Optionally, you can build Pure from its source on Github. To do this, you&#39;ll
 need to have Node.js and npm installed. We use <a href="http://gruntjs.com/">Grunt</a> to build Pure.</p>
-<pre><code class="lang-shell">$ git clone git@github.com:yui/pure.git
-$ cd pure
-$ npm install
-$ grunt
+<pre><code class="lang-shell"><span class="hljs-variable">$ </span>git clone git<span class="hljs-variable">@github</span>.<span class="hljs-symbol">com:</span>yui/pure.git
+<span class="hljs-variable">$ </span>cd pure
+<span class="hljs-variable">$ </span>npm install
+<span class="hljs-variable">$ </span>grunt
 </code></pre>
 <h3 id="build-files">Build Files</h3>
-<p>Now, all Pure CSS files should be built into the <code>pure/build/</code> directory. All
+<p>Now, all Pure CSS files should be built into the <code><span class="hljs-keyword">pure</span>/build/</code> directory. All
 files that are in this build directory are also available on the CDN. The naming
 conventions of the files in the <code>build/</code> directory follow these rules:</p>
 <ul>
-<li><p><code>[module]-core.css</code>: The minimal set of styles, ususally structural, that
+<li><p><code>[<span class="hljs-class"><span class="hljs-keyword">module</span>]-<span class="hljs-title">core</span>.<span class="hljs-title">css</span></span></code>: The minimal set of styles, ususally structural, that
 provide the base on which the rest of the module&#39;s styles build.</p>
 </li>
-<li><p><code>[module]-nr.css</code>: Rollup of <code>[module]-core.css</code> + <code>[module].css</code> +
-<code>[module]-[feature].css</code> from the <code>src/[module]/</code> dir. This is the
+<li><p><code>[<span class="hljs-class"><span class="hljs-keyword">module</span>]-<span class="hljs-title">nr</span>.<span class="hljs-title">css</span></span></code>: Rollup of <code>[<span class="hljs-class"><span class="hljs-keyword">module</span>]-<span class="hljs-title">core</span>.<span class="hljs-title">css</span></span></code> + <code>[<span class="hljs-class"><span class="hljs-keyword">module</span>].<span class="hljs-title">css</span></span></code> +
+<code>[<span class="hljs-class"><span class="hljs-keyword">module</span>]-[<span class="hljs-title">feature</span>].<span class="hljs-title">css</span></span></code> from the <code>src/[<span class="hljs-class"><span class="hljs-keyword">module</span>]/</span></code> dir. This is the
 non-responsive version of a module.</p>
 </li>
-<li><p><code>[module].css</code>: Rollup of <code>[module]-nr.css</code> + <code>[module]-r.css</code> from the
+<li><p><code>[<span class="hljs-class"><span class="hljs-keyword">module</span>].<span class="hljs-title">css</span></span></code>: Rollup of <code>[<span class="hljs-class"><span class="hljs-keyword">module</span>]-<span class="hljs-title">nr</span>.<span class="hljs-title">css</span></span></code> + <code>[<span class="hljs-class"><span class="hljs-keyword">module</span>]-<span class="hljs-title">r</span>.<span class="hljs-title">css</span></span></code> from the
 <code>build/</code> dir. This is the responsive version of a module.</p>
 </li>
-<li><p><code>*-min.css</code>: A minified file version of the files of the same name.</p>
+<li><p><code>*-<span class="hljs-built_in">min</span>.css</code>: A minified file version of the files of the same name.</p>
 </li>
-<li><p><code>pure.css</code>: A rollup of all <code>[module].css</code> files in the <code>build/</code> dir. This is
+<li><p><code><span class="hljs-keyword">pure</span>.css</code>: A rollup of all <code>[<span class="hljs-class"><span class="hljs-keyword">module</span>].<span class="hljs-title">css</span></span></code> files in the <code>build/</code> dir. This is
 a responsive roll-up of everything, non-minified.</p>
 </li>
-<li><p><code>pure-min.css</code>: Minified version of <code>pure.css</code> that should be used in
+<li><p><code><span class="hljs-keyword">pure</span>-min.css</code>: Minified version of <code><span class="hljs-keyword">pure</span>.css</code> that should be used in
 production.</p>
 </li>
-<li><p><code>pure-nr.css</code>: A Rollup of all modules without @media queries. This is a
+<li><p><code><span class="hljs-keyword">pure</span>-nr.css</code>: A Rollup of all modules without @media queries. This is a
 non-responsive roll-up of everything, non-minified.</p>
 </li>
-<li><p><code>pure-nr-min.css</code>: Minified version of <code>pure-nr.css</code> that should be used in
+<li><p><code>pure<span class="hljs-attribute">-nr</span><span class="hljs-attribute">-min</span><span class="hljs-built_in">.</span>css</code>: Minified version of <code><span class="hljs-keyword">pure</span>-nr.css</code> that should be used in
 production.</p>
 </li>
 </ul>
@@ -95,7 +95,7 @@ production.</p>
 </ul>
 <h2 id="docs-and-website">Docs and Website</h2>
 <p><a href="http://purecss.io/">Pure&#39;s website</a> is also open source, so please open any issues or pull
-requests for the docs and website over at the <a href="https://github.com/yui/pure-site"><code>pure-site</code></a>
+requests for the docs and website over at the <a href="https://github.com/yui/pure-site"><code><span class="hljs-keyword">pure</span>-site</code></a>
 repository.</p>
 <h2 id="contributing">Contributing</h2>
 <p>See the <a href="https://github.com/yui/pure/blob/master/CONTRIBUTING.md">CONTRIBUTING file</a> for information on how to contribute to Pure.</p>

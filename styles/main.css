@@ -107,7 +107,7 @@ a.pure-button-primary {
 }
 
 .home-menu .center .menu-section {
-  display: block;
+  display: inline-block;
   float: none;
   left: 0;
   padding: 5px 0;
@@ -142,28 +142,38 @@ a.pure-button-primary {
   margin-left: 5px;
 }
 
-.home-menu .pure-menu-selected a {
-  /*color: white;*/
+.home-menu li a {
+  color: #1f8dd6;
+  padding: 0;
+  margin: 0 10px;
+  transition: border .5s;
 }
 
-.home-menu a {
-  color: #6FBEF3;
+.home-menu .pure-menu-selected a {
+  border-bottom: 1px solid #4c4984;
+  color: #4c4984;
 }
 
 .home-menu li a:hover,
 .home-menu li a:focus {
   background: none;
-  border: none;
-  color: #AECFE5;
+  border-bottom: 1px solid #1f8dd6;
 }
 
 .home-menu .classy-link,
 .home-menu .classy-link:hover {
   background-color: #fdcf4c;
   border-radius: 3px;
+  border-width: 0;
   color: #5e5a4a;
-  margin-left: 15px;
+  margin: 0 5px;
+  padding: 5px 10px;
   transform: skew(-25deg, 0deg);
+}
+
+.home-menu .classy-link:hover {
+  background-color: rgba(253, 207, 76, 0.75);
+  transition: background-color .5s;
 }
 
 .home-menu .classy-link span {
@@ -190,8 +200,8 @@ a.pure-button-primary {
 
 .splash {
   /* absolute center .splash within .splash-container */
-  width: 80%;
-  height: 50%;
+  width: 90%;
+  height: 60%;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -210,9 +220,13 @@ a.pure-button-primary {
   text-transform: uppercase;
 }
 
+.splash-head img {
+  max-width: 100px;
+}
+
 .splash-head span {
   display: block;
-  margin: 30px 0 0 10px;
+  margin: 0 0 0 10px;
 }
 
 /* This is the subheading that appears on the blue section */
@@ -227,7 +241,7 @@ a.pure-button-primary {
 .splash-explanation {
   color: #8ec6ea;
   font-family: 'Open Sans', sans-serif;
-  font-size: 120%;
+  font-size: 100%;
   font-weight: 400;
   text-transform: none;
 }
@@ -278,7 +292,7 @@ a.pure-button-primary {
 }
 
 .bower-ad {
-  background-color: #fbfbfb;
+  background-color: #F5FAFD;
   border-radius: 2px;
   border: 1px solid #e4e4e4;
   font-size: 120%;
@@ -324,7 +338,7 @@ a.pure-button-primary {
   }
 
   .bower-ad {
-    margin-top: -2.5em;
+    margin: -2.5em 5.5em 0;
   }
 
   /* We can align the menu header to the left, but float the
@@ -343,6 +357,12 @@ a.pure-button-primary {
     float: left;
   }
 
+  .home-menu .classy-link,
+  .home-menu .classy-link:hover {
+    margin-left: 15px;
+    padding: 5px 15px;
+  }
+
   /* We increase the height of the splash-container */
   /* .splash-container {
       height: 500px;
@@ -354,6 +374,15 @@ a.pure-button-primary {
   .splash {
     width: 50%;
     height: 50%;
+  }
+
+  .splash-head img {
+    max-width: none;
+  }
+
+  .splash-head span {
+    display: block;
+    margin: 30px 0 0 10px;
   }
 
   .splash-head {
