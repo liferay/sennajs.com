@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/EventEmitter.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/EventEmitter.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code><span class="hljs-string">'use strict'</span>;
+
+(function() {
+  <span class="hljs-javadoc">/**
+   * EventEmitter utility.
+   * <span class="hljs-javadoctag">@constructor</span>
+   */</span>
+  senna.EventEmitter = function() {};
+
+  <span class="hljs-javadoc">/**
+   * Holds event listeners scoped by event type.
+   * <span class="hljs-javadoctag">@type</span> {Object}
+   * <span class="hljs-javadoctag">@private</span>
+   */</span>
+  senna.EventEmitter.prototype.events_ = <span class="hljs-keyword">null</span>;
+
+  <span class="hljs-javadoc">/**
+   * Adds a listener to the end of the listeners array for the specified event.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@param</span> {Function} listener
+   * <span class="hljs-javadoctag">@return</span> {Object} Returns emitter, so calls can be chained.
+   */</span>
+  senna.EventEmitter.prototype.addListener = function(event, listener) {
+    <span class="hljs-keyword">if</span> (typeof listener !== <span class="hljs-string">'function'</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TypeError(<span class="hljs-string">'Listener must be a function'</span>);
+    }
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events_) {
+      <span class="hljs-keyword">this</span>.events_ = {};
+    }
+
+    <span class="hljs-keyword">this</span>.emit(<span class="hljs-string">'newListener'</span>, event, listener);
+
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events_[event]) {
+      <span class="hljs-keyword">this</span>.events_[event] = [];
+    }
+
+    <span class="hljs-keyword">this</span>.events_[event].push(listener);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Removes all event handlers when destroyed.
+   * TODO(eduardo)
+   */</span>
+  senna.EventEmitter.prototype.destroy = function() {};
+
+  <span class="hljs-javadoc">/**
+   * Returns an array of listeners for the specified event.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@return</span> {Array} Array of listeners.
+   */</span>
+  senna.EventEmitter.prototype.listeners = function(event) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.events_ &amp;&amp; <span class="hljs-keyword">this</span>.events_[event];
+  };
+
+  <span class="hljs-javadoc">/**
+   * Execute each of the listeners in order with the supplied arguments.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@param</span> {*} opt_args [arg1], [arg2], [...]
+   * <span class="hljs-javadoctag">@return</span> {Boolean} Returns true if event had listeners, false otherwise.
+   */</span>
+  senna.EventEmitter.prototype.emit = function(event) {
+    <span class="hljs-keyword">var</span> listeners = <span class="hljs-keyword">this</span>.listeners(event);
+    <span class="hljs-keyword">if</span> (listeners) {
+      <span class="hljs-keyword">var</span> args = Array.prototype.slice.call(arguments, <span class="hljs-number">1</span>);
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) {
+        <span class="hljs-keyword">if</span> (listeners[i]) {
+          listeners[i].apply(<span class="hljs-keyword">this</span>, args);
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Adds a listener to the end of the listeners array for the specified event.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@param</span> {Function} listener
+   * <span class="hljs-javadoctag">@return</span> {Object} Returns emitter, so calls can be chained.
+   */</span>
+  senna.EventEmitter.prototype.on = senna.EventEmitter.prototype.addListener;
+
+  <span class="hljs-javadoc">/**
+   * Adds a one time listener for the event. This listener is invoked only the
+   * next time the event is fired, after which it is removed.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@param</span> {Function} listener
+   * <span class="hljs-javadoctag">@return</span> {Object} Returns emitter, so calls can be chained.
+   */</span>
+  senna.EventEmitter.prototype.once = function(event, listener) {
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    self.on(event, function handlerInternal() {
+      self.removeListener(event, handlerInternal);
+      listener.apply(<span class="hljs-keyword">this</span>, arguments);
+    });
+  };
+
+  <span class="hljs-javadoc">/**
+   * Removes all listeners, or those of the specified event. It's not a good
+   * idea to remove listeners that were added elsewhere in the code,
+   * especially when it's on an emitter that you didn't create.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@return</span> {Object} Returns emitter, so calls can be chained.
+   */</span>
+  senna.EventEmitter.prototype.removeAllListeners = function(opt_event) {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events_) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+    <span class="hljs-keyword">if</span> (opt_event) {
+      delete <span class="hljs-keyword">this</span>.events_[opt_event];
+    } <span class="hljs-keyword">else</span> {
+      delete <span class="hljs-keyword">this</span>.events_;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Remove a listener from the listener array for the specified event.
+   * Caution: changes array indices in the listener array behind the listener.
+   * <span class="hljs-javadoctag">@param</span> {String} event
+   * <span class="hljs-javadoctag">@param</span> {Function} listener
+   * <span class="hljs-javadoctag">@return</span> {Object} Returns emitter, so calls can be chained.
+   */</span>
+  senna.EventEmitter.prototype.removeListener = function(event, listener) {
+    <span class="hljs-keyword">if</span> (typeof listener !== <span class="hljs-string">'function'</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TypeError(<span class="hljs-string">'Listener must be a function'</span>);
+    }
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.events_) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+
+    <span class="hljs-keyword">var</span> listeners = <span class="hljs-keyword">this</span>.listeners(event);
+    <span class="hljs-keyword">if</span> (Array.isArray(listeners)) {
+      <span class="hljs-keyword">var</span> i = listeners.indexOf(listener);
+      <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+      }
+      listeners.splice(i, <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+  };
+
+  <span class="hljs-javadoc">/**
+   * By default EventEmitters will print a warning if more than 10 listeners
+   * are added for a particular event. This is a useful default which helps
+   * finding memory leaks. Obviously not all Emitters should be limited to 10.
+   * This function allows that to be increased. Set to zero for unlimited.
+   * <span class="hljs-javadoctag">@param</span> {Number} n The maximum number of listeners.
+   */</span>
+  senna.EventEmitter.prototype.setMaxListeners = function() {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">'Not implemented'</span>);
+  };
+
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="senna.App.html">App</a></li><li><a href="senna.Cacheable.html">Cacheable</a></li><li><a href="senna.DataAttributeHandler.html">DataAttributeHandler</a></li><li><a href="senna.EventEmitter.html">EventEmitter</a></li><li><a href="senna.HtmlScreen.html">HtmlScreen</a></li><li><a href="senna.RequestScreen.html">RequestScreen</a></li><li><a href="senna.Route.html">Route</a></li><li><a href="senna.Screen.html">Screen</a></li><li><a href="senna.Surface.html">Surface</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Aug 21 2014 13:02:04 GMT-0300 (BRT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: screen/RequestScreen.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: screen/RequestScreen.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code><span class="hljs-string">'use strict'</span>;
+
+(function() {
+  <span class="hljs-javadoc">/**
+   * Request screen abstract class to perform io operations on descendant
+   * screens.
+   * <span class="hljs-javadoctag">@constructor</span>
+   * <span class="hljs-javadoctag">@extends</span> {senna.Screen}
+   */</span>
+  senna.RequestScreen = function() {
+    senna.RequestScreen.base(<span class="hljs-keyword">this</span>, <span class="hljs-string">'constructor'</span>);
+  };
+  senna.inherits(senna.RequestScreen, senna.Screen);
+
+  <span class="hljs-javadoc">/**
+   * <span class="hljs-javadoctag">@inheritDoc</span>
+   */</span>
+  senna.RequestScreen.prototype.cacheable = <span class="hljs-keyword">true</span>;
+
+  <span class="hljs-javadoc">/**
+   * Holds default http headers to set on request.
+   * <span class="hljs-javadoctag">@type</span> {?Object=}
+   * <span class="hljs-javadoctag">@default</span> {
+   *   'X-PJAX': 'true',
+   *   'X-Requested-With': 'XMLHttpRequest'
+   * }
+   * <span class="hljs-javadoctag">@protected</span>
+   */</span>
+  senna.RequestScreen.prototype.httpHeaders = {
+    <span class="hljs-string">'X-PJAX'</span>: <span class="hljs-string">'true'</span>,
+    <span class="hljs-string">'X-Requested-With'</span>: <span class="hljs-string">'XMLHttpRequest'</span>
+  };
+
+  <span class="hljs-javadoc">/**
+   * Holds default http method to perform the request.
+   * <span class="hljs-javadoctag">@type</span> {!String}
+   * <span class="hljs-javadoctag">@default</span> GET
+   * <span class="hljs-javadoctag">@protected</span>
+   */</span>
+  senna.RequestScreen.prototype.httpMethod = <span class="hljs-string">'GET'</span>;
+
+  <span class="hljs-javadoc">/**
+   * Holds the XHR object responsible for the request.
+   * <span class="hljs-javadoctag">@type</span> {XMLHttpRequest}
+   * <span class="hljs-javadoctag">@default</span> null
+   * <span class="hljs-javadoctag">@protected</span>
+   */</span>
+  senna.RequestScreen.prototype.request = <span class="hljs-keyword">null</span>;
+
+  <span class="hljs-javadoc">/**
+   * Holds the request timeout.
+   * <span class="hljs-javadoctag">@type</span> {!Number}
+   * <span class="hljs-javadoctag">@default</span> 30000
+   * <span class="hljs-javadoctag">@protected</span>
+   */</span>
+  senna.RequestScreen.prototype.timeout = <span class="hljs-number">30000</span>;
+
+  <span class="hljs-javadoc">/**
+   * Aborts the current request if any.
+   */</span>
+  senna.RequestScreen.prototype.abortRequest = function() {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.request) {
+      <span class="hljs-keyword">this</span>.request.abort();
+    }
+  };
+
+  <span class="hljs-javadoc">/**
+   * Gets the http headers.
+   * <span class="hljs-javadoctag">@return</span> {?Object=}
+   */</span>
+  senna.RequestScreen.prototype.getHttpHeaders = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.httpHeaders;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Gets the http method.
+   * <span class="hljs-javadoctag">@return</span> {!String}
+   */</span>
+  senna.RequestScreen.prototype.getHttpMethod = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.httpMethod;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Gets the request object.
+   * <span class="hljs-javadoctag">@return</span> {?Object}
+   */</span>
+  senna.RequestScreen.prototype.getRequest = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.request;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Gets the request timeout.
+   * <span class="hljs-javadoctag">@return</span> {!Number}
+   */</span>
+  senna.RequestScreen.prototype.getTimeout = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.timeout;
+  };
+
+  <span class="hljs-javadoc">/**
+   * <span class="hljs-javadoctag">@inheritDoc</span>
+   */</span>
+  senna.RequestScreen.prototype.load = function(path) {
+    senna.RequestScreen.base(<span class="hljs-keyword">this</span>, <span class="hljs-string">'load'</span>, path);
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> cache = <span class="hljs-keyword">this</span>.getCache();
+    <span class="hljs-keyword">if</span> (senna.isDefAndNotNull(cache)) {
+      <span class="hljs-keyword">return</span> senna.Promise.resolve(cache);
+    }
+    <span class="hljs-keyword">return</span> senna.request(path, <span class="hljs-keyword">this</span>.httpMethod, <span class="hljs-keyword">this</span>.httpHeaders, <span class="hljs-keyword">this</span>.timeout).then(function(xhr) {
+      self.setRequest(xhr);
+      <span class="hljs-keyword">return</span> xhr.responseText;
+    });
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the http headers.
+   * <span class="hljs-javadoctag">@param</span> {?Object=} httpHeaders
+   */</span>
+  senna.RequestScreen.prototype.setHttpHeaders = function(httpHeaders) {
+    <span class="hljs-keyword">this</span>.httpHeaders = httpHeaders;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the http method.
+   * <span class="hljs-javadoctag">@param</span> {!String} httpMethod
+   */</span>
+  senna.RequestScreen.prototype.setHttpMethod = function(httpMethod) {
+    <span class="hljs-keyword">this</span>.httpMethod = httpMethod;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the request object.
+   * <span class="hljs-javadoctag">@param</span> {?Object} request
+   */</span>
+  senna.RequestScreen.prototype.setRequest = function(request) {
+    <span class="hljs-keyword">this</span>.request = request;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the request timeout.
+   * <span class="hljs-javadoctag">@param</span> {!Number} timeout
+   */</span>
+  senna.RequestScreen.prototype.setTimeout = function(timeout) {
+    <span class="hljs-keyword">this</span>.timeout = timeout;
+  };
+
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="senna.App.html">App</a></li><li><a href="senna.Cacheable.html">Cacheable</a></li><li><a href="senna.DataAttributeHandler.html">DataAttributeHandler</a></li><li><a href="senna.EventEmitter.html">EventEmitter</a></li><li><a href="senna.HtmlScreen.html">HtmlScreen</a></li><li><a href="senna.RequestScreen.html">RequestScreen</a></li><li><a href="senna.Route.html">Route</a></li><li><a href="senna.Screen.html">Screen</a></li><li><a href="senna.Surface.html">Surface</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Aug 21 2014 13:02:04 GMT-0300 (BRT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
