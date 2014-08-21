@@ -107,7 +107,7 @@ a.pure-button-primary {
 }
 
 .home-menu .center .menu-section {
-  display: block;
+  display: inline-block;
   float: none;
   left: 0;
   padding: 5px 0;
@@ -148,11 +148,6 @@ a.pure-button-primary {
   transition: border .5s;
 }
 
-.home-menu .navigation a {
-  margin: 5px 10px;
-  padding: 0;
-}
-
 .home-menu .pure-menu-selected a {
   border-bottom: 1px solid #4c4984;
 }
@@ -169,7 +164,8 @@ a.pure-button-primary {
   border-radius: 3px;
   border-width: 0;
   color: #5e5a4a;
-  margin-left: 15px;
+  margin-left: 10px;
+  padding: 5px 10px;
   transform: skew(-25deg, 0deg);
 }
 
@@ -202,8 +198,8 @@ a.pure-button-primary {
 
 .splash {
   /* absolute center .splash within .splash-container */
-  width: 80%;
-  height: 50%;
+  width: 90%;
+  height: 60%;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -222,9 +218,13 @@ a.pure-button-primary {
   text-transform: uppercase;
 }
 
+.splash-head img {
+  max-width: 100px;
+}
+
 .splash-head span {
   display: block;
-  margin: 30px 0 0 10px;
+  margin: 0 0 0 10px;
 }
 
 /* This is the subheading that appears on the blue section */
@@ -239,7 +239,7 @@ a.pure-button-primary {
 .splash-explanation {
   color: #8ec6ea;
   font-family: 'Open Sans', sans-serif;
-  font-size: 120%;
+  font-size: 100%;
   font-weight: 400;
   text-transform: none;
 }
@@ -355,6 +355,12 @@ a.pure-button-primary {
     float: left;
   }
 
+  .home-menu .classy-link,
+  .home-menu .classy-link:hover {
+    margin-left: 15px;
+    padding: 5px 15px;
+  }
+
   /* We increase the height of the splash-container */
   /* .splash-container {
       height: 500px;
@@ -366,6 +372,15 @@ a.pure-button-primary {
   .splash {
     width: 50%;
     height: 50%;
+  }
+
+  .splash-head img {
+    max-width: auto;
+  }
+
+  .splash-head span {
+    display: block;
+    margin: 30px 0 0 10px;
   }
 
   .splash-head {
