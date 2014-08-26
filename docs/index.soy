@@ -46,7 +46,7 @@
           Sites will often optimize and minify stylesheets, combine images into a single sprite, defer loading of javascript, and serve static files from a CDN. All in order to speed up load time. This is great. However, even with cached resources the browser still has to re-parse and execute the CSS and JS on every page load, it still has to lay out the HTML and redraw the UI. This slows down the actual navigation but can also add perceived slowness and often introduces a white flash.
         </p>
         <p>
-          When Tim Berners Lee invented web he was looking for a system to publish scientific documents remotely, hyperlinks and static pages only. Creating a webapp can get very slow with all the static web born rules. In order to improve actual and perceived latency many sites <a href="http://www.google.com/trends/explore#q=model%20view%20controller%2C%20single%20page%20application&cmpt=q" target="_blank">are moving to SPA model</a>. That is, once the initial page is loaded all subsequent navigations are handled without full page reload. Additional content is loaded using <span class="code">XMLHttpRequest</span> via <a href="#" target="blank">History API</a> which is able to update the URL without refresh the page, therefore your dynamic site can be shared and bookmarked. Having a URL for each state of your page allows the content to be fully crawled by search engines.
+          When Tim Berners Lee invented web he was looking for a system to publish scientific documents remotely, hyperlinks and static pages only. Creating a webapp can get very slow with all the static web born rules. In order to improve actual and perceived latency many sites <a href="http://www.google.com/trends/explore#q=model%20view%20controller%2C%20single%20page%20application&cmpt=q" target="_blank">are moving to SPA model</a>. That is, once the initial page is loaded all subsequent navigations are handled without full page reload. Additional content is loaded using <span class="code">XMLHttpRequest</span> via <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> which is able to update the URL without refresh the page, therefore your dynamic site can be shared and bookmarked. Having a URL for each state of your page allows the content to be fully crawled by search engines.
         </p>
         <div class="title-header">
           <h2 id="features">Features</h2>
@@ -85,7 +85,7 @@
             <strong>Page resources management:</strong> Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using <span class="code">XMLHttpRequest</span> can be appended to the DOM, for security reasons some browsers won't evaluate <span class="code">&lt;script&gt;</span> tags from the new fragment. Therefore, the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
           </p>
           <p>
-            Not only that the list of features needed for a good SPA is huge, at the moment <a href="#" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core, like Senna.
+            Not only that the list of features needed for a good SPA is huge, at the moment <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core, like Senna.
           </p>
         </p>
         <div class="title-header">
@@ -239,7 +239,7 @@ var route = new senna.Route(resolvePath, function() {
         <h2 id="screens">Screens</h2>
       </div>
       <p>
-        Sena provides a special type of route handler called <span class="code">senna.Screen</span>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <span class="code">senna.Screen</span> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
+        Senna provides a special type of route handler called <span class="code">senna.Screen</span>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <span class="code">senna.Screen</span> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
       </p>
       {literal}
       <pre><code class="html">// Constructor
