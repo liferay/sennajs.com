@@ -13,14 +13,8 @@ gulp.task('serve', ['build'], function() {
 
   app.setTemplateEngine(new SoyTemplateEngine());
 
-  gutil.log('Routing', gutil.colors.cyan('routes.txt'));
-  app.setRouteConfigurator(new madvoc.RouteConfigurator('dist/routes.txt'));
-
   gutil.log('Serving static', gutil.colors.cyan('public/'));
   app.serveStatic('/', path.join(process.cwd(), 'dist/public'));
-
-  gutil.log('Setting locale', gutil.colors.cyan(config.defaultLocale));
-  app.setLocale(config.defaultLocale);
 
   gutil.log('Compiling templates in', gutil.colors.cyan('dist/'));
   app.getTemplateEngine().compileTemplates('dist', app.getLocale(), {}, function() {
