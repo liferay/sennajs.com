@@ -28,8 +28,8 @@
   <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../build/senna-debug.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/posts/post1.html"</span>&gt;</span>Page 1<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/posts/post2.html"</span>&gt;</span>Page 2<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pages/page1.html"</span>&gt;</span>Page 1<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pages/page2.html"</span>&gt;</span>Page 2<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- Content surface --&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content-default"</span>&gt;</span>
@@ -55,8 +55,8 @@
   <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../build/senna-debug.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/posts/post1.html"</span>&gt;</span>Page 1<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/posts/post2.html"</span>&gt;</span>Page 2<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pages/page1.html"</span>&gt;</span>Page 1<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pages/page2.html"</span>&gt;</span>Page 2<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- Content surface --&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content-default"</span>&gt;</span>
@@ -66,11 +66,11 @@
   <span class="hljs-comment">&lt;!-- End of content surface --&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
     <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> senna.App();
-    app.setBasePath(<span class="hljs-string">'/examplemples/mysite/posts/'</span>);
+    app.setBasePath(<span class="hljs-string">'/examples/mysite/pages/'</span>);
     app.addSurfaces(<span class="hljs-string">'content'</span>);
     app.addRoutes([
-      <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-string">'post1.html'</span>, senna.HtmlScreen),
-      <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-string">'post2.html'</span>, senna.HtmlScreen)
+      <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-string">'page1.html'</span>, senna.HtmlScreen),
+      <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-string">'page2.html'</span>, senna.HtmlScreen)
     ]);
   </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
@@ -79,22 +79,22 @@
         <p>That's all, your website should be blazing fast now. Is relevant to remember <span class="code">senna.Route</span> supports regular expression, therefore you don't need to map many route if they can be generic, the two routes from the previous example can be reduced to:</p>
       <pre><code class="javascript">app<span class="hljs-preprocessor">.addRoutes</span>(new senna<span class="hljs-preprocessor">.Route</span>(/\w+\<span class="hljs-preprocessor">.html</span>/, senna<span class="hljs-preprocessor">.HtmlScreen</span>))<span class="hljs-comment">;</span></code></pre>
       <p>Note that <span class="code">page1.html</span> and <span class="code">page2.html</span> was not created yet, therefore the navigation will fail since it cannot find the file. Duplicate the <span class="code">index.html</span> twice and rename the new files file to <span class="code">page1.html</span> and <span class="code">page2.html</span>, respectively.</p><div class="title-header"><h2 id="routes">Routes</h2></div><p>As seen on the previous example, you can register <span class="code">senna.Route</span> on <span class="code">senna.App</span>. A route is a tuple of path and a handler function:</p>
-      <pre><code class="html"><span class="hljs-keyword">var</span> route = <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-string">'/path/file.html'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <pre><code class="javascript"><span class="hljs-keyword">var</span> route = <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-string">'/path/file.html'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-comment">// Fires when a link with path /path/file.html is clicked.</span>
 });</code></pre>
       <p>The path also supports string, regular expression or function, e.g.</p>
-      <pre><code class="html"><span class="hljs-keyword">var</span> route = <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-regexp">/.*/</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <pre><code class="javascript"><span class="hljs-keyword">var</span> route = <span class="hljs-keyword">new</span> senna.Route(<span class="hljs-regexp">/.*/</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-comment">// Fires when any link is clicked.</span>
 });</code></pre>
       
-      <pre><code class="html"><span class="hljs-keyword">var</span> resolvePath = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <pre><code class="javascript"><span class="hljs-keyword">var</span> resolvePath = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-keyword">return</span> <span class="hljs-string">'/path/file.html'</span>;
 }
 <span class="hljs-keyword">var</span> route = <span class="hljs-keyword">new</span> senna.Route(resolvePath, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
   <span class="hljs-comment">// Fires when a link with path /path/file.html is clicked.</span>
 });</code></pre>
       <p>From the handler callback you can update parts of your page, though from a simple callback like this is hard to grow your application, for that reason Senna provides <span class="code">senna.Screen</span>. A screen is nothing more than a special type of route handler that provides asynchronous lifecycle. The following section will detail what a screen is and how it can help you manage your surfaces.</p><div class="title-header"><h2 id="screens">Screens</h2></div><p>Senna provides a special type of route handler called <span class="code">senna.Screen</span>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <span class="code">senna.Screen</span> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.</p>
-      <pre><code class="html"><span class="hljs-comment">// Constructor</span>
+      <pre><code class="javascript"><span class="hljs-comment">// Constructor</span>
 <span class="hljs-transposed_variable">senna.</span>Screen = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {};</span>
 
 <span class="hljs-comment">// Lifecycle</span>
@@ -111,19 +111,19 @@
 <span class="hljs-comment">// Provides the title of the page when this screen is rendered</span>
 <span class="hljs-transposed_variable">senna.</span><span class="hljs-transposed_variable">Screen.</span><span class="hljs-transposed_variable">prototype.</span>getTitle = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {};</span></code></pre>
       <p>To understand the screen lifecycle is good to inspect your browser console when navigating to a link from the user click or using the <span class="code">app.navigate(path[, replaceState]);</span>.</p>
-      <pre><code class="html">app.navigate(<span class="hljs-string">'/examples/mysite/posts/post1.html'</span>);</code></pre>
+      <pre><code class="javascript">app.navigate(<span class="hljs-string">'/examples/mysite/pages/page1.html'</span>);</code></pre>
       <p>Lifecycle logs:</p>
-      <pre><code class="html">Navigate to [/examples/mysite/posts/post1.html]
-<span class="hljs-operator"><span class="hljs-keyword">Create</span> screen <span class="hljs-keyword">for</span> [/examples/mysite/posts/post1.html]
+      <pre><code class="nohighlight">Navigate to [/examples/mysite/pages/page1.html]
+<span class="hljs-operator"><span class="hljs-keyword">Create</span> screen <span class="hljs-keyword">for</span> [/examples/mysite/pages/page1.html]
 Screen [screen_1408572719183] <span class="hljs-keyword">load</span>
-XHR finished loading: <span class="hljs-keyword">GET</span> <span class="hljs-string">"http://localhost:8000/examples/mysite/posts/post1.html"</span>.
+XHR finished loading: <span class="hljs-keyword">GET</span> <span class="hljs-string">"http://localhost:8000/examples/mysite/pages/page1.html"</span>.
 Screen [screen_1408572719183] <span class="hljs-keyword">add</span> content <span class="hljs-keyword">to</span> surface [header]
 Screen [screen_1408572719183] <span class="hljs-keyword">add</span> content <span class="hljs-keyword">to</span> surface [content]
 Screen [screen_1408572719183] flip
 Screen [screen_1408572719183] activate
 Navigation done</span></code></pre>
       <div class="title-header"><h2>HTMLScreen</h2></div><p>The examples shown above you may have noticed the routes are pointing to <span class="code">senna.HtmlScreen</span>. This screen implementation is really powerful since it can transform the navigation of your static HTML files to be handled as a single page application. Checkout the <a href="https://github.com/eduardolundgren/senna/tree/master/examples/email" target="_blank">email demo source code</a> with <span class="code">senna.HtmlScreen</span> in practice.</p><div class="title-header"><h2>Custom Screens</h2></div><p>It's easy to create your own screen whenever you need one.</p><p>Let's say for example that, for some reason, you need a screen that injects the content <span class="code">Header changed</span> and <span class="code">Body changed</span> on the respective surface elements from your page when navigate to the path <span class="code">/foo</span>.</p>
-        <pre><code class="html"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FooScreen</span><span class="hljs-params">()</span> {</span>
+        <pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FooScreen</span><span class="hljs-params">()</span> {</span>
   FooScreen.base(<span class="hljs-keyword">this</span>, <span class="hljs-string">'constructor'</span>);
 }
 senna.inherits(FooScreen, senna.Screen);
@@ -179,8 +179,8 @@ FooScreen.prototype.getSurfaceContent = <span class="hljs-function"><span class=
   <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../build/senna-debug.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">data-senna</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/posts/post1.html"</span>&gt;</span>Page 1<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/posts/post2.html"</span>&gt;</span>Page 2<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pages/page1.html"</span>&gt;</span>Page 1<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pages/page2.html"</span>&gt;</span>Page 2<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- Content surface --&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content"</span> <span class="hljs-attribute">data-senna-surface</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content-default"</span>&gt;</span>

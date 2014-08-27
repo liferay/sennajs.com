@@ -99,3 +99,7 @@
 .team-member a:hover .team-member-title {
   color: #965D00;
 }
+
+.liferay-logo {
+  display: block;
+}

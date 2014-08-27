@@ -141,8 +141,8 @@
   &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;a href="/posts/post1.html"&gt;Page 1&lt;/a&gt;
-  &lt;a href="/posts/post2.html"&gt;Page 2&lt;/a&gt;
+  &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
+  &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
   &lt;!-- Content surface --&gt;
   &lt;div id="content"&gt;
     &lt;div id="content-default"&gt;
@@ -172,8 +172,8 @@
   &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;a href="/posts/post1.html"&gt;Page 1&lt;/a&gt;
-  &lt;a href="/posts/post2.html"&gt;Page 2&lt;/a&gt;
+  &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
+  &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
   &lt;!-- Content surface --&gt;
   &lt;div id="content"&gt;
     &lt;div id="content-default"&gt;
@@ -183,11 +183,11 @@
   &lt;!-- End of content surface --&gt;
   &lt;script&gt;
     var app = new senna.App();
-    app.setBasePath('/examplemples/mysite/posts/');
+    app.setBasePath('/examples/mysite/pages/');
     app.addSurfaces('content');
     app.addRoutes([
-      new senna.Route('post1.html', senna.HtmlScreen),
-      new senna.Route('post2.html', senna.HtmlScreen)
+      new senna.Route('page1.html', senna.HtmlScreen),
+      new senna.Route('page2.html', senna.HtmlScreen)
     ]);
   &lt;/script&gt;
 &lt;/body&gt;
@@ -212,7 +212,7 @@
       </p>
 
       {literal}
-      <pre><code class="html">var route = new senna.Route('/path/file.html', function() {
+      <pre><code class="javascript">var route = new senna.Route('/path/file.html', function() {
   // Fires when a link with path /path/file.html is clicked.
 });</code></pre>
       {/literal}
@@ -220,12 +220,12 @@
         The path also supports string, regular expression or function, e.g.
       </p>
       {literal}
-      <pre><code class="html">var route = new senna.Route(/.*/, function() {
+      <pre><code class="javascript">var route = new senna.Route(/.*/, function() {
   // Fires when any link is clicked.
 });</code></pre>
       {/literal}
       {literal}
-      <pre><code class="html">var resolvePath = function() {
+      <pre><code class="javascript">var resolvePath = function() {
   return '/path/file.html';
 }
 var route = new senna.Route(resolvePath, function() {
@@ -242,7 +242,7 @@ var route = new senna.Route(resolvePath, function() {
         Senna provides a special type of route handler called <span class="code">senna.Screen</span>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <span class="code">senna.Screen</span> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
       </p>
       {literal}
-      <pre><code class="html">// Constructor
+      <pre><code class="javascript">// Constructor
 senna.Screen = function() {};
 
 // Lifecycle
@@ -263,16 +263,16 @@ senna.Screen.prototype.getTitle = function() {};</code></pre>
         To understand the screen lifecycle is good to inspect your browser console when navigating to a link from the user click or using the <span class="code">app.navigate(path[, replaceState]);</span>.
       </p>
       {literal}
-      <pre><code class="html">app.navigate('/examples/mysite/posts/post1.html');</code></pre>
+      <pre><code class="javascript">app.navigate('/examples/mysite/pages/page1.html');</code></pre>
       {/literal}
 
       <p>Lifecycle logs:</p>
 
       {literal}
-      <pre><code class="html">Navigate to [/examples/mysite/posts/post1.html]
-Create screen for [/examples/mysite/posts/post1.html]
+      <pre><code class="nohighlight">Navigate to [/examples/mysite/pages/page1.html]
+Create screen for [/examples/mysite/pages/page1.html]
 Screen [screen_1408572719183] load
-XHR finished loading: GET "http://localhost:8000/examples/mysite/posts/post1.html".
+XHR finished loading: GET "http://localhost:8000/examples/mysite/pages/page1.html".
 Screen [screen_1408572719183] add content to surface [header]
 Screen [screen_1408572719183] add content to surface [content]
 Screen [screen_1408572719183] flip
@@ -297,7 +297,7 @@ Navigation done</code></pre>
         Let's say for example that, for some reason, you need a screen that injects the content <span class="code">Header changed</span> and <span class="code">Body changed</span> on the respective surface elements from your page when navigate to the path <span class="code">/foo</span>.
       </p>
         {literal}
-        <pre><code class="html">function FooScreen() {
+        <pre><code class="javascript">function FooScreen() {
   FooScreen.base(this, 'constructor');
 }
 senna.inherits(FooScreen, senna.Screen);
@@ -361,8 +361,8 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
   &lt;script src="../build/senna-debug.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body data-senna&gt;
-  &lt;a href="/posts/post1.html"&gt;Page 1&lt;/a&gt;
-  &lt;a href="/posts/post2.html"&gt;Page 2&lt;/a&gt;
+  &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
+  &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
   &lt;!-- Content surface --&gt;
   &lt;div id="content" data-senna-surface&gt;
     &lt;div id="content-default"&gt;
