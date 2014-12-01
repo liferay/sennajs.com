@@ -127,7 +127,7 @@
           <h2>Step 2: Setup your single page application</h2>
         </div>
         <p>
-          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route any <span class="code">&lt;a&gt;</span> element available on your page that matches with the configured CSS link selector, by default matches <span class="code">"a"</span>, feel free to limit the scope of the links you want to track, e.g. <span class="code">app.setLinkSelector("a:not([data-senna-off])");</span>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
+          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route any <span class="code">&lt;a&gt;</span> element available on your page that matches with the configured CSS link selector, by default matches <span class="code">"a:not([data-senna-off])"</span>, feel free to limit the scope of the links you want to track, e.g. <span class="code">app.setLinkSelector(".senna-links");</span>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
         </p>
         {literal}
         <pre><code class="html">&lt;!doctype html&gt;
