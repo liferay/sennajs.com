@@ -15,22 +15,22 @@
         {param authors: [
           [
             'name': 'Eduardo Lundgren',
-            'image': 'https://2.gravatar.com/avatar/42327de520e674a6d1686845b30778d0?size=100',
+            'image': 'https://2.gravatar.com/avatar/42327de520e674a6d1686845b30778d0?size=200',
             'url': 'https://github.com/eduardolundgren'
           ],
           [
             'name': 'Iliyan Peychev',
-            'image': 'https://2.gravatar.com/avatar/c2a0cb9ed0d19196b7fe061055c18838?size=100',
+            'image': 'https://2.gravatar.com/avatar/c2a0cb9ed0d19196b7fe061055c18838?size=200',
             'url': 'https://github.com/ipeychev'
           ],
           [
             'name': 'Pedro Marques',
-            'image': 'https://2.gravatar.com/avatar/1cf95bc9cee05a0bba25f7529bcdb888?size=100',
+            'image': 'https://2.gravatar.com/avatar/1cf95bc9cee05a0bba25f7529bcdb888?size=200',
             'url': 'https://github.com/pedromarks'
           ],
           [
             'name': 'Zeno Rocha',
-            'image': 'https://2.gravatar.com/avatar/e190023b66e2b8aa73a842b106920c93?size=100',
+            'image': 'https://2.gravatar.com/avatar/e190023b66e2b8aa73a842b106920c93?size=200',
             'url': 'https://github.com/zenorocha'
           ]
         ] /}
@@ -55,7 +55,7 @@
     {foreach $author in $authors}
       <div class="pure-u-1 pure-u-md-5-24 team-member">
         <a href="{$author.url}">
-          <img class="team-member-photo" src="{$author.image}" alt="{$author.name}">
+          <img width="104" height="104" class="team-member-photo" src="{$author.image}" alt="{$author.name}">
           <span class="team-member-title">{$author.name}</span>
         </a>
       </div>
