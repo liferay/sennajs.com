@@ -192,7 +192,7 @@ a.pure-button-primary {
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
   width: 100%;
-  height: 88%;
+  height: 50%;
   top: 0;
   left: 0;
   position: fixed !important;
@@ -201,7 +201,7 @@ a.pure-button-primary {
 .splash {
   /* absolute center .splash within .splash-container */
   width: 90%;
-  height: 60%;
+  height: 30%;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -218,6 +218,7 @@ a.pure-button-primary {
   line-height: 1em;
   margin: 0;
   text-transform: uppercase;
+  padding-top: 35px;
 }
 
 .splash-head img {
@@ -253,7 +254,7 @@ a.pure-button-primary {
 .content-wrapper {
   /* These styles are required for the "scroll-over" effect */
   position: absolute;
-  top: 87%;
+  top: 49%;
   width: 100%;
   min-height: 12%;
   z-index: 2;
