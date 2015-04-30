@@ -24,7 +24,7 @@
     "gulp-prettify": "^0.3.0",
     "gulp-replace": "~0.4.0",
     "gulp-rimraf": "^0.1.0",
-    "gulp-soynode": "^1.0.1",
+    "gulp-soynode": "^1.3.1",
     "gulp-uglify": "^0.3.1",
     "gulp-usemin": "^0.3.7",
     "gulp-util": "^3.0.0",
@@ -34,7 +34,7 @@
     "merge-stream": "^0.1.5",
     "require-dir": "^0.1.0",
     "run-sequence": "^0.3.6",
-    "soynode": "^0.5.0",
+    "soynode": "^0.7.5",
     "yargs": "^1.3.1"
   }
 }
