@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .team-section {
-  background: #ffb02f;
+  background: #31AF85;
 }
 
 .team-section .pure-g {
@@ -11,7 +11,7 @@
 }
 
 .team-section .content-head {
-  color: #965D00;
+  color: #fff;
 }
 
 .team-section p {
@@ -19,7 +19,7 @@
 }
 
 .team-section a {
-  color: #965D00;
+  color: #fbe969;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   -webkit-transition: all .3s linear;
@@ -29,11 +29,11 @@
 }
 
 .team-section-desc a:hover {
-  border-bottom: 1px solid #965D00;
+  border-bottom: 1px solid #fbe969;
 }
 
 .team-section .love {
-  color: #965D00;
+  color: #fbe969;
   display: inline-block;
   font-size: 1.1em;
   position: relative;
@@ -78,7 +78,7 @@
 }
 
 .team-member a:hover .team-member-photo {
-  border-color: #965D00;
+  border-color: #fbe969;
 }
 
 .team-member .team-member-title {
@@ -97,7 +97,7 @@
 }
 
 .team-member a:hover .team-member-title {
-  color: #965D00;
+  color: #fbe969;
 }
 
 .liferay-logo {

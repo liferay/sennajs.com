@@ -77,7 +77,7 @@ label {
  * I want my pure-button elements to look a little different
  */
 .pure-button {
-  background-color: #1f8dd6;
+  background-color: #31AF85;
   color: white;
   padding: 0.5em 2em;
   border-radius: 5px;
@@ -85,7 +85,7 @@ label {
 
 a.pure-button-primary {
   background: white;
-  color: #1f8dd6;
+  color: #31AF85;
   border-radius: 5px;
   font-size: 120%;
 }
@@ -126,7 +126,7 @@ a.pure-button-primary {
 }
 
 .home-menu .pure-menu-heading {
-  color: #383378;
+  color: #31AF85;
   display: block;
   font-size: 130%;
   font-family: 'Voyager Grotesque Regular', sans-serif;
@@ -143,21 +143,22 @@ a.pure-button-primary {
 }
 
 .home-menu li a {
-  color: #1f8dd6;
+  color: #31AF85;
   padding: 0;
   margin: 0 10px;
   transition: border .5s;
 }
 
-.home-menu .pure-menu-selected a {
-  border-bottom: 1px solid #4c4984;
-  color: #4c4984;
+.home-menu .pure-menu-selected a,
+.home-menu .pure-menu-selected a:hover {
+  border-bottom: 1px solid #3384DF;
+  color: #3384DF;
 }
 
 .home-menu li a:hover,
 .home-menu li a:focus {
   background: none;
-  border-bottom: 1px solid #1f8dd6;
+  border-bottom: 1px solid #31AF85;
 }
 
 .home-menu .classy-link,
@@ -187,7 +188,7 @@ a.pure-button-primary {
  */
 
 .splash-container {
-  background: #1f8dd6;
+  background: #31AF85;
   z-index: 1;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
@@ -263,7 +264,7 @@ a.pure-button-primary {
 
 /* This is the class used for the main content headers (<h2>) */
 .content-head {
-  color: #9391b5;
+  color: #6CA7E0;
   font-family: 'Open Sans', sans-serif;
   font-size: 150%;
   font-weight: 300;
@@ -278,7 +279,7 @@ a.pure-button-primary {
 
 /* This is the class used for the content sub-headers (<h3>) */
 .content-subhead {
-  color: #1c1a88;
+  color: #6CA7E0;
   font-weight: 300;
   font-size: 130%;
 }

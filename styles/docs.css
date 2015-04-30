@@ -1,6 +1,6 @@
 .doc-header {
   width: 100%;
-  background: #1f8dd6;
+  background: #31AF85;
 }
 
 .doc-header h1 {
@@ -12,13 +12,13 @@
 }
 
 .doc-content p a {
-  color: #1f8dd6;
+  color: #31AF85;
   text-decoration: none;
 }
 
 .doc-content p a:hover,
 .doc-content p a:focus {
-  border-bottom: 1px solid #1f8dd6;
+  border-bottom: 1px solid #31AF85;
 }
 
 .code {
