@@ -19,7 +19,6 @@
   overflow: hidden;
   margin: 0 10px;
   height: 300px;
-  background: #3085a3;
   text-align: center;
   cursor: pointer;
   max-width: 500px;
@@ -30,7 +29,7 @@
   display: block;
   margin: 0;
   min-height: 100%;
-  opacity: 0.8;
+  opacity: 1;
   position: relative;
 }
 
@@ -92,15 +91,11 @@
    Individual effect
    ========================================================================== */
 
-figure.effect {
-  background: #42b078;
-}
-
 figure.effect img {
   width: -webkit-calc(100% + 20px);
   width: calc(100% + 20px);
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transition: opacity 0.9s, -webkit-transform 0.35s;
+  transition: opacity 0.9s, transform 0.35s;
   -webkit-transform: translate3d(-10px,0,0);
   transform: translate3d(-10px,0,0);
   -webkit-backface-visibility: hidden;
@@ -108,7 +103,7 @@ figure.effect img {
 }
 
 figure.effect:hover img {
-  opacity: 0.4;
+  opacity: 0.9;
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
@@ -145,8 +140,8 @@ figure.effect:hover h2::after {
 figure.effect p {
   padding: 1em 0;
   opacity: 0;
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transition: opacity 0.9s, -webkit-transform 0.35s;
+  transition: opacity 0.9s, transform 0.35s;
   -webkit-transform: translate3d(100%,0,0);
   transform: translate3d(100%,0,0);
 }
