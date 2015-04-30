@@ -34,7 +34,7 @@
       </div>
       <div class="pure-u-1 pure-u-md-4-5 doc-content">
         <p>
-          This documentation will introduce you to most of the key concepts in working with Senna. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the <a href="https://github.com/eduardolundgren/senna/tree/master/examples" target="_blank">source code of the examples</a>.
+          This documentation will introduce you to most of the key concepts in working with Senna.js. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the <a href="https://github.com/eduardolundgren/senna/tree/master/examples" target="_blank">source code of the examples</a>.
         </p>
         <div class="title-header">
           <h2>Single page application</h2>
@@ -52,7 +52,7 @@
           <h2 id="features">Features</h2>
         </div>
         <p>
-          Senna is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8KB of JavaScript without any dependency.
+          Senna.js is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8KB of JavaScript without any dependency.
         </p>
         <p>
           In order to create a single page application with good perceived latency and good user experience, the SPA engine must handle the browser native behavior in many aspects, for instance:
@@ -85,14 +85,14 @@
             <strong>Page resources management:</strong> Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using <span class="code">XMLHttpRequest</span> can be appended to the DOM, for security reasons some browsers won't evaluate <span class="code">&lt;script&gt;</span> tags from the new fragment. Therefore, the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
           </p>
           <p>
-            Not only that the list of features needed for a good SPA is huge, at the moment <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core, like Senna.
+            Not only that the list of features needed for a good SPA is huge, at the moment <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core, like Senna.js.
           </p>
         </p>
         <div class="title-header">
           <h2>Before you start: getting the project</h2>
         </div>
         <p>
-          To get started, <a href="https://github.com/eduardolundgren/senna/archive/master.zip">download the project</a>. This project includes all of the Senna examples, source code dependencies you'll need to get started.
+          To get started, <a href="https://github.com/eduardolundgren/senna/archive/master.zip">download the project</a>. This project includes all of the Senna.js examples, source code dependencies you'll need to get started.
         </p>
         <p>
           Unzip the project somewhere on your local drive.
@@ -127,7 +127,7 @@
           <h2>Step 2: Setup your single page application</h2>
         </div>
         <p>
-          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route any <span class="code">&lt;a&gt;</span> element available on your page that matches with the configured CSS link selector, by default matches <span class="code">"a:not([data-senna-off])"</span>, feel free to limit the scope of the links you want to track, e.g. <span class="code">app.setLinkSelector(".senna-links");</span>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
+          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna.js to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route any <span class="code">&lt;a&gt;</span> element available on your page that matches with the configured CSS link selector, by default matches <span class="code">"a:not([data-senna-off])"</span>, feel free to limit the scope of the links you want to track, e.g. <span class="code">app.setLinkSelector(".senna-links");</span>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
         </p>
         {literal}
         <pre><code class="html">&lt;!doctype html&gt;
@@ -158,7 +158,7 @@
 </code></pre>
         {/literal}
         <p>
-          Note that two anchors were added to the page, also one surface element to hold the content of the website. And now your website was setup with Senna &ndash; So, will everything look faster now? Almost, you need to tell <span class="code">senna.App</span> the surfaces of your page that will update dynamically. A surface is just a DOM element with an id, used to identify it later on during navigation. The last step is to register paths to route, in case the path of the clicked link matches with some registered route it will handle the navigation.
+          Note that two anchors were added to the page, also one surface element to hold the content of the website. And now your website was setup with Senna.js &ndash; So, will everything look faster now? Almost, you need to tell <span class="code">senna.App</span> the surfaces of your page that will update dynamically. A surface is just a DOM element with an id, used to identify it later on during navigation. The last step is to register paths to route, in case the path of the clicked link matches with some registered route it will handle the navigation.
         </p>
         {literal}
         <pre><code class="html">&lt;!doctype html&gt;
@@ -233,13 +233,13 @@ var route = new senna.Route(resolvePath, function() {
 });</code></pre>
       {/literal}
       <p>
-        From the handler callback you can update parts of your page, though from a simple callback like this is hard to grow your application, for that reason Senna provides <span class="code">senna.Screen</span>. A screen is nothing more than a special type of route handler that provides asynchronous lifecycle. The following section will detail what a screen is and how it can help you manage your surfaces.
+        From the handler callback you can update parts of your page, though from a simple callback like this is hard to grow your application, for that reason Senna.js provides <span class="code">senna.Screen</span>. A screen is nothing more than a special type of route handler that provides asynchronous lifecycle. The following section will detail what a screen is and how it can help you manage your surfaces.
       </p>
       <div class="title-header">
         <h2 id="screens">Screens</h2>
       </div>
       <p>
-        Senna provides a special type of route handler called <span class="code">senna.Screen</span>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <span class="code">senna.Screen</span> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
+        Senna.js provides a special type of route handler called <span class="code">senna.Screen</span>. Any screen implementation inherits asynchronous lifecycle out of the box. Note that <span class="code">senna.Screen</span> is an abstract class only used to teach how to use the API. The screens can be cacheable and once rendered by a matching path they will be stored in memory, speeding up a lot the next time the app needs it.
       </p>
       {literal}
       <pre><code class="javascript">// Constructor
@@ -385,7 +385,7 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
         {/literal}
 
         <p>
-          It's recommended to checkout the <a href="https://github.com/eduardolundgren/senna/tree/master/examples/" target="_blank">examples source code</a> in order to visualize all the possibilities Senna can provide.
+          It's recommended to checkout the <a href="https://github.com/eduardolundgren/senna/tree/master/examples/" target="_blank">examples source code</a> in order to visualize all the possibilities Senna.js can provide.
         </p>
       </div>
     </div>
