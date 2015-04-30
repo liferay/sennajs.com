@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic</title>
+  <link rel="shortcut icon" href="http://sennajs.com/images/favicon.ico">
+
+  <!-- Including Senna -->
+  <script src="../../build/senna.js"></script>
+</head>
+<body>
+  <div id="header">
+    <div id="header-default">
+      Header foo
+      <a href="foo.html">Foo</a>
+    </div>
+  </div>
+  <div id="content">
+    <div id="content-default">
+      Content foo <a href="index.html">Bar</a>
+    </div>
+  </div>
+
+  <!-- Initializing Senna -->
+  <script>
+    'use strict';
+    var app = new senna.App();
+    app.setBasePath('/examples/basic');
+    app.addSurfaces(['header', 'content']);
+    app.addRoutes([
+      {
+        path: '/index.html',
+        handler: senna.HtmlScreen
+      },
+      {
+        path: '/foo.html',
+        handler: function(route) {
+          console.log('Middleware route handler for ' + route.getPath());
+          var screen = new senna.HtmlScreen();
+          screen.setCacheable(false);
+          return screen;
+        }
+      }
+    ]);
+  </script>
+</body>
+</html>
