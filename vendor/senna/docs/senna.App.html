@@ -644,7 +644,7 @@
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#on">senna.EventEmitter#on</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -972,8 +972,8 @@
     
     <div class="description">
         When set to true the first erroneous popstate fired on page load will be
-ignored, only if <code>window.history.state</code> is also
-<code>null</code>.
+ignored, only if <code>window<span class="hljs-preprocessor">.history</span><span class="hljs-preprocessor">.state</span></code> is also
+<code><span class="hljs-keyword">null</span></code>.
     </div>
     
 
@@ -1372,7 +1372,7 @@ back or forward happens to be restored after the surfaces are updated.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -1431,7 +1431,7 @@ back or forward happens to be restored after the surfaces are updated.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#addListener">senna.EventEmitter#addListener</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -1512,9 +1512,9 @@ back or forward happens to be restored after the surfaces are updated.
 Example:
 
 <code>
-  app.addRoutes({ path: '/foo', handler: FooScreen });
-  or
-  app.addRoutes([{ path: '/foo', handler: function(route) { return new FooScreen(); } }]);
+  app.addRoutes({ path: <span class="hljs-string">'/foo'</span>, handler: FooScreen });
+  <span class="hljs-keyword">or</span>
+  app.addRoutes([{ path: <span class="hljs-string">'/foo'</span>, handler: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(route)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FooScreen(); } }]);
 </code>
     </div>
     
@@ -1549,7 +1549,7 @@ Example:
 
         <tr>
             
-                <td class="name"><code>or</code></td>
+                <td class="name"><code><span class="hljs-keyword">or</span></code></td>
             
 
             <td class="type">
@@ -1569,8 +1569,8 @@ Example:
     Each object should contain <code>path</code> and <code>screen</code>.
     The <code>path</code> should be a string or a regex that maps the
     navigation route to a screen class definition (not an instance), e.g:
-        <code>{ path: "/home:param1", handler: MyScreen }</code>
-        <code>{ path: /foo.+/, handler: MyScreen }</code></td>
+        <code><span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">path</span>:<span class="hljs-value"> <span class="hljs-string">"/home:param1"</span>, handler: MyScreen </span></span></span>}</code>
+        <code><span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">path</span>:<span class="hljs-value"> /foo.+/, handler: MyScreen </span></span></span>}</code></td>
         </tr>
 
     
@@ -2287,7 +2287,7 @@ any.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -2346,7 +2346,7 @@ any.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#emit">senna.EventEmitter#emit</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -2724,7 +2724,7 @@ otherwise returns null.
     
             
 <div class="param-desc">
-    Route handler if match any or <code>null</code> if the
+    Route handler if match any or <code><span class="hljs-keyword">null</span></code> if the
     path is the same as the current url and the path contains a fragment.
 </div>
 
@@ -3287,7 +3287,7 @@ otherwise returns null.
 
         <tr>
             
-                <td class="name"><code>error</code></td>
+                <td class="name"><code><span class="hljs-built_in">error</span></code></td>
             
 
             <td class="type">
@@ -3423,7 +3423,7 @@ otherwise returns null.
             
 
             <td class="description last">Link hostname to compare with
-    <code>window.location.hostname</code>.</td>
+    <code>window<span class="hljs-preprocessor">.location</span><span class="hljs-preprocessor">.hostname</span></code>.</td>
         </tr>
 
     
@@ -3681,7 +3681,7 @@ otherwise returns null.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -3717,7 +3717,7 @@ otherwise returns null.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#listeners">senna.EventEmitter#listeners</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -4085,7 +4085,7 @@ next time the event is fired, after which it is removed.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -4144,7 +4144,7 @@ next time the event is fired, after which it is removed.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#once">senna.EventEmitter#once</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -4255,7 +4255,7 @@ whether Surface app can navigate.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -4414,9 +4414,9 @@ http://stackoverflow.com/questions/6421769/popstate-on-pages-load-in-chrome.
     
     <div class="description">
         Handles browser history changes and fires app's navigation if the state
-belows to us. If we detect a popstate and the state is <code>null</code>,
+belows to us. If we detect a popstate and the state is <code><span class="hljs-keyword">null</span></code>,
 assume it is navigating to an external page or to a page we don't have
-route, then <code>window.location.reload()</code> is invoked in order to
+route, then <code>window<span class="hljs-preprocessor">.location</span><span class="hljs-preprocessor">.reload</span>()</code> is invoked in order to
 reload the content to the current url.
     </div>
     
@@ -4451,7 +4451,7 @@ reload the content to the current url.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -4642,7 +4642,7 @@ scroll position for history scrolling.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -4905,7 +4905,7 @@ especially when it's on an emitter that you didn't create.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -4941,7 +4941,7 @@ especially when it's on an emitter that you didn't create.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#removeAllListeners">senna.EventEmitter#removeAllListeners</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -5052,7 +5052,7 @@ Caution: changes array indices in the listener array behind the listener.
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code><span class="hljs-keyword">event</span></code></td>
             
 
             <td class="type">
@@ -5111,7 +5111,7 @@ Caution: changes array indices in the listener array behind the listener.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#removeListener">senna.EventEmitter#removeListener</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -5601,7 +5601,7 @@ Caution: changes array indices in the listener array behind the listener.
 
         <tr>
             
-                <td class="name"><code>defaultTitle</code></td>
+                <td class="name"><code><span class="hljs-default">defaultTitle</span></code></td>
             
 
             <td class="type">
@@ -5997,7 +5997,7 @@ This function allows that to be increased. Set to zero for unlimited.
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
         <a href="senna.EventEmitter.html#setMaxListeners">senna.EventEmitter#setMaxListeners</a>
-    </li></dd>
+    </li></ul></dd>
     
 
     
@@ -6170,7 +6170,7 @@ This function allows that to be increased. Set to zero for unlimited.
 
     
     <div class="description">
-        Cancels pending navigate with <code>Cancel pending navigation</code> error.
+        Cancels pending navigate with <code><span class="hljs-keyword">Cancel</span> pending navigation</code> error.
     </div>
     
 
@@ -6722,7 +6722,7 @@ back and forward navigation happened. The scroll position updates after
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Apr 30 2015 13:02:52 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Apr 30 2015 11:55:29 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

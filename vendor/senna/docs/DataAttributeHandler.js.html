@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/DataAttributeHandler.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/DataAttributeHandler.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+  <span class="hljs-string">'use strict'</span>;
+
+  <span class="hljs-javadoc">/**
+   * Initilizes senna.App, register surfaces and routes from data attributes.
+   * <span class="hljs-javadoctag">@constructor</span>
+   */</span>
+  senna.DataAttributeHandler = function(baseElement) {
+    <span class="hljs-keyword">if</span> (!senna.isElement(baseElement)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">'Base element not specified.'</span>);
+    }
+    <span class="hljs-keyword">this</span>.setBaseElement(baseElement);
+    <span class="hljs-keyword">this</span>.initApp_();
+  };
+
+  <span class="hljs-javadoc">/**
+   * Holds app reference.
+   * <span class="hljs-javadoctag">@type</span> {senna.App}
+   */</span>
+  senna.DataAttributeHandler.prototype.app = <span class="hljs-keyword">null</span>;
+
+  <span class="hljs-javadoc">/**
+   * Holds the base element to search initialization data attributes.
+   * <span class="hljs-javadoctag">@type</span> {Element}
+   * <span class="hljs-javadoctag">@default</span> null
+   */</span>
+  senna.DataAttributeHandler.prototype.baseElement = <span class="hljs-keyword">null</span>;
+
+  <span class="hljs-javadoc">/**
+   * Gets app reference.
+   * <span class="hljs-javadoctag">@return</span> {senna.App}
+   */</span>
+  senna.DataAttributeHandler.prototype.getApp = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.app;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Gets base element.
+   * <span class="hljs-javadoctag">@return</span> {Element}
+   */</span>
+  senna.DataAttributeHandler.prototype.getBaseElement = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.baseElement;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Initializes app.
+   * <span class="hljs-javadoctag">@protected</span>
+   */</span>
+  senna.DataAttributeHandler.prototype.initApp_ = function() {
+    <span class="hljs-keyword">var</span> baseElement = <span class="hljs-keyword">this</span>.baseElement;
+    <span class="hljs-keyword">if</span> (!baseElement.hasAttribute(<span class="hljs-string">'data-senna'</span>)) {
+      console.log(<span class="hljs-string">'Senna not initialized from data attribute, try passing &lt;body data-senna&gt;.'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+
+    console.log(<span class="hljs-string">'Senna initialized from data attribute.'</span>);
+    <span class="hljs-keyword">this</span>.app = <span class="hljs-keyword">new</span> senna.App();
+
+    <span class="hljs-keyword">var</span> basePath = baseElement.getAttribute(<span class="hljs-string">'data-senna-basepath'</span>);
+    <span class="hljs-keyword">if</span> (!senna.isNull(basePath)) {
+      <span class="hljs-keyword">this</span>.app.setBasePath(basePath);
+      console.log(<span class="hljs-string">'Senna scanned basepath '</span> + basePath);
+    }
+    <span class="hljs-keyword">var</span> linkSelector = baseElement.getAttribute(<span class="hljs-string">'data-senna-link-selector'</span>);
+    <span class="hljs-keyword">if</span> (!senna.isNull(linkSelector)) {
+      <span class="hljs-keyword">this</span>.app.setLinkSelector(linkSelector);
+      console.log(<span class="hljs-string">'Senna scanned link selector '</span> + linkSelector);
+    }
+    <span class="hljs-keyword">this</span>.scanSurfaces();
+    <span class="hljs-keyword">this</span>.scanRoutes();
+  };
+
+  <span class="hljs-javadoc">/**
+   * Makes default route in case of not found any.
+   * <span class="hljs-javadoctag">@return</span> {Element}
+   */</span>
+  senna.DataAttributeHandler.prototype.makeDefaultRoute_ = function() {
+    <span class="hljs-keyword">var</span> link = document.createElement(<span class="hljs-string">'link'</span>);
+    link.href = <span class="hljs-string">'regex:.*'</span>;
+    link.rel = <span class="hljs-string">'senna-route'</span>;
+    link.<span class="hljs-keyword">type</span> = <span class="hljs-string">'senna.HtmlScreen'</span>;
+    <span class="hljs-keyword">return</span> link;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Scans routes from link elements.
+   */</span>
+  senna.DataAttributeHandler.prototype.scanRoutes = function() {
+    <span class="hljs-keyword">var</span> routes = document.querySelectorAll(<span class="hljs-string">'link[rel="senna-route"]'</span>);
+    <span class="hljs-keyword">if</span> (routes.length === <span class="hljs-number">0</span>) {
+      console.log(<span class="hljs-string">'Senna can\'t find a route element, adding default.'</span>);
+      routes = [<span class="hljs-keyword">this</span>.makeDefaultRoute_()];
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; routes.length; i++) {
+      <span class="hljs-keyword">var</span> route = routes[i];
+      <span class="hljs-keyword">if</span> (route.hasAttribute(<span class="hljs-string">'senna-parsed'</span>)) {
+        <span class="hljs-keyword">continue</span>;
+      }
+
+      <span class="hljs-keyword">var</span> path = route.getAttribute(<span class="hljs-string">'href'</span>);
+      <span class="hljs-keyword">var</span> handler = route.getAttribute(<span class="hljs-string">'type'</span>);
+
+      <span class="hljs-keyword">if</span> (senna.isDefAndNotNull(path) &amp;&amp; senna.isDefAndNotNull(handler)) {
+        <span class="hljs-keyword">if</span> (path.indexOf(<span class="hljs-string">'regex:'</span>) === <span class="hljs-number">0</span>) {
+          path = <span class="hljs-keyword">new</span> RegExp(path.substring(<span class="hljs-number">6</span>));
+        }
+        <span class="hljs-keyword">this</span>.app.addRoutes(<span class="hljs-keyword">new</span> senna.Route(path, senna.getObjectByName(handler)));
+        route.setAttribute(<span class="hljs-string">'data-parsed'</span>, <span class="hljs-string">''</span>);
+        console.log(<span class="hljs-string">'Senna scanned route '</span> + path);
+      }
+    }
+  };
+
+  <span class="hljs-javadoc">/**
+   * Scans surfaces with data attribute.
+   */</span>
+  senna.DataAttributeHandler.prototype.scanSurfaces = function() {
+    <span class="hljs-keyword">var</span> surfaces = <span class="hljs-keyword">this</span>.baseElement.querySelectorAll(<span class="hljs-string">'[data-senna-surface]'</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; surfaces.length; i++) {
+      <span class="hljs-keyword">var</span> surfaceId = surfaces[i].id;
+      <span class="hljs-keyword">if</span> (surfaceId) {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.app.surfaces[surfaceId]) {
+          <span class="hljs-keyword">this</span>.app.addSurfaces(surfaceId);
+          console.log(<span class="hljs-string">'Senna scanned surface '</span> + surfaceId);
+        }
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">'Surface element id not specified.'</span>);
+      }
+    }
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the app.
+   * <span class="hljs-javadoctag">@param</span> {senna.App} app
+   */</span>
+  senna.DataAttributeHandler.prototype.setApp = function(app) {
+    <span class="hljs-keyword">this</span>.app = app;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the base element.
+   * <span class="hljs-javadoctag">@param</span> {Element} baseElement
+   */</span>
+  senna.DataAttributeHandler.prototype.setBaseElement = function(baseElement) {
+    <span class="hljs-keyword">this</span>.baseElement = baseElement;
+  };
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="senna.App.html">App</a></li><li><a href="senna.Cacheable.html">Cacheable</a></li><li><a href="senna.DataAttributeHandler.html">DataAttributeHandler</a></li><li><a href="senna.EventEmitter.html">EventEmitter</a></li><li><a href="senna.HtmlScreen.html">HtmlScreen</a></li><li><a href="senna.RequestScreen.html">RequestScreen</a></li><li><a href="senna.Route.html">Route</a></li><li><a href="senna.Screen.html">Screen</a></li><li><a href="senna.Surface.html">Surface</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Apr 30 2015 11:55:29 GMT-0700 (PDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: route/Route.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: route/Route.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+  <span class="hljs-string">'use strict'</span>;
+
+  <span class="hljs-javadoc">/**
+   * Route class.
+   *<span class="hljs-javadoctag"> @param</span> {!String|RegExp|Function} path
+   *<span class="hljs-javadoctag"> @param</span> {!Function} handler
+   *<span class="hljs-javadoctag"> @constructor</span>
+   */</span>
+  senna.Route = function(path, handler) {
+    <span class="hljs-keyword">if</span> (!senna.isDef(path)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">'Route path not specified.'</span>);
+    }
+    <span class="hljs-keyword">if</span> (!senna.isFunction(handler)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">'Route handler is not a function.'</span>);
+    }
+    <span class="hljs-keyword">this</span>.setPath(path);
+    <span class="hljs-keyword">this</span>.setHandler(handler);
+  };
+
+  <span class="hljs-javadoc">/**
+   * Defines the path which will trigger the route handler.
+   *<span class="hljs-javadoctag"> @type</span> {!String|RegExp|Function}
+   *<span class="hljs-javadoctag"> @default</span> null
+   *<span class="hljs-javadoctag"> @protected</span>
+   */</span>
+  senna.Route.prototype.path = <span class="hljs-keyword">null</span>;
+
+  <span class="hljs-javadoc">/**
+   * Defines the handler which will execute once a URL in the application
+   * matches the path.
+   *<span class="hljs-javadoctag"> @type</span> {!Function}
+   *<span class="hljs-javadoctag"> @default</span> null
+   *<span class="hljs-javadoctag"> @protected</span>
+   */</span>
+  senna.Route.prototype.handler = <span class="hljs-keyword">null</span>;
+
+  <span class="hljs-javadoc">/**
+   * Gets the route handler.
+   *<span class="hljs-javadoctag"> @return</span> {!Function}
+   */</span>
+  senna.Route.prototype.getHandler = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.handler;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Gets the route path.
+   *<span class="hljs-javadoctag"> @return</span> {!String|RegExp|Function}
+   */</span>
+  senna.Route.prototype.getPath = function() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.path;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Matches if the router can handle the tested path, if not returns null.
+   *<span class="hljs-javadoctag"> @param</span> {!String} value Path to test and may contains the querystring
+   *     part.
+   *<span class="hljs-javadoctag"> @return</span> {Boolean} Returns true if matches any route.
+   */</span>
+  senna.Route.prototype.matchesPath = function(value) {
+    var path = <span class="hljs-keyword">this</span>.path;
+
+    <span class="hljs-keyword">if</span> (senna.isString(path)) {
+      <span class="hljs-keyword">return</span> value === path;
+    }
+    <span class="hljs-keyword">if</span> (senna.isFunction(path)) {
+      <span class="hljs-keyword">return</span> path(value);
+    }
+    <span class="hljs-keyword">if</span> (path <span class="hljs-keyword">instanceof</span> RegExp) {
+      <span class="hljs-keyword">return</span> value.search(path) &gt; -<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the route handler.
+   *<span class="hljs-javadoctag"> @param</span> {!Function} handler
+   */</span>
+  senna.Route.prototype.setHandler = function(handler) {
+    <span class="hljs-keyword">this</span>.handler = handler;
+  };
+
+  <span class="hljs-javadoc">/**
+   * Sets the route path.
+   *<span class="hljs-javadoctag"> @param</span> {!String|RegExp|Function} path
+   */</span>
+  senna.Route.prototype.setPath = function(path) {
+    <span class="hljs-keyword">this</span>.path = path;
+  };
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="senna.App.html">App</a></li><li><a href="senna.Cacheable.html">Cacheable</a></li><li><a href="senna.DataAttributeHandler.html">DataAttributeHandler</a></li><li><a href="senna.EventEmitter.html">EventEmitter</a></li><li><a href="senna.HtmlScreen.html">HtmlScreen</a></li><li><a href="senna.RequestScreen.html">RequestScreen</a></li><li><a href="senna.Route.html">Route</a></li><li><a href="senna.Screen.html">Screen</a></li><li><a href="senna.Surface.html">Surface</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu Apr 30 2015 11:55:29 GMT-0700 (PDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
