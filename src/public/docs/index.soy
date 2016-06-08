@@ -85,16 +85,16 @@
             <strong>Page resources management:</strong> Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using <span class="code">XMLHttpRequest</span> can be appended to the DOM, for security reasons some browsers won't evaluate <span class="code">&lt;script&gt;</span> tags from the new fragment. Therefore, the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
           </p>
           <p>
-            Not only that the list of features needed for a good SPA is huge, at the moment <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core, like Senna.js.
+            Not only that the list of features needed for a good SPA is huge, at the moment <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> presents many cross-browser inconsistencies that can get pretty complicated to be handled without a SPA engine. Therefore, if you decide to start from scratch your amazing MV* framework that supports SPA, think about using some engine as core.
           </p>
         </p>
         <p>
           Senna.js is small, unobtrusive, and flexible enough so that it is easy to start a project with as well as integerate into existing applications.  Senna.js makes this easier by providing features like:
           <p>
-            <strong>Options for loading:</strong> Senna.js can be included via AMD loading as well linked with a standard script tag and used via a global variable definiton.
+            <strong>AMD Support:</strong> Senna.js can be included via AMD loading as well linked with a standard script tag and used via a global variable definiton.
           </p>
           <p>
-            <strong>Tracked resources:</strong> Track and manage page resources dynamically that are annoatated with the <span class="code">data-senna-track</span> html attribute.  Scripts and stylesheets can either be <span class="code">temporary</span> or <span class="code">permanent</span> resources.  They are then removed after navigation away from the page on which they are needed, or remain on the page permanently.
+            <strong>Trackable resources:</strong> Track and manage page resources dynamically that are annotated with the <span class="code">data-senna-track</span> html attribute.  Scripts and stylesheets can either be <span class="code">temporary</span> or <span class="code">permanent</span> resources.  They are then removed after navigation away from the page on which they are needed, or remain on the page permanently.
           </p>
           <p>
             <strong>Lifecycle events:</strong> Events are emitted when at certain stages of navigation that can be used for hooking into the Senna.js lifecycle.  Such as <span class="code">beforeNavigate</span>, <span class="code">startNavigate</span>, and <span class="code">endNavigate</span>.
@@ -135,6 +135,16 @@
 &lt;/html&gt;
 </code></pre>
         {/literal}
+
+        <p>Senna also supports AMD.  You can use <a href="http://requirejs.org/">RequireJS</a> to load it like this:</p>
+
+        {literal}
+          <pre><code class="html">&lt;script&gt;
+  requirejs(["../build/amd/senna/src/senna"], function(senna) {
+    // Start here...
+  });
+&lt;/script&gt;</code></pre>{/literal}
+
         <div class="title-header">
           <h2>Step 2: Setup your single page application</h2>
         </div>
@@ -399,14 +409,14 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
 </code></pre>
         {/literal}
         <div class="title-header">
-          <h2 id="trackedresources">Tracked Resources</h2>
+          <h2 id="trackableresources">Trackable Resources</h2>
         </div>
 
         <p>
           Senna.js provides an easy way to manage external style and script resources on the page.  When including resources in the <span class="code">&lt;head&gt;</span>, they can be annotated with the <span class="code">data-senna-track</span> attribute.  This attribute can be set to <span class="code">temporary</span> or <span class="code">permanent</span>, which determines whether a resource remains on the page permanently or is removed after navigation;
         </p>
         {literal}
-        <pre><code class="html">&lt;link data-senna-track="permanent" href="main.css" rel="stylesheet" type="text/css"&gt;
+        <pre><code class="html">&lt;link data-senna-track="permanent" href="main.css" rel="stylesheet"&gt;
 &lt;script data-senna-track="temporary" src="main.js"&gt;&lt;/script&gt;</code></pre>
         {/literal}
 
