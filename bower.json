@@ -13,6 +13,6 @@
   ],
   "dependencies": {
     "pure": "~0.5.0",
-    "senna": "eduardolundgren/senna#master"
+    "senna": "liferay/senna.js#master"
   }
 }
