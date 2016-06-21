@@ -1,6 +1,8 @@
 <h1 id="senna-js">Senna.js</h1>
-<p><a href="https://travis-ci.org/liferay/senna.js"><img src="http://img.shields.io/travis/liferay/senna.js/master.svg?style=flat" alt="Build Status"></a></p>
-<p><em>Senna.js</em> is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8 KB of JavaScript without any dependency.</p>
+<p><a href="https://travis-ci.org/liferay/senna.js"><img src="http://img.shields.io/travis/liferay/senna.js/master.svg?style=flat" alt="Build Status"></a>
+<a href="https://david-dm.org/liferay/senna.js#info=dependencies"><img src="http://img.shields.io/david/liferay/senna.js.svg?style=flat" alt="Dependencies Status"></a>
+<a href="https://david-dm.org/liferay/senna.js#info=devDependencies"><img src="http://img.shields.io/david/dev/liferay/senna.js.svg?style=flat" alt="DevDependencies Status"></a></p>
+<p><em>Senna.js</em> is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~15 KB of JavaScript without any dependency.</p>
 <ul>
 <li><a href="http://sennajs.com">Official website</a></li>
 <li><a href="https://github.com/liferay/sennajs.com">Website repository</a></li>
@@ -8,37 +10,35 @@
 <li><a href="http://sennajs.com/api/">API Docs</a></li>
 </ul>
 <h2 id="install">Install</h2>
-<p>Install via <a href="http://bower.io/">Bower</a> or
+<p>Install via <a href="https://www.npmjs.com/">npm</a>, <a href="http://bower.io/">Bower</a>, <a href="http://www.jsdelivr.com/projects/senna.js">CDN</a> or
 <a href="https://github.com/liferay/senna.js/archive/master.zip">download as a zip</a>:</p>
-<pre><code>bower <span class="hljs-keyword">install</span> senna
+<pre><code>npm <span class="hljs-keyword">install</span> senna
 </code></pre><h2 id="examples">Examples</h2>
 <ul>
 <li><strong><a href="http://sennajs.com/examples/email">Email Example</a>:</strong> <em>Enable Single Page Apps using only HTML5 data-attributes;</em></li>
 <li><strong><a href="http://sennajs.com/examples/gallery">Gallery Example</a>:</strong> <em>Carousel app with history support and cacheable screens;</em></li>
 <li><strong><a href="http://sennajs.com/examples/blog">Blog Example</a>:</strong> <em>Infinite scrolling pages done right with history support;</em></li>
 </ul>
-<h2 id="browser-support">Browser Support</h2>
-<table>
-<thead>
-<tr>
-<th><img src="https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png" alt="IE"></th>
-<th><img src="https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png" alt="Chrome"></th>
-<th><img src="https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png" alt="Firefox"></th>
-<th><img src="https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png" alt="Opera"></th>
-<th><img src="https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png" alt="Safari"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IE 10+ ✔</td>
-<td>Latest ✔</td>
-<td>Latest ✔</td>
-<td>Latest ✔</td>
-<td>Latest ✔</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<h2 id="setup">Setup</h2>
+<ol>
+<li><p>Install NodeJS &gt;= <a href="http://nodejs.org/dist/v0.12.0/">v0.12.0</a>, if you don&#39;t have it yet.</p>
+</li>
+<li><p>Install global dependencies:</p>
+<pre><code>[<span class="hljs-built_in">sudo</span>] npm install -g gulp
+</code></pre></li>
+<li><p>Install local dependencies:</p>
+<pre><code>npm <span class="hljs-keyword">install</span>
+bower <span class="hljs-keyword">install</span>
+</code></pre></li>
+<li><p>Build the code:</p>
+<pre><code>gulp
+</code></pre><pre><code>gulp <span class="hljs-keyword">server</span>
+</code></pre></li>
+<li><p>Test the code:</p>
+<pre><code>gulp test
+</code></pre><pre><code><span class="hljs-tag">gulp</span> <span class="hljs-tag">test</span><span class="hljs-pseudo">:coverage</span>
+</code></pre></li>
+</ol>
 <h2 id="contributing">Contributing</h2>
 <ol>
 <li>Fork it!</li>
@@ -56,24 +56,26 @@
 <li>Icon made by <a href="http://www.freepik.com">Freepik</a></li>
 </ul>
 <h2 id="team">Team</h2>
-<p><em>Senna.js</em> is maintained by these people and a bunch of awesome <a href="https://github.com/liferay/senna.js/graphs/contributors">contributors</a>.</p>
+<p><em>Senna.js</em> was made with love by these people and a bunch of <a href="https://github.com/liferay/senna.js/graphs/contributors">awesome contributors</a>.</p>
 <table>
 <thead>
 <tr>
-<th><a href="https://github.com/eduardolundgren"><img src="https://2.gravatar.com/avatar/42327de520e674a6d1686845b30778d0" alt="Eduardo Lundgren"></a></th>
-<th><a href="https://github.com/ipeychev"><img src="https://2.gravatar.com/avatar/c2a0cb9ed0d19196b7fe061055c18838" alt="Iliyan Peychev"></a></th>
-<th><a href="https://github.com/pedromarks"><img src="https://2.gravatar.com/avatar/1cf95bc9cee05a0bba25f7529bcdb888" alt="Pedro Marques"></a></th>
-<th><a href="https://github.com/zenorocha"><img src="https://2.gravatar.com/avatar/e190023b66e2b8aa73a842b106920c93" alt="Zeno Rocha"></a></th>
+<th style="text-align:center">Author</th>
+<th style="text-align:center">Maintainer</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/eduardolundgren">Eduardo Lundgren</a></td>
-<td><a href="https://github.com/ipeychev">Iliyan Peychev</a></td>
-<td><a href="https://github.com/pedromarks">Pedro Marques</a></td>
-<td><a href="https://github.com/zenorocha">Zeno Rocha</a></td>
+<td style="text-align:center"><a href="https://github.com/eduardolundgren"><img src="https://avatars3.githubusercontent.com/u/113087?s=70" alt="Eduardo Lundgren"></a></td>
+<td style="text-align:center"><a href="https://github.com/brunobasto"><img src="https://avatars1.githubusercontent.com/u/156388?s=70" alt="Bruno Basto"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/eduardolundgren">Eduardo Lundgren</a></td>
+<td style="text-align:center"><a href="https://github.com/brunobasto">Bruno Basto</a></td>
 </tr>
 </tbody>
 </table>
+<h2 id="browser-support">Browser Support</h2>
+<p><a href="https://travis-ci.org/liferay/senna.js"><img src="https://saucelabs.com/browser-matrix/senna.svg" alt="Sauce Test Status"></a></p>
 <h2 id="license">License</h2>
-<p><a href="https://github.com/liferay/senna.js/blob/master/LICENSE">BSD License</a> © Eduardo Lundgren</p>
+<p><a href="https://github.com/liferay/senna.js/blob/master/LICENSE.md">BSD License</a> © Liferay, Inc.</p>

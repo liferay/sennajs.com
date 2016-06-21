@@ -1,7 +1,10 @@
 # Senna.js
-[![Build Status](http://img.shields.io/travis/liferay/senna.js/master.svg?style=flat)](https://travis-ci.org/liferay/senna.js)
 
-*Senna.js* is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8 KB of JavaScript without any dependency.
+[![Build Status](http://img.shields.io/travis/liferay/senna.js/master.svg?style=flat)](https://travis-ci.org/liferay/senna.js)
+[![Dependencies Status](http://img.shields.io/david/liferay/senna.js.svg?style=flat)](https://david-dm.org/liferay/senna.js#info=dependencies)
+[![DevDependencies Status](http://img.shields.io/david/dev/liferay/senna.js.svg?style=flat)](https://david-dm.org/liferay/senna.js#info=devDependencies)
+
+*Senna.js* is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~15 KB of JavaScript without any dependency.
 
 * [Official website](http://sennajs.com)
 * [Website repository](https://github.com/liferay/sennajs.com)
@@ -10,11 +13,11 @@
 
 ## Install
 
-Install via [Bower](http://bower.io/) or
+Install via [npm](https://www.npmjs.com/), [Bower](http://bower.io/), [CDN](http://www.jsdelivr.com/projects/senna.js) or
 [download as a zip](https://github.com/liferay/senna.js/archive/master.zip):
 
 ```
-bower install senna
+npm install senna
 ```
 
 ## Examples
@@ -23,11 +26,42 @@ bower install senna
 * **[Gallery Example](http://sennajs.com/examples/gallery):** *Carousel app with history support and cacheable screens;*
 * **[Blog Example](http://sennajs.com/examples/blog):** *Infinite scrolling pages done right with history support;*
 
-## Browser Support
+## Setup
 
-![IE](https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png) | ![Chrome](https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png) | ![Firefox](https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png) | ![Opera](https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png) | ![Safari](https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png)
---- | --- | --- | --- | --- |
-IE 10+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
+1. Install NodeJS >= [v0.12.0](http://nodejs.org/dist/v0.12.0/), if you don't have it yet.
+
+2. Install global dependencies:
+
+  ```
+  [sudo] npm install -g gulp
+  ```
+
+3. Install local dependencies:
+
+  ```
+  npm install
+  bower install
+  ```
+
+4. Build the code:
+
+  ```
+  gulp
+  ```
+
+  ```
+  gulp server
+  ```
+
+5. Test the code:
+
+  ```
+  gulp test
+  ```
+
+  ```
+  gulp test:coverage
+  ```
 
 ## Contributing
 
@@ -49,12 +83,17 @@ For detailed changelog, check [Releases](https://github.com/liferay/senna.js/rel
 
 ## Team
 
-*Senna.js* is maintained by these people and a bunch of awesome [contributors](https://github.com/liferay/senna.js/graphs/contributors).
+*Senna.js* was made with love by these people and a bunch of [awesome contributors](https://github.com/liferay/senna.js/graphs/contributors).
 
-[![Eduardo Lundgren](https://2.gravatar.com/avatar/42327de520e674a6d1686845b30778d0)](https://github.com/eduardolundgren) | [![Iliyan Peychev](https://2.gravatar.com/avatar/c2a0cb9ed0d19196b7fe061055c18838)](https://github.com/ipeychev) | [![Pedro Marques](https://2.gravatar.com/avatar/1cf95bc9cee05a0bba25f7529bcdb888)](https://github.com/pedromarks) | [![Zeno Rocha](https://2.gravatar.com/avatar/e190023b66e2b8aa73a842b106920c93)](https://github.com/zenorocha)
---- | --- | --- | --- | ---
-[Eduardo Lundgren](https://github.com/eduardolundgren) | [Iliyan Peychev](https://github.com/ipeychev) | [Pedro Marques](https://github.com/pedromarks) | [Zeno Rocha](https://github.com/zenorocha)
+| Author | Maintainer |
+|:-:|:-:|
+| [![Eduardo Lundgren](https://avatars3.githubusercontent.com/u/113087?s=70)](https://github.com/eduardolundgren) | [![Bruno Basto](https://avatars1.githubusercontent.com/u/156388?s=70)](https://github.com/brunobasto) |
+| [Eduardo Lundgren](https://github.com/eduardolundgren) | [Bruno Basto](https://github.com/brunobasto) |
+
+## Browser Support
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/senna.svg)](https://travis-ci.org/liferay/senna.js)
 
 ## License
 
-[BSD License](https://github.com/liferay/senna.js/blob/master/LICENSE) © Eduardo Lundgren
+[BSD License](https://github.com/liferay/senna.js/blob/master/LICENSE.md) © Liferay, Inc.

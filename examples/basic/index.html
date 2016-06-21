@@ -6,19 +6,23 @@
   <link rel="shortcut icon" href="http://sennajs.com/images/favicon.ico">
 
   <!-- Including Senna -->
-  <script src="../../build/senna.js"></script>
+  <script src="../../build/globals/senna-debug.js"></script>
 </head>
 <body>
   <div id="header">
-    <div id="header-default">
-      Header default
-      <a href="foo.html">Foo</a>
-    </div>
+      Header default <a href="foo.html">Foo</a>
   </div>
   <div id="content">
-    <div id="content-default">
-      Content default <a href="index.html">Bar</a>
+     Content default <a href="index.html">Index</a>
+  </div>
+  <div id="footer">
+    This is a footer static content.
+    <div id="footer-default">
+      This is a footer dynamic content from index.html.
     </div>
+  </div>
+  <div id="indexOnlySurface">
+     Always show default content since it's only present on index.html.
   </div>
 
   <!-- Initializing Senna -->
@@ -26,7 +30,7 @@
     'use strict';
     var app = new senna.App();
     app.setBasePath('/examples/basic');
-    app.addSurfaces(['header', 'content']);
+    app.addSurfaces(['header', 'content', 'footer', 'indexOnlySurface']);
     app.addRoutes([
       {
         path: '/index.html',

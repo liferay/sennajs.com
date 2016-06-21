@@ -1,38 +1,54 @@
 {
-  "private": true,
-  "version": "0.4.0",
+  "name": "senna",
+  "version": "1.3.0",
   "description": "A blazing-fast Single Page Application engine",
-  "author": {
-    "name": "Eduardo Lundgren",
-    "email": "edu@rdo.io",
-    "web": "http://eduardo.io",
-    "twitter": "eduardolundgren"
+  "license": "BSD-3-Clause",
+  "repository": "liferay/senna.js",
+  "engines": {
+    "node": ">=0.12.0",
+    "npm": ">=3.0.0"
+  },
+  "jsnext:main": "src/senna.js",
+  "main": "lib/senna.js",
+  "files": [
+    "build",
+    "lib",
+    "src/**/*.js",
+    "test/**/*.js"
+  ],
+  "scripts": {
+    "compile": "babel --presets es2015 -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "keywords": [
+    "spa",
+    "single",
+    "page",
+    "apps"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "metal": "^1.0.0-rc.1",
+    "metal-ajax": "^1.0.0-rc.1",
+    "metal-debounce": "^1.0.0-rc",
+    "metal-dom": "^1.0.0-rc.2",
+    "metal-events": "^1.0.0-rc.1",
+    "metal-multimap": "^1.0.0-rc.1",
+    "metal-promise": "^1.0.0-rc.2",
+    "metal-uri": "^1.0.0-rc.2",
+    "metal-useragent": "^1.0.0-rc.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
     "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^2.0.0",
-    "gulp-bower": "0.0.10",
-    "gulp-concat": "^2.2.0",
-    "gulp-csso": "^1.0.0",
-    "gulp-esformatter": "^1.0.0",
-    "gulp-header": "^1.0.2",
-    "gulp-jsdoc": "^0.1.4",
-    "gulp-jshint": "^1.6.3",
-    "gulp-load-plugins": "^0.8.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-rimraf": "^0.1.0",
-    "gulp-strip-debug": "^1.0.0",
-    "gulp-uglify": "^1.0.1",
-    "gulp-webserver": "^0.9.0",
-    "jshint-stylish": "^1.0.0",
-    "karma": "^0.12.21",
-    "karma-chrome-launcher": "^0.1.4",
-    "karma-coverage": "^0.2.6",
-    "karma-firefox-launcher": "^0.1.3",
-    "karma-ie-launcher": "^0.1.5",
-    "karma-mocha": "^0.1.8",
-    "karma-safari-launcher": "^0.1.1",
-    "mocha": "^2.0.1",
-    "run-sequence": "^1.0.2"
+    "gulp-connect": "^4.0.0",
+    "gulp-header": "^1.7.1",
+    "gulp-jsdoc3": "^0.3.0",
+    "gulp-metal": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-strip-debug": "^1.1.0",
+    "run-sequence": "^1.1.5",
+    "sinon": "^1.14.1"
   }
 }

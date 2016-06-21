@@ -1,147 +1,306 @@
-(function() {
-  'use strict';
+'use strict';
 
-  /**
-   * Request screen abstract class to perform io operations on descendant
-   * screens.
-   * @constructor
-   * @extends {senna.Screen}
-   */
-  senna.RequestScreen = function() {
-    senna.RequestScreen.base(this, 'constructor');
-  };
-  senna.inherits(senna.RequestScreen, senna.Screen);
+import { core } from 'metal';
+import Ajax from 'metal-ajax';
+import MultiMap from 'metal-multimap';
+import CancellablePromise from 'metal-promise';
+import errors from '../errors/errors';
+import utils from '../utils/utils';
+import globals from '../globals/globals';
+import Screen from './Screen';
+import Uri from 'metal-uri';
+import UA from 'metal-useragent';
 
-  /**
-   * @inheritDoc
-   */
-  senna.RequestScreen.prototype.cacheable = true;
+class RequestScreen extends Screen {
 
-  /**
-   * Holds default http headers to set on request.
-   * @type {?Object=}
-   * @default {
-   *   'X-PJAX': 'true',
-   *   'X-Requested-With': 'XMLHttpRequest'
-   * }
-   * @protected
-   */
-  senna.RequestScreen.prototype.httpHeaders = {
-    'X-PJAX': 'true',
-    'X-Requested-With': 'XMLHttpRequest'
-  };
+	/**
+	 * Request screen abstract class to perform io operations on descendant
+	 * screens.
+	 * @constructor
+	 * @extends {Screen}
+	 */
+	constructor() {
+		super();
 
-  /**
-   * Holds default http method to perform the request.
-   * @type {!String}
-   * @default GET
-   * @protected
-   */
-  senna.RequestScreen.prototype.httpMethod = 'GET';
+		/**
+		 * @inheritDoc
+		 * @default true
+		 */
+		this.cacheable = true;
 
-  /**
-   * Holds the XHR object responsible for the request.
-   * @type {XMLHttpRequest}
-   * @default null
-   * @protected
-   */
-  senna.RequestScreen.prototype.request = null;
+		/**
+		 * Holds default http headers to set on request.
+		 * @type {?Object=}
+		 * @default {
+		 *   'X-PJAX': 'true',
+		 *   'X-Requested-With': 'XMLHttpRequest'
+		 * }
+		 * @protected
+		 */
+		this.httpHeaders = {
+			'X-PJAX': 'true',
+			'X-Requested-With': 'XMLHttpRequest'
+		};
 
-  /**
-   * Holds the request timeout.
-   * @type {!Number}
-   * @default 30000
-   * @protected
-   */
-  senna.RequestScreen.prototype.timeout = 30000;
+		/**
+		 * Holds default http method to perform the request.
+		 * @type {!string}
+		 * @default RequestScreen.GET
+		 * @protected
+		 */
+		this.httpMethod = RequestScreen.GET;
 
-  /**
-   * Aborts the current request if any.
-   */
-  senna.RequestScreen.prototype.abortRequest = function() {
-    if (this.request) {
-      this.request.abort();
-    }
-  };
+		/**
+		 * Holds the XHR object responsible for the request.
+		 * @type {XMLHttpRequest}
+		 * @default null
+		 * @protected
+		 */
+		this.request = null;
 
-  /**
-   * Gets the http headers.
-   * @return {?Object=}
-   */
-  senna.RequestScreen.prototype.getHttpHeaders = function() {
-    return this.httpHeaders;
-  };
+		/**
+		 * Holds the request timeout in milliseconds.
+		 * @type {!number}
+		 * @default 30000
+		 * @protected
+		 */
+		this.timeout = 30000;
+	}
 
-  /**
-   * Gets the http method.
-   * @return {!String}
-   */
-  senna.RequestScreen.prototype.getHttpMethod = function() {
-    return this.httpMethod;
-  };
+	/**
+	 * Asserts that response status code is valid.
+	 * @param {number} status
+	 * @protected
+	 */
+	assertValidResponseStatusCode(status) {
+		if (!this.isValidResponseStatusCode(status)) {
+			var error = new Error(errors.INVALID_STATUS);
+			error.invalidStatus = true;
+			throw error;
+		}
+	}
 
-  /**
-   * Gets the request object.
-   * @return {?Object}
-   */
-  senna.RequestScreen.prototype.getRequest = function() {
-    return this.request;
-  };
+	/**
+	 * @inheritDoc
+	 */
+	beforeUpdateHistoryPath(path) {
+		var redirectPath = this.getRequestPath();
+		if (redirectPath && redirectPath !== path) {
+			return redirectPath;
+		}
+		return path;
+	}
 
-  /**
-   * Gets the request timeout.
-   * @return {!Number}
-   */
-  senna.RequestScreen.prototype.getTimeout = function() {
-    return this.timeout;
-  };
+	/**
+	 * @inheritDoc
+	 */
+	beforeUpdateHistoryState(state) {
+		// If state is ours and navigate to post-without-redirect-get set
+		// history state to null, that way Senna will reload the page on
+		// popstate since it cannot predict post data.
+		if (state.senna && state.form && state.redirectPath === state.path) {
+			return null;
+		}
+		return state;
+	}
 
-  /**
-   * @inheritDoc
-   */
-  senna.RequestScreen.prototype.load = function(path) {
-    senna.RequestScreen.base(this, 'load', path);
-    var self = this;
-    var cache = this.getCache();
-    if (senna.isDefAndNotNull(cache)) {
-      return senna.Promise.resolve(cache);
-    }
-    return senna.request(path, this.httpMethod, this.httpHeaders, this.timeout).then(function(xhr) {
-      self.setRequest(xhr);
-      return xhr.responseText;
-    });
-  };
+	/**
+	 * Formats load path before invoking ajax call.
+	 * @param {string} path
+	 * @return {string} Formatted path;
+	 * @protected
+	 */
+	formatLoadPath(path) {
+		if (UA.isIeOrEdge && this.httpMethod === RequestScreen.GET) {
+			return new Uri(path).makeUnique().toString();
+		}
+		return path;
+	}
 
-  /**
-   * Sets the http headers.
-   * @param {?Object=} httpHeaders
-   */
-  senna.RequestScreen.prototype.setHttpHeaders = function(httpHeaders) {
-    this.httpHeaders = httpHeaders;
-  };
+	/**
+	 * Gets the http headers.
+	 * @return {?Object=}
+	 */
+	getHttpHeaders() {
+		return this.httpHeaders;
+	}
 
-  /**
-   * Sets the http method.
-   * @param {!String} httpMethod
-   */
-  senna.RequestScreen.prototype.setHttpMethod = function(httpMethod) {
-    this.httpMethod = httpMethod;
-  };
+	/**
+	 * Gets the http method.
+	 * @return {!string}
+	 */
+	getHttpMethod() {
+		return this.httpMethod;
+	}
 
-  /**
-   * Sets the request object.
-   * @param {?Object} request
-   */
-  senna.RequestScreen.prototype.setRequest = function(request) {
-    this.request = request;
-  };
+	/**
+	 * Gets request path.
+	 * @return {string=}
+	 */
+	getRequestPath() {
+		var request = this.getRequest();
+		if (request) {
+			var requestPath = request.requestPath;
+			var responseUrl = this.maybeExtractResponseUrlFromRequest(request);
+			if (responseUrl) {
+				requestPath = responseUrl;
+			}
+			if (UA.isIeOrEdge && this.httpMethod === RequestScreen.GET) {
+				requestPath = new Uri(requestPath).removeUnique().toString();
+			}
+			return utils.getUrlPath(requestPath);
+		}
+		return null;
+	}
 
-  /**
-   * Sets the request timeout.
-   * @param {!Number} timeout
-   */
-  senna.RequestScreen.prototype.setTimeout = function(timeout) {
-    this.timeout = timeout;
-  };
+	/**
+	 * Gets the request object.
+	 * @return {?Object}
+	 */
+	getRequest() {
+		return this.request;
+	}
 
-}());
+	/**
+	 * Gets the request timeout.
+	 * @return {!number}
+	 */
+	getTimeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Checks if response succeeded. Any status code 2xx or 3xx is considered
+	 * valid.
+	 * @param {number} statusCode
+	 */
+	isValidResponseStatusCode(statusCode) {
+		return statusCode >= 200 && statusCode <= 399;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	load(path) {
+		var cache = this.getCache();
+		if (core.isDefAndNotNull(cache)) {
+			return CancellablePromise.resolve(cache);
+		}
+
+		var body = null;
+		var httpMethod = this.httpMethod;
+
+		var headers = new MultiMap();
+		Object.keys(this.httpHeaders).forEach(header => headers.add(header, this.httpHeaders[header]));
+
+		if (globals.capturedFormElement) {
+			body = new FormData(globals.capturedFormElement);
+			httpMethod = RequestScreen.POST;
+			if (UA.isIeOrEdge) {
+				headers.add('If-None-Match', '"0"');
+			}
+		}
+
+		var requestPath = this.formatLoadPath(path);
+		return Ajax
+			.request(requestPath, httpMethod, body, headers, null, this.timeout)
+			.then(xhr => {
+				this.setRequest(xhr);
+				this.assertValidResponseStatusCode(xhr.status);
+				if (httpMethod === RequestScreen.GET && this.isCacheable()) {
+					this.addCache(xhr.responseText);
+				}
+				xhr.requestPath = requestPath;
+				return xhr.responseText;
+			})
+			.catch((reason) => {
+				switch (reason.message) {
+					case errors.REQUEST_TIMEOUT:
+						reason.timeout = true;
+						break;
+					case errors.REQUEST_ERROR:
+						reason.requestError = true;
+						break;
+				}
+				throw reason;
+			});
+	}
+
+	/**
+	 * The following method tries to extract the response url value by checking
+	 * the custom response header 'X-Request-URL' if proper value is not present
+	 * in XMLHttpRequest. The value of responseURL will be the final URL
+	 * obtained after any redirects. Internet Explorer, Edge and Safari <= 7
+	 * does not yet support the feature. For more information see:
+	 * https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseURL
+	 * https://xhr.spec.whatwg.org/#the-responseurl-attribute
+	 * @param {XMLHttpRequest} request
+	 * @return {?string} Response url best match.
+	 */
+	maybeExtractResponseUrlFromRequest(request) {
+		var responseUrl = request.responseURL;
+		if (responseUrl) {
+			return responseUrl;
+		}
+		return request.getResponseHeader(RequestScreen.X_REQUEST_URL_HEADER);
+	}
+
+	/**
+	 * Sets the http headers.
+	 * @param {?Object=} httpHeaders
+	 */
+	setHttpHeaders(httpHeaders) {
+		this.httpHeaders = httpHeaders;
+	}
+
+	/**
+	 * Sets the http method.
+	 * @param {!string} httpMethod
+	 */
+	setHttpMethod(httpMethod) {
+		this.httpMethod = httpMethod.toLowerCase();
+	}
+
+	/**
+	 * Sets the request object.
+	 * @param {?Object} request
+	 */
+	setRequest(request) {
+		this.request = request;
+	}
+
+	/**
+	 * Sets the request timeout in milliseconds.
+	 * @param {!number} timeout
+	 */
+	setTimeout(timeout) {
+		this.timeout = timeout;
+	}
+
+}
+
+/**
+ * Holds value for method get.
+ * @type {string}
+ * @default 'get'
+ * @static
+ */
+RequestScreen.GET = 'get';
+
+/**
+ * Holds value for method post.
+ * @type {string}
+ * @default 'post'
+ * @static
+ */
+RequestScreen.POST = 'post';
+
+/**
+ * Fallback http header to retrieve response request url.
+ * @type {string}
+ * @default 'X-Request-URL'
+ * @static
+ */
+RequestScreen.X_REQUEST_URL_HEADER = 'X-Request-URL';
+
+export default RequestScreen;
