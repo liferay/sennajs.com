@@ -9,7 +9,7 @@
     "gulp-csscomb": "^3.0.0-1",
     "gulp-csso": "^0.2.9",
     "gulp-esformatter": "^1.0.0",
-    "gulp-gh-pages": "^0.3.3",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-highlight": "0.0.3",
     "gulp-iconfont": "^0.1.1",
     "gulp-iconfont-css": "^0.0.9",
