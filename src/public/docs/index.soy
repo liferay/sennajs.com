@@ -151,7 +151,13 @@
           <h2>Step 2: Setup your single page application</h2>
         </div>
         <p>
-          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna.js to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route any <span class="code">&lt;a&gt;</span> element available on your page that matches with the configured CSS link selector, by default matches <span class="code">"a:not([data-senna-off])"</span>, feel free to limit the scope of the links you want to track, e.g. <span class="code">app.setLinkSelector(".senna-links");</span>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
+          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna.js to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route <span class="code">&lt;a&gt;</span> link elements as well as <span class="code">&lt;form&gt;</span> submissions.
+        </p>
+        <p>
+          The elements that are routed through Senna.js can be excluded by adding the <span class="code">data-senna-off</span> attribute.  This is because by default the <span class="code">linkSelector</span> and <span class="code">formSelector</span> properties are set to <span class="code">a:not([data-senna-off])</span> and <span class="code">form[enctype="multipart/form-data"]:not([data-senna-off])</span> respectively. These can easily be configured to meet the needs of your application, e.g., <span class="code">app.setLinkSelector(".senna-links");</span>, <span class="code">app.setFormSelector(".senna-forms");</span>.
+        </p>
+        <p>
+          Copy the snippets available on this section and paste into your example file, in the end it should look something like:
         </p>
         {literal}
         <pre><code class="html">&lt;!doctype html&gt;
@@ -166,10 +172,19 @@
 &lt;/head&gt;
 &lt;body&gt;
   &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
-  &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
+  &lt;a data-senna-off="true" href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
   &lt;!-- Content surface --&gt;
   &lt;div id="content"&gt;
     Default content of my website.
+    &lt;form id="loginForm" data-senna-off&gt;
+      &lt;input name="username"&gt;
+      &lt;input name="password"&gt;
+      &lt;button type="submit"&gt;
+    &lt;/form&gt;
+    &lt;form id="feedbackForm"&gt;
+      &lt;input name="content"&gt;
+      &lt;button type="submit"&gt;
+    &lt;/form&gt;
   &lt;/div&gt;
   &lt;!-- End of content surface --&gt;
   &lt;script&gt;
