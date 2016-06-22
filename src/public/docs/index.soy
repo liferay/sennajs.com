@@ -29,6 +29,8 @@
             <li><a href="#routes">Routes</a></li>
             <li><a href="#screens">Screens</a></li>
             <li><a href="#dataattributes">Data attributes</a></li>
+            <li><a href="#trackableresources">Trackable Resources</a></li>
+            <li><a href="#lifecycleevents">Lifecycle Events</a></li>
           </ul>
         </div>
       </div>
@@ -413,7 +415,36 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
         <pre><code class="html">&lt;link data-senna-track="permanent" href="main.css" rel="stylesheet"&gt;
 &lt;script data-senna-track="temporary" src="main.js"&gt;&lt;/script&gt;</code></pre>
         {/literal}
+        <div class="title-header">
+          <h2 id="lifecycleevents">Lifecycle Events</h2>
+        </div>
 
+        <p>
+          Senna.js exposes lifecycle events that can be hooked into in order to add features or special behavior.
+          <p>
+            <strong>beforeNavigate:</strong> Fires before navigation starts. Event payload: <span class="code">&lbrace; path: '/pages/page1.html', replaceHistory: false &rbrace;</span>
+          </p>
+          <p>
+            <strong>startNavigate:</strong> Fires when navigation begins. Event payload: <span class="code">&lbrace; form: '&lt;form name="form"&gt;&lt;/form&gt;', path: '/pages/page1.html', replaceHistory: false &rbrace;</span>
+          </p>
+          <p>
+            <strong>endNavigate:</strong> Fired after the content has been retrieved and inserted onto the page. Event payload: <span class="code">&lbrace; form: '&lt;form name="form"&gt;&lt;/form&gt;', path: '/pages/page1.html' &rbrace;</span>
+          </p>
+
+        </p>
+        {literal}
+        <pre><code class="html">&lt;script&gt;
+  var app = new senna.App();
+
+  app.on('beforeNavigate', function(event) {
+    //do something before navigating
+  });
+
+  app.on('endNavigate', function(event) {
+    //do something after navigating
+  });
+&lt;/script&gt;</code></pre>
+        {/literal}
         <p>
           It's recommended to checkout the <a href="https://github.com/liferay/senna.js/tree/master/examples/" target="_blank">examples source code</a> in order to visualize all the possibilities Senna.js can provide.
         </p>
