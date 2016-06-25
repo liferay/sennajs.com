@@ -26,6 +26,7 @@
 
           <ul>
             <li><a href="#features">Features</a></li>
+            <li><a href="#turbolinks">Turbolinks</a></li>
             <li><a href="#routes">Routes</a></li>
             <li><a href="#screens">Screens</a></li>
             <li><a href="#dataattributes">Data attributes</a></li>
@@ -237,6 +238,36 @@
       {/literal}
       <p>
       Note that <span class="code">page1.html</span> and <span class="code">page2.html</span> was not created yet, therefore the navigation will fail since it cannot find the file. Duplicate the <span class="code">index.html</span> twice and rename the new files file to <span class="code">page1.html</span> and <span class="code">page2.html</span>, respectively.
+      </p>
+
+      <div class="title-header">
+        <h2 id="turbolinks">Turbolinks</h2>
+      </div>
+
+      <p>
+      Get most of the performance benefits of a single-page application without much setup required.  All that is needed is to include Senna.js and add the attributes <span class="code">data-senna</span> and <span class="code">data-senna-surface</span> to your body element.
+      {literal}
+      <pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Turbolinks&lt;/title&gt;
+  &lt;link rel="shortcut icon" href="http://sennajs.com/images/favicon.ico"&gt;
+
+  &lt;!-- Including Senna --&gt;
+  &lt;script src="../../build/globals/senna-debug.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body data-senna data-senna-surface&gt;
+  &lt;!-- Content surface is the entire body --&gt;
+    &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
+    &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
+  &lt;!-- End of content surface --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      {/literal}
+      <p>
+      The body will then be replaced on each navigation.  This alone can provide significant performance increases over a conventional multi-page application.
       </p>
       <div class="title-header">
         <h2 id="routes">Routes</h2>
