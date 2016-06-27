@@ -26,9 +26,12 @@
 
           <ul>
             <li><a href="#features">Features</a></li>
+            <li><a href="#turbolinks">Turbolinks</a></li>
             <li><a href="#routes">Routes</a></li>
             <li><a href="#screens">Screens</a></li>
             <li><a href="#dataattributes">Data attributes</a></li>
+            <li><a href="#trackableresources">Trackable Resources</a></li>
+            <li><a href="#lifecycleevents">Lifecycle Events</a></li>
           </ul>
         </div>
       </div>
@@ -149,7 +152,13 @@
           <h2>Step 2: Setup your single page application</h2>
         </div>
         <p>
-          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna.js to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route any <span class="code">&lt;a&gt;</span> element available on your page that matches with the configured CSS link selector, by default matches <span class="code">"a:not([data-senna-off])"</span>, feel free to limit the scope of the links you want to track, e.g. <span class="code">app.setLinkSelector(".senna-links");</span>. Copy the snippets available on this section and paste into your example file, in the end it should look something like:
+          Now that you have <span class="code">index.html</span> example file created, it's time to setup Senna.js to speed up your page. Everything starts when you create a <span class="code">var app = new senna.App();</span>, this class will route <span class="code">&lt;a&gt;</span> link elements as well as <span class="code">&lt;form&gt;</span> submissions.
+        </p>
+        <p>
+          The elements that are routed through Senna.js can be excluded by adding the <span class="code">data-senna-off</span> attribute.  This is because by default the <span class="code">linkSelector</span> and <span class="code">formSelector</span> properties are set to <span class="code">a:not([data-senna-off])</span> and <span class="code">form[enctype="multipart/form-data"]:not([data-senna-off])</span> respectively. These can easily be configured to meet the needs of your application, e.g., <span class="code">app.setLinkSelector(".senna-links");</span>, <span class="code">app.setFormSelector(".senna-forms");</span>.
+        </p>
+        <p>
+          Copy the snippets available on this section and paste into your example file, in the end it should look something like:
         </p>
         {literal}
         <pre><code class="html">&lt;!doctype html&gt;
@@ -164,10 +173,19 @@
 &lt;/head&gt;
 &lt;body&gt;
   &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
-  &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
+  &lt;a data-senna-off="true" href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
   &lt;!-- Content surface --&gt;
   &lt;div id="content"&gt;
     Default content of my website.
+    &lt;form id="loginForm" data-senna-off&gt;
+      &lt;input name="username"&gt;
+      &lt;input name="password"&gt;
+      &lt;button type="submit"&gt;
+    &lt;/form&gt;
+    &lt;form id="feedbackForm"&gt;
+      &lt;input name="content"&gt;
+      &lt;button type="submit"&gt;
+    &lt;/form&gt;
   &lt;/div&gt;
   &lt;!-- End of content surface --&gt;
   &lt;script&gt;
@@ -213,13 +231,43 @@
 </code></pre>
         {/literal}
         <p>
-          That's all, your website should be blazing fast now. Is relevant to remember <span class="code">senna.Route</span> supports regular expression, therefore you don't need to map many route if they can be generic, the two routes from the previous example can be reduced to:
+          That's all, your website should be blazing fast now. It is relevant to remember <span class="code">senna.Route</span> supports regular expression, therefore you don't need to map many route if they can be generic, the two routes from the previous example can be reduced to:
         </p>
       {literal}
       <pre><code class="javascript">app.addRoutes(new senna.Route(/\w+\.html/, senna.HtmlScreen));</code></pre>
       {/literal}
       <p>
       Note that <span class="code">page1.html</span> and <span class="code">page2.html</span> was not created yet, therefore the navigation will fail since it cannot find the file. Duplicate the <span class="code">index.html</span> twice and rename the new files file to <span class="code">page1.html</span> and <span class="code">page2.html</span>, respectively.
+      </p>
+
+      <div class="title-header">
+        <h2 id="turbolinks">Turbolinks</h2>
+      </div>
+
+      <p>
+      Get most of the performance benefits of a single-page application without much setup required.  All that is needed is to include Senna.js and add the attributes <span class="code">data-senna</span> and <span class="code">data-senna-surface</span> to your body element.
+      {literal}
+      <pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Turbolinks&lt;/title&gt;
+  &lt;link rel="shortcut icon" href="http://sennajs.com/images/favicon.ico"&gt;
+
+  &lt;!-- Including Senna --&gt;
+  &lt;script src="../../build/globals/senna-debug.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body data-senna data-senna-surface&gt;
+  &lt;!-- Content surface is the entire body --&gt;
+    &lt;a href="/pages/page1.html"&gt;Page 1&lt;/a&gt;
+    &lt;a href="/pages/page2.html"&gt;Page 2&lt;/a&gt;
+  &lt;!-- End of content surface --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      {/literal}
+      <p>
+      The body will then be replaced on each navigation.  This alone can provide significant performance increases over a conventional multi-page application.
       </p>
       <div class="title-header">
         <h2 id="routes">Routes</h2>
@@ -413,7 +461,36 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
         <pre><code class="html">&lt;link data-senna-track="permanent" href="main.css" rel="stylesheet"&gt;
 &lt;script data-senna-track="temporary" src="main.js"&gt;&lt;/script&gt;</code></pre>
         {/literal}
+        <div class="title-header">
+          <h2 id="lifecycleevents">Lifecycle Events</h2>
+        </div>
 
+        <p>
+          Senna.js exposes lifecycle events that can be hooked into in order to add features or special behavior.
+          <p>
+            <strong>beforeNavigate:</strong> Fires before navigation starts. Event payload: <span class="code">&lbrace; path: '/pages/page1.html', replaceHistory: false &rbrace;</span>
+          </p>
+          <p>
+            <strong>startNavigate:</strong> Fires when navigation begins. Event payload: <span class="code">&lbrace; form: '&lt;form name="form"&gt;&lt;/form&gt;', path: '/pages/page1.html', replaceHistory: false &rbrace;</span>
+          </p>
+          <p>
+            <strong>endNavigate:</strong> Fired after the content has been retrieved and inserted onto the page. Event payload: <span class="code">&lbrace; form: '&lt;form name="form"&gt;&lt;/form&gt;', path: '/pages/page1.html' &rbrace;</span>
+          </p>
+
+        </p>
+        {literal}
+        <pre><code class="html">&lt;script&gt;
+  var app = new senna.App();
+
+  app.on('beforeNavigate', function(event) {
+    //do something before navigating
+  });
+
+  app.on('endNavigate', function(event) {
+    //do something after navigating
+  });
+&lt;/script&gt;</code></pre>
+        {/literal}
         <p>
           It's recommended to checkout the <a href="https://github.com/liferay/senna.js/tree/master/examples/" target="_blank">examples source code</a> in order to visualize all the possibilities Senna.js can provide.
         </p>
