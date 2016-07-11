@@ -49,13 +49,13 @@
           Sites will often optimize and minify stylesheets, combine images into a single sprite, defer loading of javascript, and serve static files from a CDN. All in order to speed up load time. This is great. However, even with cached resources the browser still has to re-parse and execute the CSS and JS on every page load, it still has to lay out the HTML and redraw the UI. This slows down the actual navigation but can also add perceived slowness and often introduces a white flash.
         </p>
         <p>
-          When Tim Berners-Lee invented web he was looking for a system to publish scientific documents remotely, hyperlinks and static pages only. Creating a webapp can get very slow with all the static web born rules. In order to improve actual and perceived latency many sites <a href="http://www.google.com/trends/explore#q=model%20view%20controller%2C%20single%20page%20application&cmpt=q" target="_blank">are moving to SPA model</a>. That is, once the initial page is loaded all subsequent navigations are handled without full page reload. Additional content is loaded using <span class="code">XMLHttpRequest</span> via <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> which is able to update the URL without refresh the page, therefore your dynamic site can be shared and bookmarked. Having a URL for each state of your page allows the content to be fully crawled by search engines.
+          When Tim Berners-Lee invented the web he was looking for a system to publish scientific documents remotely, hyperlinks and static pages only. Creating a webapp can get very slow with all the static web born rules. In order to improve actual and perceived latency many sites <a href="http://www.google.com/trends/explore#q=model%20view%20controller%2C%20single%20page%20application&cmpt=q" target="_blank">are moving to SPA model</a>. That is, once the initial page is loaded all subsequent navigations are handled without full page reload. Additional content is loaded using <span class="code">XMLHttpRequest</span> via <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="blank">History API</a> which is able to update the URL without refreshing the page, therefore your dynamic site can be shared and bookmarked. Having a URL for each state of your page allows the content to be fully crawled by search engines.
         </p>
         <div class="title-header">
           <h2 id="features">Features</h2>
         </div>
         <p>
-          Senna.js is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8KB of JavaScript without any dependency.
+          Senna.js is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~8KB of JavaScript without any dependencies.
         </p>
         <p>
           In order to create a single page application with good perceived latency and good user experience, the SPA engine must handle the browser native behavior in many aspects, for instance:
@@ -76,13 +76,13 @@
             <strong>Pending navigations:</strong> Block UI rendering until data is loaded, then displays the content at once. It's important to give some UX feedback during loading.
           </p>
           <p>
-            <strong>Timeout detection:</strong> Timeout if the request takes too long to load or when navigate to a different link while another request is pending.
+            <strong>Timeout detection:</strong> Timeout if the request takes too long to load or when navigating to a different link while another request is pending.
           </p>
           <p>
-            <strong>History navigation:</strong> By using History API you can manipulate the browser history, so you can use browser's back & forward buttons.
+            <strong>History navigation:</strong> By using History API you can manipulate the browser history, so you can use browser's back and forward buttons.
           </p>
           <p>
-            <strong>Cacheable screens:</strong> Once you load a certain surface this content is cached in memory and is retrieved later on without any additional request. This can speed up a lot your application.
+            <strong>Cacheable screens:</strong> Once you load a certain surface this content is cached in memory and is retrieved later on without any additional request. This can really speed up your application.
           </p>
           <p>
             <strong>Page resources management:</strong> Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using <span class="code">XMLHttpRequest</span> can be appended to the DOM, for security reasons some browsers won't evaluate <span class="code">&lt;script&gt;</span> tags from the new fragment. Therefore, the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
