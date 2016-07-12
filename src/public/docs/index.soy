@@ -32,6 +32,7 @@
             <li><a href="#dataattributes">Data attributes</a></li>
             <li><a href="#trackableresources">Trackable Resources</a></li>
             <li><a href="#lifecycleevents">Lifecycle Events</a></li>
+            <li><a href="#errorhandling">Error Handling</a></li>
           </ul>
         </div>
       </div>
@@ -488,6 +489,43 @@ FooScreen.prototype.getSurfaceContent = function(surfaceId) {
 
   app.on('endNavigate', function(event) {
     //do something after navigating
+  });
+&lt;/script&gt;</code></pre>
+        {/literal}
+        <div class="title-header">
+          <h2 id="errorhandling">Error Handling</h2>
+        </div>
+
+        <p>
+          It's important to understand how to handle errors when using Senna.js. Three important errors are <strong>Invalid Status</strong>, <strong>Request Error</strong>, and <strong>Timeout</strong>.
+          <p>
+            <strong>Invalid Status:</strong> Returns true for an invalid status. Any status code 2xx or 3xx is considered valid.
+          </p>
+          <p>
+            <strong>Request Error</strong> Returns true if there was an error with the request.
+          </p>
+          <p>
+            <strong>Timeout</strong> Returns true if the request timed out.
+          </p>
+        </p>
+        {literal}
+        <pre><code class="html">&lt;script&gt;
+  var app = new senna.App();
+
+  app.on('endNavigate', function(event) {
+    if (event.error) {
+      if (event.error.invalidStatus) {
+        //do something to handle invalid status
+      }
+
+      if (event.error.requestError) {
+        //do something to handle an error with the request
+      }
+
+      if (event.error.timeout) {
+        //do something to handle a timeout
+      }
+    }
   });
 &lt;/script&gt;</code></pre>
         {/literal}
