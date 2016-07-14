@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="{$baseDir}/images/favicon.ico">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
 </head>
-<body>
+<body id="body">
+  <div class="senna-loading-bar"></div>
   <div class="header">
     <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
       <div class="center">
@@ -72,6 +73,7 @@
   {$content}
 
   <!-- build:js scripts/all.min.js -->
+  <script src="{$baseDir}/vendor/senna/build/globals/senna-min.js"></script>
   <script src="{$baseDir}/scripts/main.js"></script>
   <!-- endbuild -->
 
