@@ -310,24 +310,24 @@ var route = new senna.Route(resolvePath, function() {
       </p>
       {literal}
       <pre><code class="javascript">// Constructor
-senna.Screen = function() {};
+var screen = new senna.Screen();
 
 // Lifecycle
-senna.Screen.prototype.activate = function() {};
-senna.Screen.prototype.beforeDeactivate = function() {};
-senna.Screen.prototype.deactivate = function() {};
-senna.Screen.prototype.disposeInternal = function() {};
-senna.Screen.prototype.evaluateScripts = function(surfaces) {};
-senna.Screen.prototype.evaluateStyles = function() {};
-senna.Screen.prototype.destroy = function() {};
-senna.Screen.prototype.flip = function(surfaces) {};
-senna.Screen.prototype.load = function() {};
+screen.activate = function() {};
+screen.beforeDeactivate = function() {};
+screen.deactivate = function() {};
+screen.disposeInternal = function() {};
+screen.evaluateScripts = function(surfaces) {};
+screen.evaluateStyles = function() {};
+screen.destroy = function() {};
+screen.flip = function(surfaces) {};
+screen.load = function() {};
 
 // Provides contents for each registered surface
-senna.Screen.prototype.getSurfaceContent = function(surfaceId) {};
+screen.getSurfaceContent = function(surfaceId) {};
 
 // Provides the title of the page when this screen is rendered
-senna.Screen.prototype.getTitle = function() {};</code></pre>
+screen.getTitle = function() {};</code></pre>
       {/literal}
       <p>
         To understand the screen lifecycle is good to inspect your browser console when navigating to a link from the user click or using the <span class="code">app.navigate(path[, replaceState]);</span>.
