@@ -1,7 +1,5 @@
 # [sennajs.wedeploy.io](http://sennajs.wedeploy.io) [![Built with Electric](https://img.shields.io/badge/built%20with-electric-f3c302.svg?style=flat)](http://electricjs.com)
 
-**WARNING: This project is currently using an outdated version of Electric**
-
 This repository contains the source code of the website [sennajs.wedeploy.io](http://sennajs.wedeploy.io), the new site in development for [sennajs.com](sennajs.com). If you're looking for the source code of the library, check the official [Senna.js repository](https://github.com/liferay/senna.js).
 
 ## Setup
@@ -15,35 +13,27 @@ node -v && npm -v
 2. Install our global dependencies:
 
 ```sh
-[sudo] npm i -g gulp
+[sudo] npm i -g electric-cli@alpha
 ```
 
-3. Clone repo
-```sh
-git clone https://github.com/jonnilundy/sennajs.com.git
-```
-
-4. Go to project
-```sh
-cd sennajs.com
-```
-
-5. Install our local dependencies:
+3. Install our local dependencies:
 
 ```sh
 npm i
 ```
 
-## Running
-* Compiles source files and populates on local server
-```sh
-gulp
+## Usage
+
+* Build the site, serve it locally, and watch for any changes:
+
+```
+electric run
 ```
 
-## Deploy
-* Compliles source files and pushes build folder to a new branch called 'WeDeploy'
-```sh
-gulp deploy
+* Deploy to production (send build files to `wedeploy` branch):
+
+```
+electric deploy
 ```
 
 ## License
