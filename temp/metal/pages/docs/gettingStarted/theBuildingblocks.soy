@@ -1,0 +1,70 @@
+
+{namespace docsGettingStartedTheBuildingblocksHtml}
+
+/**
+ * @param page
+ * @param site
+ */
+{template .render}
+	{call guide.render data="all"}
+		{param content kind="html"}
+			<h1>The Building Blocks</h1>
+<article id="App">
+<h2>App</h2>
+<p>Think of this as your canvas. Everything about your site, namely your surfaces and routes, are contained within in this element.</p>
+</article>
+<article id="Surfaces">
+<h2>Surfaces</h2>
+<p>The basic visual building blocks of your page. They are elements like your header, navbar, body, or footer.</p>
+</article>
+<article id="Screen">
+<h2>Screen</h2>
+<p>The specific rendering of all relevant surfaces. Every-time a page is requested, the navigated path will match a respective screen. This matching screen will scan all surfaces and paint the new content for those surfaces. Every screen has a unique url, but does not load as a separate page.</p>
+</article>
+<article id="Route">
+<h2>Route</h2>
+<p>Every app navigation will consist of a route and a correlating screen. The route is the entire process of navigation, from when you click a link to when your app paints the new information on the screen.</p>
+</article>
+<h1>Native Browser Behavior</h1>
+<article id="seo">
+<h6>In order to create a single page application with good perceived latency and good user experience, the SPA engine must handle many aspects of the browser’s native behavior. Here are some of the amazing capabilities of Senna.js.</h6>
+<h2>SEO &amp; Bookmarkability:</h2>
+<p>So if the browser is simply gathering more information rather than refreshing to a separate page, how do you make sure that your users can bookmark and share the content they are viewing? With Senna.js, your app will create specific urls that correlate to the information that your users are viewing. This not only makes it seamless for your users, but it also enables search engines to index that same information just like it would if it was a traditional webpage.</p>
+</article>
+<article id="hybrid-rendering">
+<h2>Hybrid Rendering:</h2>
+<p>Ajax + server-side rendering allows you to disable pushState at any time, enabling progressive enhancement. The way you render the server-side does not matter, it can be simple HTML fragments or even template views.</p>
+</article>
+<article id="state-retention">
+<h2>State Retention:</h2>
+<p>When you reload or navigate through the history of the page, Senna will take you right back to the state of the screen that you previously viewed, including the same scroll placement.</p>
+</article>
+<article id="ui-feedback">
+<h2>UI Feedback:</h2>
+<p>If you have large content on your page and it takes time to load, you can give your users feedback so they know the content will be fully loaded soon. Checkout <a href="/docs/features/uiFeedback.html">UI Feedback</a> to learn how to enable this feature in your app.</p>
+</article>
+<article id="pending-nav">
+<h2>Pending Navigation:</h2>
+<p>To prevent multiple portions of your site from loading at different speeds, you can block UI rendering until the data is fully loaded so that all the content will display at once. In this situation, UI Feedback is a great tool to make sure your users know the content is coming.</p>
+</article>
+<article id="timeout">
+<h2>Timeout Detection:</h2>
+<p>Senna.js will timeout if the request takes too long to load or if the user navigates to a different link while another request is pending. If an error occurs, Senna is already setup with <a href="/docs/features/errorHandling.html">Error Handling</a>.</p>
+</article>
+<article id="history-nav">
+<h2>History Navigation:</h2>
+<p>By using History API, you can manipulate the browser history to use the browser's back and forward buttons.</p>
+</article>
+<article id="cacheable-screens">
+<h2>Cacheable Screens:</h2>
+<p>Once you load a certain surface, this content is cached in memory and will be retrieved later on without any additional request to the server.</p>
+</article>
+<article id="prm">
+<h2>Page Resources Management:</h2>
+<p>Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using XMLHttpRequest can be appended to the DOM. For security reasons some browsers will not evaluate <code>&lt;script&gt;</code> tags from the new fragment, so the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.</p>
+</article>
+			<input type="hidden" value="{$page.title}">
+			<input type="hidden" value="{$site.title}">
+		{/param}
+	{/call}
+{/template}

@@ -1,0 +1,68 @@
+---
+description: "Installing Senna Guide"
+layout: "guide"
+title: "Installing Senna"
+category: "Getting Started"
+weight: 1
+srcFilePath: src/pages/docs/gettingStarted/gettingStarted.md
+---
+
+{namespace docsGettingStartedGettingStartedHtml}
+
+/**
+ * @param page
+ * @param site
+ */
+{template .render}
+	{call guide.render data="all"}
+		{param content kind="html"}
+			<h1>Installing Senna</h1>
+<article id="getting-the-project">
+<h2>Getting the Project</h2>
+<p>To get started, <a href="https://github.com/liferay/senna.js/archive/master.zip">download the project</a>. This project includes an initial version of the project plus all of the Senna.js examples (source code dependencies that will help you get started).</p>
+<p>Unzip the project somewhere on your local drive. While you're working, you'll need a basic HTTP server to serve your pages because Senna will not be able to fully run if you simply open the files of your app in a browser. If you already have a local server ready to run, then skip to the <a href="#start-using">Start using Senna.js in your app</a>.</p>
+</article>
+<article id="http-server">
+<h2>Setting up a local server</h2>
+<p>If you don't already have a server, <a href="https://www.npmjs.com/package/http-server" target="_blank">http-server</a> is a great solution. The easiest way to install <code>http-server</code> is via npm by running the following command in the command line.</p>
+{call ElectricCode.render}{param code kind="text"}{literal}npm install http-server -g{/literal}{/param}{param mode: 'text' /}{/call}<p>This will install <code>http-server</code>. To run your local server, go to the directory that contains your app and run:</p>
+{call ElectricCode.render}{param code kind="text"}{literal}http-server{/literal}{/param}{param mode: 'text' /}{/call}<p>Your app is now live at <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>.</p>
+</article>
+<article id="start-using">
+<h2>Start using Senna.js in your app</h2>
+<p>Setting up Senna.js is as easy as linking Senna.js to your document and adding <code>data-senna</code> and <code>data-senna-surface</code> as attributes to your <code>&lt;body&gt;</code> element.</p>
+{call ElectricCode.render}{param code kind="text"}{literal}<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Turbolinks</title>
+  <link rel="shortcut icon" href="http://sennajs.com/images/favicon.ico">
+  <!-- Link Senna to document -->
+  <script src="../../build/globals/senna-debug.js"></script>
+</head>
+  <!-- Add Senna attributes -->
+<body data-senna data-senna-surface>
+  <!-- Senna surface -->
+    <a href="/pages/page1.html">Page 1</a>
+    <a href="/pages/page2.html">Page 2</a>
+  <!-- End of Senna surface -->
+</body>
+</html>{/literal}{/param}{param mode: 'text' /}{/call}<p>Now your page is already faster! By adding <code>data-senna</code> and <code>data-senna-surface</code>, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completly reloading a new page.</p>
+</article>
+			<input type="hidden" value="{$page.title}">
+			<input type="hidden" value="{$site.title}">
+		{/param}
+	{/call}
+{/template}
+
+
+/**
+ *
+ */
+{template .soyweb}
+	{call base.render data="all"}
+		{param content kind="html"}
+			{call .render data="all" /}
+		{/param}
+	{/call}
+{/template}

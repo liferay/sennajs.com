@@ -1,0 +1,164 @@
+.updates {
+	.updates {
+		background-color: rgba($primary, .03);
+	}
+	.header {
+		padding: 180px 0 210px;
+	}
+}
+
+.update-row {
+	display: flex;
+}
+
+.update {
+	.read-more {
+		margin-top: 20px;
+
+		a {
+			color: #282828;
+			font-weight: 400;
+			text-decoration: underline;
+		}
+	}
+
+	.update-timeline:before {
+		background-color: $accent;
+		bottom: 0;
+		content: '';
+		margin-left: 35px;
+		position: absolute;
+		top: 0;
+		width: 2px;
+		z-index: -1;
+	}
+
+	.update-features {
+		border-bottom: 2px rgba(14, 20, 26, 0.1) solid;
+		padding: 2em 0 3em 1em;
+	}
+}
+
+.update-point {
+	background-color: white;
+	border-radius: 50%;
+	border: solid 2px $accent;
+}
+
+.minor-update .update-point {
+	height: 32px;
+	margin: 38px 20px 0;
+	padding-top: 4px;
+	text-indent: -3em;
+	width: 32px;
+}
+
+.major-update .update-point {
+	font-size: 26px;
+	height: 72px;
+	line-height: 44px;
+	margin-top: 16px;
+	padding-top: 11px;
+	text-align: center;
+	width: 72px;
+}
+
+.minor-update + div, .major-update + div {
+	padding-top: 44px !important;
+}
+
+.update-feature {
+	margin-bottom: 3em;
+}
+
+.update-feature {
+	.feature-icon {
+		color: rgba(14, 20, 26, 0.6);
+	}
+
+	.feature-header {
+		border-width: 0;
+		font-size: 19px;
+		margin-left: 10px;
+		margin: 0;
+		padding: 0 15px 0 13px;
+		color: $accent;
+	}
+
+	.feature-author {
+		border-width: 0;
+		font-size: 16px;
+		margin-left: 10px;
+		margin: 0;
+		padding: 0 5px 0 0;
+	}
+
+	.feature-author-name {
+		border-width: 0;
+		font-size: 16px;
+		font-weight: bold;
+		margin-left: 0px;
+		margin: 0;
+		padding: 0 15px 0 0;
+	}
+
+	.feature-lead {
+		color: #777;
+		font-size: 18px;
+		margin: 0;
+		margin-top: 20px;
+		padding-right: 15px;
+	}
+
+	.feature-topper {
+		align-items: center;
+		display: flex;
+	}
+}
+
+@media screen and (max-width: 599px) {
+	.update .update-features {
+		padding: 0 0 2em 0;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.update {
+		padding: 0;
+
+		.row {
+			display: block;
+			text-align: left;
+		}
+
+		.update-timeline:before {
+			display: none;
+		}
+	}
+
+	.minor-update {
+		margin-top: 25px;
+
+		.update-point {
+			background-color: transparent;
+			border-width: 0;
+			font-size: 20px;
+			font-weight: 600;
+			margin: 0 auto;
+			text-align: center;
+			text-decoration: underline;
+			text-indent: 0;
+			width: auto;
+		}
+	}
+
+	.major-update .update-point {
+		border-width: 0;
+		margin: 0 auto;
+		text-decoration: underline;
+	}
+
+	.update-point {
+		background-color: transparent;
+	}
+}

@@ -1,0 +1,130 @@
+.features {
+	padding: 0 0 90px;
+	z-index: 2;
+}
+
+.feature {
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.feature-icon [class^="icon-16-"],
+.feature-icon [class*="icon-16-"] {
+	color: $accent;
+	font-size: 38px;
+	position: relative;
+	top: 10px;
+}
+
+.icon-container {
+	height: 96px;
+	position: relative;
+}
+
+.features .row .feature .icon-container {
+	height: 96px;
+	position: relative;
+	margin-bottom: 36px; 
+}
+
+.features .row .feature .icon-container .feature-icon {
+	width: 84px;
+	height: 84px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -42px;
+	border-radius: 50%;
+	box-shadow: 0 2px 8px rgba(14, 20, 26, 0.2);
+}
+
+.features .row .feature .sjs-container {
+	width: 84px;
+	height: 84px;
+	position: relative;
+	left: 50%;
+	margin-left: -42px;
+	top: 12px;
+}
+
+.features .row .feature .sjs-container .sjs {
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	border-radius: 50%;
+	background: rgba(256,256,256, 1);
+	box-shadow: 0 2px 8px rgba(14, 20, 26, 0.2);
+}
+
+.features .row .feature .sjs-container .sjs span {
+	font-size: 16px;
+	line-height: 24px;
+	color: rgba($primary, 1);
+}
+
+.feature-icon {
+	padding-bottom: 20px;
+	font-size: 18px;
+	min-width: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 1;
+	vertical-align: middle;
+	white-space: nowrap;
+	text-align: center;
+
+	span {
+		color: $accent;
+		font-size: 36px;
+		position: relative;
+		top: 10px;
+	}
+}
+
+.flex-center-center {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.feature-title {
+	font-size: 28px;
+	margin: 20px 0;
+}
+
+.feature-header {
+	font-size: 50px;
+	color: rgba($primary, 1);
+	margin: 0;
+	color: rgba(256,256,256, 1);
+}
+
+.feature-description {
+	font-size: 16px;
+	line-height: 26px;
+	margin: 0;
+	top: 6px;
+	letter-spacing: 0.014em;
+	position: relative;
+}
+
+.features {
+	h1 {
+		color: rgba($primary, .95);
+		font-size: 55px;
+	}
+
+	h3 {
+		color: $primary;
+		font-size: 26px;
+		line-height: 24px;
+	}
+
+	p {
+		color: rgba($primary, .6);
+	}
+}

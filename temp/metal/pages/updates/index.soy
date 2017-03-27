@@ -1,0 +1,50 @@
+
+{namespace updatesIndex}
+
+/**
+ * @param page
+ */
+{template .render}
+  {call main.render data="all"}
+    {param content kind="html"}
+      <div class="updates">
+        <header class="header">
+          <div class="container">
+            <h1 class="header-title">Updates</h1>
+            <h1 class="header-subtitle">Check out what's new bellow.</h1>
+          </div>
+        </header>
+
+        {call ElectricUpdates.render}
+          {param updates: $page.updates /}
+          {param featureVariant: 'sennajs' /}
+        {/call}
+      </div>
+    {/param}
+  {/call}
+{/template}
+
+
+
+/**
+ * @param feature
+ */
+{deltemplate ElectricUpdates.feature variant="'sennajs'"}
+  <div class="col-xs-16 col-sm-16 update-feature">
+    <div class="feature-topper">
+      <span class="feature-icon icon-16-{$feature.icon}"></span>
+
+      <h1 class="feature-header">{$feature.title} </h1>
+      <h3 class="feature-author">Released by </h3>
+      <a href="https://github.com/eduardolundgren" target="_blank" class="feature-author-name">Eduardo Lundgren</a>
+    </div>
+
+    <div class="feature-content">
+      <p class="feature-lead">{$feature.description}</p>
+
+      <div class="read-more">
+        <a href="{$feature.url}" target="_blank">Read more...</a>
+      </div>
+    </div>
+  </div>
+{/deltemplate}
