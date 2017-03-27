@@ -6,7 +6,7 @@ description: "Everything you need to know to get started."
 {namespace pageDocsIndex}
 
 /**
- * @param site
+ * @param page
  */
 {template .render}
 	<div class="main">
@@ -16,7 +16,7 @@ description: "Everything you need to know to get started."
 					{param elementClasses: 'topbar-docs-main' /}
 				{/call}
 				{call Sidebar.render}
-					{param section: $site.index.children[0] /}
+					{param section: $page /}
 				{/call}
 				{call .topics data="all" /}
 			{/param}
@@ -25,6 +25,7 @@ description: "Everything you need to know to get started."
 {/template}
 
 /**
+ * @param page
  * @param site
  */
 {template .topics}
@@ -69,7 +70,9 @@ description: "Everything you need to know to get started."
 				<div class="row">
 					<div class="col-md-12 col-md-offset-2 col-xs-16">
 						<div class="row">
-							{foreach $topic in $site.index.children[0].children}
+							{foreach $childId in $page.childIds}
+								{let $topic: $page.children[$childId] /}
+
 								{if not $topic.hidden}
 									<div class="col-md-8 col-md-offset-0 col-xs-14 col-xs-offset-1">
 										<a class="topic radial-out" href="{$topic.url}">
