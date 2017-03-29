@@ -10,5 +10,8 @@
     "electric-marble-components": "alpha",
     "marble": "~2.6.0",
     "metal-toggler": "^2.0.0"
+  },
+  "dependencies": {
+    "electric-plugin-apidocs": "^1.0.0"
   }
 }
