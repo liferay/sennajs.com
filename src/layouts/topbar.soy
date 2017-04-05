@@ -13,6 +13,7 @@
 
 /**
  * @param site
+ * @param? subheader
  */
 {template .logo}
 	<div class="topbar-logo">
@@ -20,6 +21,10 @@
 			<span class="name">{$site.title}<span>.js</span></span>
 			<span class="by">by Liferay</span>
 		</a>
+
+		{if $subheader}
+			{$subheader}
+		{/if}
 	</div>
 {/template}
 

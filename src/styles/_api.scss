@@ -1,3 +1,7 @@
+.api {
+	font-family: $font-secondary;
+}
+
 .api section {
 	border: 1px solid #EEE;
 	margin: 20px 0px;
@@ -5,11 +9,11 @@
 }
 
 .api .sidebar {
-	height: calc(100vh - 60px);
-	margin-top: 60px;
+	height: 100vh;
 }
 
 .api .sidebar-list {
+	height: auto;
 	overflow: visible;
 }
 
@@ -62,6 +66,14 @@
 	right: 20px;
 	text-decoration: underline;
 	top: 20px;
+}
+
+.api .version-dropdown .btn {
+	padding: 0 20px;
+
+	span {
+		padding: 0 5px;
+	}
 }
 
 .entity-description, .entity-params, .entity-returns {
