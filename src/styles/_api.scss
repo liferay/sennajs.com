@@ -54,6 +54,7 @@
 }
 
 .api .entity .entity-name {
+	word-break: break-word;
 	margin-top: 0;
 }
 
@@ -66,6 +67,10 @@
 	right: 20px;
 	text-decoration: underline;
 	top: 20px;
+
+	@media (max-width: $screen-md) {
+		position: static;
+	}
 }
 
 .api .version-dropdown .btn {
@@ -73,6 +78,26 @@
 
 	span {
 		padding: 0 5px;
+	}
+}
+
+@media (max-width: $screen-md) {
+	.api {
+		display: flex;
+		flex-direction: column;
+
+		.sidebar {
+			height: auto;
+		}
+
+		.sidebar-offset {
+			display: flex;
+			flex-direction: column;
+
+			.topbar {
+				display: flex;
+			}
+		}
 	}
 }
 
