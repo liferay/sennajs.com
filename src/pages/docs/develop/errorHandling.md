@@ -6,8 +6,6 @@ category: "Develop"
 weight: 2
 ---
 
-# Error Handling
-
 <article id="error-handling">
 
 ## Error Handling

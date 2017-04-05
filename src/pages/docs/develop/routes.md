@@ -6,8 +6,6 @@ category: "Develop"
 weight: 6
 ---
 
-# Routes
-
 <article id="Routes">
 
 ## Routes

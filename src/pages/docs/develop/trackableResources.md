@@ -6,8 +6,6 @@ category: "Develop"
 weight: 3
 ---
 
-# Trackable Resources
-
 <article id="trackable-resources">
 
 ## Trackable Resources

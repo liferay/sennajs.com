@@ -6,8 +6,6 @@ category: "Develop"
 weight: 1
 ---
 
-# UI Feedback
-
 <article id="default-ui-feedback">
 
 ###### If you have large content on your page and it takes time to load, you can give your users feedback so they know the content is coming.
@@ -33,12 +31,12 @@ Senna comes with working UI feedback straight out of the box. All you have to do
   </body>
 </html>
 ```
- 
+
 
 </article>
 
 <article id="customize-feedback">
-  
+
 ## 2. Customize using CSS
 
 Now that you have added the default UI Feedback, you can edit the style of the animation inside of `senna/src/senna.css`.
@@ -53,7 +51,7 @@ Now that you have added the default UI Feedback, you can edit the style of the a
 
 .senna-loading-bar {
   transform: translateX(100%);
-  
+
   /* Change color of feedback bar */
   background: #2fa4f5;
 
@@ -66,6 +64,6 @@ Now that you have added the default UI Feedback, you can edit the style of the a
   z-index: 10000;
 }
 ```
- 
+
 
 </article>

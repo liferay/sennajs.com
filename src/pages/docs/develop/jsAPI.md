@@ -6,8 +6,6 @@ category: "Develop"
 weight: 5
 ---
 
-# JavaScript APIs
-
 <article id="js-api">
 
 ## Full control using JavaScript APIs

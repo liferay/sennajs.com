@@ -6,8 +6,6 @@ category: "Getting Started"
 weight: 2
 ---
 
-# How Does It Work?
-
 <article id="step1">
 
 ## 1. Initial page load

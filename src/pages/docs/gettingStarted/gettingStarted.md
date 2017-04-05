@@ -6,8 +6,6 @@ category: "Getting Started"
 weight: 1
 ---
 
-# Installing Senna
-
 <article id="getting-the-project">
 
 ## Getting the Project
@@ -47,7 +45,7 @@ Your app is now live at <a href="http://localhost:8080" target="_blank">http://l
 
 ## Start using Senna.js in your app
 
-Setting up Senna.js is as easy as linking Senna.js to your document and adding `data-senna` and `data-senna-surface` as attributes to your `<body>` element. 
+Setting up Senna.js is as easy as linking Senna.js to your document and adding `data-senna` and `data-senna-surface` as attributes to your `<body>` element.
 
 
 ```
@@ -71,6 +69,6 @@ Setting up Senna.js is as easy as linking Senna.js to your document and adding `
 ```
 
 
-Now your page is already faster! By adding `data-senna` and `data-senna-surface`, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completly reloading a new page. 
+Now your page is already faster! By adding `data-senna` and `data-senna-surface`, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completly reloading a new page.
 
 </article>
