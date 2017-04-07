@@ -73,11 +73,20 @@
 	}
 }
 
-.api .version-dropdown .btn {
-	padding: 0 20px;
+.api .version-dropdown {
+	.btn {
+		padding: 0 20px;
 
-	span {
-		padding: 0 5px;
+		span {
+			padding: 0 5px;
+		}
+	}
+
+	.dropdown-menu {
+		a {
+			border-width: 0;
+			font-size: 14px;
+		}
 	}
 }
 
@@ -93,10 +102,6 @@
 		.sidebar-offset {
 			display: flex;
 			flex-direction: column;
-
-			.topbar {
-				display: flex;
-			}
 		}
 	}
 }

@@ -1,0 +1,103 @@
+{namespace ElectricApi}
+
+/**
+ * @param apiData
+ * @param project
+ * @param? entityData
+ */
+{template .render}
+	<div class="api docs">
+		<script src="/js/bundles/ElectricApi.js"></script>
+
+		{call topbar.render data="all"}
+			{param elementClasses: 'topbar-docs-main' /}
+			{param subheader kind="html"}
+				{call .versionDropdown data="all" /}
+			{/param}
+		{/call}
+
+		<nav class="sidebar">
+			<a class="sidebar-header toggler-header-collapsed">
+				<span class="sidebar-icon icon-16-menu"></span>
+				<span>API Menu</span>
+				<span class="sidebar-icon-right">
+					<span class="icon-12-arrow-down-short"></span>
+					<span class="icon-12-arrow-up-short"></span>
+				</span>
+			</a>
+
+			{call .navigation data="all" /}
+		</nav>
+
+		<div class="sidebar-offset">
+			{call topbar.render data="all"}
+				{param elementClasses: 'topbar-docs-main' /}
+				{param subheader kind="html"}
+					{call .versionDropdown data="all" /}
+				{/param}
+			{/call}
+
+			<div class="container-hybrid docs-home-top">
+				<div class="entity-container" id="entityContainer">
+					{if $entityData and $entityData.name}
+						{call ElectricAPIEntities.render}
+							{param entityData: $entityData /}
+							{param project: $project /}
+						{/call}
+					{/if}
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			new pageComponent.default({lb}
+				project: {lb}
+					ref: {$project.ref},
+					repo: {$project.repo},
+					user: {$project.user}
+				{rb}
+			{rb});
+		</script>
+	</div>
+{/template}
+
+/**
+ * @param apiData
+ * @param entityData
+ * @param project
+ */
+{template .navigation}
+	<div class="sidebar-toggler-content toggler-collapsed">
+		<div class="sidebar-search">
+			<div class="form-group">
+				<div class="input-inner-addon input-inner-addon-right">
+					<input autocomplete="off" class="form-control" name="query" placeholder="Search API" ref="input" type="text" aria-activedescendant="" aria-autocomplete="list" aria-haspopup="true" aria-owns="autocomplete-6" role="combobox">
+					<span class="input-inner-icon-helper icon-16-magnifier"></span>
+				</div>
+			</div>
+		</div>
+
+		<ul class="sidebar-list sidebar-list-1">
+			{foreach $entity in $apiData}
+				<li class="sidebar-item">
+					<a class="sidebar-link{if $entityData.name == $entity.name} sidebar-link-selected{/if}" href="/api/{$project.ref}/{$entity.name}.html">{$entity.name}</a>
+				</li>
+			{/foreach}
+		</ul>
+	</div>
+{/template}
+
+/**
+ * @param project
+ */
+{template .versionDropdown}
+	<div class="dropdown version-dropdown">
+		<a class="btn btn-link">{$project.ref}<span class="icon-12-arrow-down-short"></span></a>
+
+		<ul class="dropdown-menu">
+			{foreach $ref in $project.refs}
+				<li><a href="/api/{$ref}">{$ref}</a></li>
+			{/foreach}
+		</ul>
+	</div>
+{/template}

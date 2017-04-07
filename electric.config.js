@@ -13,8 +13,10 @@ module.exports = {
 			user: 'liferay'
 		}
 	},
+	entryPoints: {
+		electricAPI: path.join(__dirname, 'src/partials/ElectricAPI.js')
+	},
 	metalComponents: ['electric-marble-components'],
-	plugins: ['electric-plugin-apidocs'],
 	sassOptions: {
 		includePaths: ['node_modules', marble.src]
 	},
