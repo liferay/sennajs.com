@@ -74,19 +74,28 @@
 }
 
 .api .version-dropdown {
+	z-index: 2000;
+
 	.btn {
 		padding: 0 20px;
 
 		span {
 			padding: 0 5px;
+			vertical-align: text-top;
 		}
 	}
 
 	.dropdown-menu {
+		margin-left: -20px;
+
 		a {
 			border-width: 0;
-			font-size: 14px;
+			font-size: 16px;
 		}
+	}
+
+	.toggler-collapsed {
+		display: block;
 	}
 }
 

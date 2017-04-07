@@ -2,8 +2,9 @@
 
 import Autocomplete from 'metal-autocomplete';
 import Component from 'metal-component';
-import {ElectricAPIAutocomplete} from 'electric-marble-components';
+import dom from 'metal-dom';
 import Toggler from 'metal-toggler';
+import {ElectricAPIAutocomplete} from 'electric-marble-components';
 
 class ElectricApi extends Component {
 	attached() {
@@ -25,11 +26,24 @@ class ElectricApi extends Component {
 			content: '.sidebar-toggler-content',
 			header: '.sidebar-header'
 		});
+
+		this.docClickHandler_ = dom.on(document, 'click', this.handleDocClick_.bind(this));
 	}
 
 	disposed() {
+		this.docClickHandler_.removeListener();
 		this.dropdowns_.dispose();
 		this.toggler_.dispose();
+	}
+
+	handleDocClick_(event) {
+		if (!dom.parent(event.target, '.version-dropdown')) {
+			let expanded = document.querySelector('.toggler-header-expanded');
+
+			if (expanded) {
+				this.dropdowns_.toggle(expanded);
+			}
+		}
 	}
 }
 
