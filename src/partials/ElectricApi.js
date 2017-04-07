@@ -28,7 +28,6 @@ class ElectricApi extends Component {
 	}
 
 	disposed() {
-		this.autocomplete_.dispose();
 		this.dropdowns_.dispose();
 		this.toggler_.dispose();
 	}
