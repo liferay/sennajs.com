@@ -10,7 +10,7 @@ weight: 2
 
 ## Error Handling
 
-It's important to understand how to handle errors when using Senna.js. The three error handling options in Senna.js are Invalid Status, Request Error, and Timeout.
+It's important to understand how to handle errors when using Senna.js. The three error handling options in Senna.js are `Invalid Status`, `Request Error`, and `Timeout`.
 
 >**Invalid Status:**
 >

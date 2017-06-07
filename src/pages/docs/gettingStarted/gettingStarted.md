@@ -12,7 +12,7 @@ weight: 1
 
 To get started, [download the project](https://github.com/liferay/senna.js/archive/master.zip). This project includes an initial version of the project plus all of the Senna.js examples (source code dependencies that will help you get started).
 
-Unzip the project somewhere on your local drive. While you're working, you'll need a basic HTTP server to serve your pages because Senna will not be able to fully run if you simply open the files of your app in a browser. If you already have a local server ready to run, then skip to the [Start using Senna.js in your app](#start-using).
+Unzip the project somewhere on your local drive. While you're working, you'll need a basic HTTP server to serve your pages because Senna will not be able to run fully if you simply open the files of your app in a browser. If you already have a local server ready to run, then skip to [Start using Senna.js in your app](#start-using).
 
 </article>
 
@@ -69,6 +69,6 @@ Setting up Senna.js is as easy as linking Senna.js to your document and adding `
 ```
 
 
-Now your page is already faster! By adding `data-senna` and `data-senna-surface`, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completly reloading a new page.
+Now your page is already faster! By adding `data-senna` and `data-senna-surface`, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completly reloading the page.
 
 </article>

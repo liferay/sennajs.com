@@ -12,7 +12,7 @@ weight: 5
 
 It's easy to create your own screen whenever you want.
 
-Let's say for example that you need a screen that injects the content "Header changed" and "Body changed" on the respective surface elements when you navigate to the path `/foo`.
+For example, you need a screen that injects the content "Header changed" and "Body changed" on the respective surface elements when you navigate to the path `/foo`.
 
 
 
