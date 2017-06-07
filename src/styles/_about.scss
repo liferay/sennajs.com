@@ -1,0 +1,39 @@
+.about {
+	background-color: transparent;
+	text-align: center;
+	padding: 150px 0 100px;
+	z-index: 301;
+}
+
+.grey-background {
+	background: rgba($primary, 0.02);
+}
+
+.about-title {
+	border-bottom: 10px solid $accent;
+	color: $primary;
+	display: inline;
+	font-size: 55px;
+	line-height: 80px;
+	text-transform: uppercase;
+}
+
+.about-description {
+	color: rgba($primary, .6);
+	font-size: 20px;
+	line-height: 36px;
+	margin: 50px 0 0;
+
+	a {
+		color: rgba(255,255,255, .85);
+		font-decoration: $accent;
+
+		&:hover {
+			color: rgba(255,255,255, .5);
+		}
+	}
+
+	p {
+		color: rgba($primary, 1);
+	}
+}

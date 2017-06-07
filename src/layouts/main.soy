@@ -1,94 +1,16 @@
 {namespace main}
 
 /**
- * @param baseDir
  * @param content
- * @param pageName
+ * @param? elementClasses
  */
-{template .page}
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="A blazing-fast Single Page Application engine">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="Senna.js">
-  <meta property="og:description" content="A blazing-fast Single Page Application engine">
-  <meta property="og:image" content="http://sennajs.com/images/site_screenshot.jpg">
-
-  <title>Senna.js{if $pageName} | {$pageName}{/if}</title>
-
-  <!-- build:css styles/all.min.css -->
-  <link rel="stylesheet" href="{$baseDir}/vendor/pure/pure-min.css">
-  <link rel="stylesheet" href="{$baseDir}/vendor/pure/grids-responsive-min.css">
-  <link rel="stylesheet" href="{$baseDir}/styles/main.css">
-  <link rel="stylesheet" href="{$baseDir}/styles/examples.css">
-  <link rel="stylesheet" href="{$baseDir}/styles/team.css">
-  <link rel="stylesheet" href="{$baseDir}/vendor/senna/build/senna.css">
-  <!-- endbuild -->
-
-  <link rel="shortcut icon" href="{$baseDir}/images/favicon.ico">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300">
-</head>
-<body id="body">
-  <div class="senna-loading-bar"></div>
-  <div class="header">
-    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-      <div class="center">
-        <a class="pure-menu-heading" href="{$baseDir}/">
-          <span>Senna.js</span>
-        </a>
-
-        <ul class="menu-section">
-          <li class="{if $pageName == 'Introduction'}pure-menu-selected{/if}">
-            <a href="{$baseDir}/">Home</a>
-          </li>
-          <li class="{if $pageName == 'Documentation'}pure-menu-selected{/if}">
-            <a href="{$baseDir}/docs/">Docs</a>
-          </li>
-          <li class="{if $pageName == 'About'}pure-menu-selected{/if}">
-            <a href="{$baseDir}/about/">About</a>
-          </li>
-          <li>
-            <a class="classy-link" href="http://sennajs.com/api/" target="_blank" data-senna-off>
-              <span>API</span>
-            </a>
-          </li>
-          <li>
-            <a class="classy-link" href="https://github.com/liferay/senna.js" target="_blank">
-              <span>GitHub</span>
-            </a>
-          </li>
-          <li>
-            <a class="classy-link" href="https://github.com/liferay/senna.js/archive/master.zip">
-              <span>Download</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  {$content}
-
-  <!-- build:js scripts/all.min.js -->
-  <script src="{$baseDir}/vendor/senna/build/globals/senna-min.js"></script>
-  <script src="{$baseDir}/scripts/main.js"></script>
-  <!-- endbuild -->
-
-  {literal}
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-4114546-43', 'auto');
-      ga('send', 'pageview');
-    </script>
-  {/literal}
-</body>
-</html>
+{template .render}
+	<div class="{$elementClasses ?: 'main'}">
+		<main class="content">
+			{call topbar.render data="all"}
+				{param elementClasses: 'topbar-fixed' /}
+			{/call}
+			{$content}
+		</main>
+	</div>
 {/template}

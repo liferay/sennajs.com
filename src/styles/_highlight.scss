@@ -1,0 +1,89 @@
+.highlight .container {
+	margin: 0 auto;
+	padding-top: 80px;
+	padding-bottom: 20px;
+}
+
+.highlight.row {
+	margin-bottom: 80px;
+}
+
+.highlights {
+	background: rgb(250, 250, 251);
+}
+
+.container {
+	z-index: 3;
+}
+
+.highlight-title {
+	font-size: 48px;
+	margin: 30px 0;
+	color: $primary;
+	text-transform: uppercase;
+	display: inline;
+}
+
+.highlight-description {
+	font-size: 20px;
+	line-height: 33px;
+	margin: 30px 0 20px 0;
+	color: rgba($primary, .6);
+}
+
+.highlight-graphic {
+  border-radius: 50%;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.highlight-graphic [class^="icon-16-"], 
+.highlight-graphc[class*="icon-16-"] {
+  box-shadow: 0 7px 27px 5px rgba(14, 20, 26, 0.2);
+  border-radius: 50%;
+  font-size: 62px;
+  line-height: 137px;
+  color: $accent;
+  width: 140px;
+  display: block;
+  margin: auto;
+}
+
+.footer-download {
+	width: 100%;
+	text-align: center;
+}
+
+.highlight code {
+  padding: 1px;
+  color: rgba($primary, 1);
+  font-size: 18px;
+
+}
+
+.highlight-code pre {
+  background: $primary;
+  white-space: pre-wrap;
+}
+
+.highlight-code code {
+  font-size: 13px;
+  background: transparent;
+  border: 0;
+  color: rgba(256,256,256, 1);
+  padding: 0;
+  white-space: inherit;
+}
+
+@media (min-width: $screen-sm-min) {
+  .highlight-graphic [class^="icon-16-"], 
+  .highlight-graphc[class*="icon-16-"] {
+	font-size: 86px;
+	line-height: 180px;
+	width: 186px;
+  }
+
+  .highlight-graphic {
+	margin-top: 0px;
+  }
+}
