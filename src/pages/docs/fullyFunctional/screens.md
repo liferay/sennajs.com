@@ -12,7 +12,7 @@ weight: 1
 
 Senna.js provides a special type of route handler, or interface, called `senna.Screen`. This in itself is not an active class, rather, it merely defines the screen interface methods and demonstrates how to use the API. The real magic happens when we extend `senna.Screen`.
 
-We knew this might be a little tricky at first, so we creating our own extention: `senna.HTMLScreen`- the default screen we created to make Senna.js ready to work straight out of the box.
+We knew this might be a little tricky at first, so we created our own extention: `senna.HTMLScreen` - the default screen for Senna.js straight out of the box.
 
 </article>
 
@@ -20,7 +20,7 @@ We knew this might be a little tricky at first, so we creating our own extention
 
 ## How can you put Senna.HTMLScreen to work?
 
-We designed Senna to use `senna.HTMLScreen` as the default extension for all navigation so you can start using Senna without worrying about changing anything in your back end. But how do I start setting up my screens with `senna.HTMLScreen`? That's the thing, you already did!
+We designed Senna to use `senna.HTMLScreen` as the default extension for all navigation so you can start using Senna without worrying about changing anything in your back end.
 
 When you added `data-senna` and `data-senna-surface` to your document (see [Getting Started](/docs/intro/gettingStarted.html)), you told senna to route all the navigations through `senna.HTMLScreen`.
 

@@ -102,7 +102,7 @@ By using History API, you can manipulate the browser history to use the browser'
 
 ## Cacheable Screens:
 
-Once you load a certain surface, this content is cached in memory and will be retrieved later on without any additional request to the server.
+Once you load a certain surface, this content is cached in memory and will be retrieved later without any additional request to the server.
 
 </article>
 

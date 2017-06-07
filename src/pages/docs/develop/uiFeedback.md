@@ -12,7 +12,7 @@ weight: 1
 
 ## 1. Add UI Feedback
 
-Senna comes with working UI feedback straight out of the box. All you have to do is add `<div class="senn-loading-bar"></div>` to the top of your `<body>`.
+Senna comes with working UI feedback straight out of the box. All you have to do is add `<div class="senna-loading-bar"></div>` to the top of your `<body>`.
 
 
 ```

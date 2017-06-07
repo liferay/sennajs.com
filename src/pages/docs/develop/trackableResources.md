@@ -10,7 +10,7 @@ weight: 3
 
 ## Trackable Resources
 
-Senna.js provides an easy way to manage external style and script resources on the page. When including resources in the `<head>`, they can be annotated with the `data-senna-track` attribute. This attribute can be set to `temporary` or `permanent`, which determines whether a resource remains on the page permanently or is removed after navigation;
+Senna.js provides an easy way to manage external style and script resources on the page. When including resources in the `<head>`, they can be annotated with the `data-senna-track` attribute. This attribute can be set to `temporary` or `permanent`, which determines whether a resource remains on the page or will be removed after navigation;
 
 
 ```
