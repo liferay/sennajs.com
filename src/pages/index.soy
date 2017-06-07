@@ -32,7 +32,7 @@ description: "Something nice and compelling about the project. Make it short and
 			<h1 id="header-h1" class="header-title">{$site.title}<span>.JS</span></h1>
 			<h2 id="header-h2" class="header-subtitle">A blazing fast Single Page Application engine</h2>
 			<div id="header-button" class="header-cta">
-				<a id="header-button-download" href="/docs/" class="btn btn-accent">
+				<a id="header-button-download" href="#using-senna" class="btn btn-accent">
 					<span class="icon-16-circle-arrow"></span>
 					Get Started
 				</a>
@@ -105,7 +105,7 @@ description: "Something nice and compelling about the project. Make it short and
  *
  */
 {template .start}
-	<article class="about grey-background">
+	<article class="about grey-background" id="using-senna">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-md-offset-2">
@@ -130,7 +130,7 @@ description: "Something nice and compelling about the project. Make it short and
 						<p>First, you can get it on npm or just use a <a id="initializing-link" href="http://www.jsdelivr.com/projects/senna.js">CDN</a>.</p>
 					</blockquote>
 				</div>
-				<div class="col-md-12 col-md-offset-2">	
+				<div class="col-md-12 col-md-offset-2">
 					{call ElectricCode.render}
 						{param code kind="text"}
 							{literal}npm install senna{/literal}
@@ -164,7 +164,7 @@ description: "Something nice and compelling about the project. Make it short and
 						{param code kind="text"}
 {literal}<body data-senna data-senna-surface>
 	<div class="senna-loading-bar"></div>
-	...	
+	...
 </body>{/literal}
 						{/param}
 						{param mode: 'XML/HTML' /}
@@ -180,10 +180,10 @@ description: "Something nice and compelling about the project. Make it short and
 
 					<div class="header-cta">
 						<a href="http://sennajs.com/examples/email" class="btn btn-accent" target="_blank">
-							<span></span> See Live acent
+							<span></span> Example
 						</a>
-						<a href="https://www.youtube.com/watch?v=1Y05AUglYt0" class="btn btn-accent" target="_blank">
-							<span></span> Watch Video Comparison
+						<a href="/docs/" class="btn btn-accent" target="_blank">
+							<span></span> Documentation
 						</a>
 					</div>
 				</div>
