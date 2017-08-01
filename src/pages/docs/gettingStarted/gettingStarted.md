@@ -69,6 +69,6 @@ Setting up Senna.js is as easy as linking Senna.js to your document and adding `
 ```
 
 
-Now your page is already faster! By adding `data-senna` and `data-senna-surface`, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completly reloading the page.
+Now your page is already faster! By adding `data-senna` and `data-senna-surface`, we are telling the browser to replace just the body on each navigation and keep the rest of the resources instead of completely reloading the page.
 
 </article>

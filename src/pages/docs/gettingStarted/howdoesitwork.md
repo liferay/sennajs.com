@@ -26,7 +26,7 @@ When the user clicks a link to another page of your app, Senna.js begins to work
 
 ## 3. Request is made for matching screen
 
-The request is made for the new page but instead of pulling down a completely new package of elements from the server, Senna.js utilizes the cached resources that are shared for both pages.
+The request is made for the new page but instead of pulling down a completely new package of elements from the server, Senna.js utilizes the cached resources that are shared across both pages.
 
 </article>
 

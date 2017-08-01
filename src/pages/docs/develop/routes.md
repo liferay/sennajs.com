@@ -41,6 +41,6 @@ var route = new senna.Route(resolvePath, function() {
 ```
 
 
-From the handler callback you can update parts of your page, though it is hard to grow your application from a simple callback like this. For that reason, Senna.js provides `senna.Screen`. A screen is nothing more than a special type of route handler that provides an asynchronous lifecycle. You can also jump to [Screens](/docs/fullyFunctional/screens.html) to learn more about how `senna.Screen` can help you manage your surfaces.
+From the handler callback you can update parts of your page, though it is hard to grow your application from a simple callback like this. For that reason, Senna.js provides `senna.Screen`. A screen is nothing more than a special type of route handler that provides an asynchronous lifecycle. [Learn more about how Screens can help you manage your surfaces.](/docs/fullyFunctional/screens.html)
 
 </article>

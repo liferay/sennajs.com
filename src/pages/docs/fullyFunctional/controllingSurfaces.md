@@ -10,11 +10,11 @@ weight: 2
 
 ## How do you make sure Senna does exactly what you want?
 
-By default, Senna is setup to route every link to `senna.HTMLScreen` - the out-of-the-box screen that senna provides to handle navigation so you don't have to change anything in your existing back end.
+By default, Senna is setup to route every link to `senna.HTMLScreen`—the out-of-the-box screen that senna provides to handle navigation—so you don't have to change anything in your existing back end.
 
 For most situations, this will be the ideal use of Senna because it is smart enough to know how to paint your surfaces with the new information when you navigate.
 
-But what if you want Senna to only be active during certain navigations? We make it easy for you to control what screens of your app will interact with Senna and what will not not. We call this [Controlling Data Attributes](#taking-control).
+But what if you want Senna to only be active during certain navigations? We make it easy for you to control what screens of your app will interact with Senna and what will not. We call this [Controlling Data Attributes](#taking-control).
 
 </article>
 

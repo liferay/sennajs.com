@@ -46,7 +46,7 @@ Every app navigation will consist of a route and a correlating screen. The route
 
 ## SEO & Bookmarkability:
 
-So if the browser is simply gathering more information rather than refreshing to a separate page, how do you make sure that your users can bookmark and share the content they are viewing? With Senna.js, your app will create specific urls that correlate to the information that your users are viewing. This not only makes it seamless for your users, but it also enables search engines to index that same information just like it would if it was a traditional webpage.
+So if the browser is simply gathering more information rather than refreshing to a separate page, how do you make sure that your users can bookmark and share the content they are viewing? With Senna.js, your app will create specific urls that correlate to the information that your users are viewing. This not only makes it seamless for your users, but it also enables search engines to index that same information just like it would if it was a traditional web page.
 
 </article>
 
@@ -102,7 +102,7 @@ By using History API, you can manipulate the browser history to use the browser'
 
 ## Cacheable Screens:
 
-Once you load a certain surface, this content is cached in memory and will be retrieved later without any additional request to the server.
+Once you load a certain surface, this content is cached in memory and will be retrieved on subsequent loads, without any additional request to the server.
 
 </article>
 
@@ -110,6 +110,6 @@ Once you load a certain surface, this content is cached in memory and will be re
 
 ## Page Resources Management:
 
-Evaluate scripts and stylesheets from dynamic loaded resources. Additional content loaded using XMLHttpRequest can be appended to the DOM. For security reasons some browsers will not evaluate `<script>` tags from the new fragment, so the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
+Evaluate scripts and style sheets from dynamic loaded resources. Additional content loaded using XMLHttpRequest can be appended to the DOM. For security reasons some browsers will not evaluate `<script>` tags from the new fragment, so the SPA engine should handle extracting scripts from the content and parsing them, respecting the browser contract for loading scripts.
 
 </article>
