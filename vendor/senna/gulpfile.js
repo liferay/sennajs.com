@@ -85,7 +85,7 @@ gulp.task('banner', function() {
 		' * Senna.js - <%= description %>',
 		' * @author Liferay, Inc.',
 		' * @version v<%= version %>',
-		' * @link http://sennajs.com',
+		' * @link https://sennajs.com',
 		' * @license BSD-3-Clause',
 		' */',
 		''

@@ -6,10 +6,10 @@
 
 *Senna.js* is a blazing-fast single page application engine that provides several low-level APIs that allows you to build modern web-based applications with only ~15 KB of JavaScript without any dependency.
 
-* [Official website](http://sennajs.com)
+* [Official website](https://sennajs.com)
 * [Website repository](https://github.com/liferay/sennajs.com)
-* [Documentation](http://sennajs.com/docs/)
-* [API Docs](http://sennajs.com/api/)
+* [Documentation](https://sennajs.com/docs/)
+* [API Docs](https://sennajs.com/api/)
 
 ## Install
 
@@ -22,9 +22,9 @@ npm install senna
 
 ## Examples
 
-* **[Email Example](http://sennajs.com/examples/email):** *Enable Single Page Apps using only HTML5 data-attributes;*
-* **[Gallery Example](http://sennajs.com/examples/gallery):** *Carousel app with history support and cacheable screens;*
-* **[Blog Example](http://sennajs.com/examples/blog):** *Infinite scrolling pages done right with history support;*
+* **[Email Example](https://sennajs.com/examples/email):** *Enable Single Page Apps using only HTML5 data-attributes;*
+* **[Gallery Example](https://sennajs.com/examples/gallery):** *Carousel app with history support and cacheable screens;*
+* **[Blog Example](https://sennajs.com/examples/blog):** *Infinite scrolling pages done right with history support;*
 
 ## Setup
 
