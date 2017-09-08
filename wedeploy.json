@@ -1,4 +1,5 @@
 {
 	"id": "hosting",
-	"image": "wedeploy/hosting:0.0.1"
+	"image": "wedeploy/hosting:0.0.3",
+	"customDomains": ["sennajs.com"]
 }
